@@ -71,9 +71,9 @@ const UsersSearchPage = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
             <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6'>
-                <div className='w-[500px] border-2 h-screen'>
-                    <div className='flex w-full border-2 h-14'>
-                        <input className='w-full h-full text-xl border-2 outline-none placeholder:text-gray-400 placeholder:text-xl '
+                <div className='w-[500px] h-screen border-2 '>
+                    <div className='flex w-full h-14'>
+                        <input className='w-full h-full p-2 text-xl outline-none placeholder:text-gray-400 placeholder:text-xl'
                             placeholder='닉네임을 입력하세요' type="text"
                             onKeyDown={pressEnterHandler}
                             onChange={(event) => setKeyword(event.target.value)} />

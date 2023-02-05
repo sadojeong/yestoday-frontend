@@ -6,6 +6,8 @@ import ProfileBody from './ProfileBody';
 import ProfileHeader from './ProfileHeader';
 import ProfileBodyTemp from './ProfileBodyTemp';
 import { useLocation } from 'react-router-dom';
+import SideBar from '../SideBar';
+import SaveModal from '../Modal/SaveModal';
 
 const baseUrl = 'http://localhost:8080';
 
@@ -13,6 +15,12 @@ const Profile = props => {
     const location = useLocation();
     const [user, setUser] = useState([]);
     const [feeds, setFeeds] = useState([]);
+
+    const [saveIsOpen, setSaveIsOpen] = useState(false);
+    const showModal = () => {
+        setSaveIsOpen(true);
+    }
+
 
     // useEffect(() => {
     //     axios.get(baseUrl + '/feeds')
@@ -36,11 +44,22 @@ const Profile = props => {
 
 
     return (
-        <div className='bg-white'>
-            <ProfileHeader user={user} />
-            <ProfileBodyTemp user={user} />
-            {/* <ProfileBody feeds={feeds} /> */}
-        </div>
+
+
+        <div className='flex justify-center'>
+            <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
+                <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
+            </div>
+            <div className='md:w-2/3 lg:w-3/4 xl:w-5/6'>
+                <ProfileHeader user={user} />
+                <ProfileBodyTemp user={user} />
+                {/* <ProfileBody feeds={feeds} /> */}
+            </div>
+
+
+            {saveIsOpen && <SaveModal setSaveIsOpen={setSaveIsOpen} />}
+
+        </div >
     )
 }
 
