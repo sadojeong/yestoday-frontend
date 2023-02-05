@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import SaveModal from './Modal/SaveModal';
 import SideBar from './SideBar';
 import MainFeed from './MainFeed';
