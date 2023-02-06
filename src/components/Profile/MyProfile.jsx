@@ -2,26 +2,25 @@ import React from 'react'
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProfileBody from './ProfileBody';
 import ProfileHeader from './ProfileHeader';
 import ProfileBodyTemp from './ProfileBodyTemp';
-import { useLocation, useParams } from 'react-router-dom';
+import MyProfileHeader from './MyprofileHeader';
 
-const baseUrl = 'http://localhost:8080';
-
-const Profile = props => {
-    const params = useParams();
+const MyProfile = () => {
     const [user, setUser] = useState([]);
     const [userId, setUserId] = useState([]);
     const [followinginfo, setFollowingInfo] = useState([]);
     const [postInfo, setPostInfo] = useState([]);
     const [numberOfFollower, setNumberOfFollower] = useState([]);
-    const userName = params.username;
+
+    const baseUrl = 'http://localhost:8080';
 
     const testApiCall = async () => {
+
         try {
-            const response = await axios.get(baseUrl + `/users/bynickname/${userName}`)
+            const response = await axios.get(baseUrl + "/users/bynickname/Jeong1")
             const userId = response.data.id;
+            console.log(userId);
             setUser(response.data);
 
             const response2 = await axios.get(baseUrl + `/users/following-members/${userId}`)
@@ -77,11 +76,11 @@ const Profile = props => {
 
     return (
         <div className='bg-white'>
-            <ProfileHeader user={user} followinginfo={followinginfo} postInfo={postInfo} numberOfFollower={numberOfFollower} />
+            <MyProfileHeader user={user} followinginfo={followinginfo} postInfo={postInfo} numberOfFollower={numberOfFollower} />
             <ProfileBodyTemp user={user} postInfo={postInfo} />
             {/* <ProfileBody feeds={feeds} /> */}
         </div>
     )
 }
 
-export default Profile
+export default MyProfile

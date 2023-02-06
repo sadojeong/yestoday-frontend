@@ -8,7 +8,6 @@ const Main = props => {
             navigate("/");
         } else {
             navigate("/profile/" + e.target.id, {
-                state: { username: e.target.id }
             })
         }
 
@@ -18,7 +17,7 @@ const Main = props => {
         <div className='flex justify-center'>
             <button className='mr-2 border-2 border-black' onClick={navigateTo} id="Lim">Lim</button>
             <button className='mr-2 border-2 border-black' onClick={navigateTo} id="Cho">Cho</button>
-            <button className='mr-2 border-2 border-black' onClick={navigateTo} id="Kim">Kim</button>
+            <button className='mr-2 border-2 border-black' onClick={navigateTo} id="Kim1">Kim1</button>
             <button className='mr-2 border-2 border-black' onClick={navigateTo} id="Jeong">Jeong</button>
         </div>
     )
