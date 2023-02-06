@@ -5,7 +5,7 @@ import Post from './Post';
 const Posts = props => {
 
     let likeResult = false;
-    const postList = props.feeds.map(feed => (
+    const postList = props.feed.map(post => (
         //    likes.map(like => {
         //     if(like.feedId === feed.feedID){
         //         likeResult = true;
@@ -14,8 +14,8 @@ const Posts = props => {
 
 
         <Post
-            key={feed.feedId}
-            feed={feed}
+            key={post.id}
+            post={post}
 
         />
     ));

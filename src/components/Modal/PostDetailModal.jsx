@@ -5,8 +5,8 @@ import UpdateModal from './UpdateModal';
 import TodoModal from './TodoModal';
 
 const PostDetailModal = props => {
-    console.log(props.feed);
-    console.log("date", props.feed.feedDateTime);
+    console.log(props.post);
+    console.log("date", props.post.postDateTime);
     const userId = 1
     const [like, setLike] = useState(props.like);
     const [comments, setComments] = useState([]);
@@ -30,7 +30,7 @@ const PostDetailModal = props => {
 
     useEffect(() => {
         const getComments = async () => {
-            const response = await axios.get("http://localhost:8080/comments/feeds/" + props.feed.feedId);
+            const response = await axios.get("http://localhost:8080/comments/feeds/" + props.post.id);
             setComments(response.data);
 
         }
@@ -48,7 +48,7 @@ const PostDetailModal = props => {
     const commentsList = comments.map((comment, index) => (
         <li className='flex justify-between mb-4 h-fit' key={index} >
             <div className='flex w-16 mr-1'>
-                <img className='w-6 h-6' src={comment.user.profileImg}></img>
+                <img className='w-6 h-6' src={comment.user.imageUrl}></img>
                 <span className='mt-1 text-xs'>{comment.user.nickname}</span>
             </div>
             <span className='w-1/2 text-sm text-left break-all h-fit ' >{comment.commentDesc}</span>
@@ -58,7 +58,7 @@ const PostDetailModal = props => {
     ));
     const saveComment = async () => {
         await axios.post('http://localhost:8080/comments', {
-            feedId: props.feed.feedId,
+            postId: props.post.id,
             userId: 1,
             commentDesc: commentText,
             commentDateTime: new Date(Date.now())
@@ -80,7 +80,7 @@ const PostDetailModal = props => {
     }
 
     const deleteFeed = async () => {
-        await axios.delete('http://localhost:8080/feeds/' + props.feed.feedId);
+        await axios.delete('http://localhost:8080/feeds/' + props.post.id);
     }
 
     const deleteHandler = () => {
@@ -107,10 +107,10 @@ const PostDetailModal = props => {
             <div className='w-3/5 p-1 border-r-2'>
                 <div className='flex justify-between h-12 m-2'>
                     <div className='flex w-fit' onClick={() => setIsClicked(true)}>
-                        <img src={props.user.profileImg}></img>
+                        <img src={props.user.imageUrl}></img>
                         <span className='mt-3 ml-1'>{props.user.nickname}</span>
                     </div>
-                    {isClicked && <TodoModal setIsClicked={setIsClicked} feed={props.feed} user={props.user} />}
+                    {isClicked && <TodoModal setIsClicked={setIsClicked} post={props.post} user={props.user} />}
 
                     {isMine && <img className='w-6 h-6 mt-2 ' src='images/more.png' onClick={() => setSettingIsOpen(true)}></img>}
 
@@ -130,24 +130,24 @@ const PostDetailModal = props => {
 
                 </div>
                 <div className='flex justify-center'>
-                    <img className='h-[500px] object-scale-down bg-slate-200 w-full' src={props.feed.imgUrl} alt="" />
+                    <img className='h-[500px] object-scale-down bg-slate-200 w-full' src={props.post.imageUrl} alt="" />
                 </div>
 
                 <div className='flex mt-2'>
                     <img className='h-4'
                         src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
                     <p className='text-lg font-bold'>
-                        {props.feed.todoName}
+                        {props.post.todoName}
                     </p>
                 </div>
-                <div className='text-sm text-right text-slate-400'>{props.feed.feedDateTime.substr(0, 10)}</div>
+                <div className='text-sm text-right text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
 
             </div>
 
             <div className='w-2/5 h-full '>
                 <div className='flex justify-between w-full h-20 mt-5 text-left'>
 
-                    <span className='w-full h-20 text-left'>{props.feed.description}</span>
+                    <span className='w-full h-20 text-left'>{props.post.context}</span>
 
                     <img className='h-12 m-2 transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 '
                         src={like ? "images/yes.png" : "images/yes-black.png"} alt="" onClick={likeHandler} />
@@ -167,7 +167,7 @@ const PostDetailModal = props => {
                 </div>
 
             </div>
-            {updateIsOpen && <UpdateModal setModalOpen={props.setModalOpen} setUpdateIsOpen={setUpdateIsOpen} feed={props.feed} user={props.user} ></UpdateModal>}
+            {updateIsOpen && <UpdateModal setModalOpen={props.setModalOpen} setUpdateIsOpen={setUpdateIsOpen} post={props.post} user={props.user} ></UpdateModal>}
 
 
         </Modal>

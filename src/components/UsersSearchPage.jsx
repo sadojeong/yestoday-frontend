@@ -77,7 +77,7 @@ const UsersSearchPage = props => {
                             placeholder='닉네임을 입력하세요' type="text"
                             onKeyDown={pressEnterHandler}
                             onChange={(event) => setKeyword(event.target.value)} />
-                        <img className='w-10 h-10 p-1 mt-1 hover:cursor-pointer' src="./images/search.png" alt="" onClick={searchHandler} />
+                        <img className='w-10 h-10 p-1 mt-1 hover:cursor-pointer' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/search.png" alt="" onClick={searchHandler} />
                     </div>
                     <ul className='w-full h-fit'> {resultList}</ul>
 
