@@ -29,10 +29,10 @@ const UpdateModal = props => {
 
 
     useEffect(() => {
-        setImgUrl(props.feed.imgUrl);
-        setDescription(props.feed.description);
-        setImgType(props.feed.imgType);
-        imgName = props.feed.imgUrl.split('.com/')[1];
+        setImgUrl(props.post.imageUrl);
+        setDescription(props.post.content);
+        setImgType(props.port.imageType);
+        imgName = props.post.imageUrl.split('.com/')[1];
 
     }, [])
 
@@ -68,17 +68,17 @@ const UpdateModal = props => {
 
 
         axios.put(baseUrl, {
-            feedId: props.feed.feedId,
-            todoId: props.feed.todoId,
-            todoName: props.feed.todoName,
-            userId: props.feed.userId,
-            imgUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName.replace(/ /g, ''),
-            imgType: imgType,
-            imgFile: imgFile,
-            feedDescription: description,
-            feedDateTime: props.feed.feedDateTime,
-            likeNumbers: props.feed.likeNumbers,
-            commentNumbers: props.feed.commentNumbers,
+            id: props.post.id,
+            todoId: props.post.todoId,
+            todoName: props.post.todoName,
+            userId: props.post.userId,
+            imageUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName.replace(/ /g, ''),
+            imageType: imgType,
+            // imageFile: imgFile,
+            content: description,
+            postDateTime: props.post.postDateTime,
+            likeNumbers: props.post.likeNumbers,
+            commentNumbers: props.post.commentNumbers,
 
         })
             .then(function (response) {
@@ -152,7 +152,7 @@ const UpdateModal = props => {
                 <img className='h-4'
                     src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
                 <p className='text-lg font-bold'>
-                    {props.feed.todoName}
+                    {props.post.todoName}
                 </p>
             </div>
 

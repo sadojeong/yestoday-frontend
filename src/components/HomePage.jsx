@@ -12,11 +12,6 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:8080/todos'
 
 const HomePage = props => {
-    // const navigate = useNavigate();
-
-    // const toFindAll = () => {
-    //     navigate('/findall');
-    // }
 
     const userId = 1;
 

@@ -61,16 +61,18 @@ const SaveModal = props => {
             }
         );
 
-        console.log(todoName);
+
         axios.post(baseUrl, {
             todoId: todoId,
             todoName: todoName,
             userId: userId,
-            imgUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName.replace(/ /g, ''),
-            imgType: imgType,
-            imgFile: imgFile,
-            feedDescription: description,
-            feedDateTime: currentTime,
+            imageUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName.replace(/ /g, ''),
+            imageType: imgType,
+            // imgFile: iWmgFile,
+            content: description,
+            postDateTime: currentTime,
+            likeNumbers: 0,
+            commentNumbers: 0
         })
             .then(function (response) {
                 console.log(response);
@@ -166,7 +168,7 @@ const SaveModal = props => {
 
             {imgUrl && <div className='flex justify-center mt-2'>
                 <button className='flex pl-2 pr-2 border-2 rounded-lg bg-slate-200' onClick={onClickImageUpload}>
-                    <img className='w-4' src="/images/plus.png" alt="" />
+                    <img className='w-4' src="./images/plus.png" alt="" />
                     <span className='ml-1 text-sm'>이미지 다시 선택하기</span>
                 </button>
             </div>

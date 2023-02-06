@@ -24,12 +24,12 @@ const TodoModal = props => {
 
     const todoList = todos.map(todo => (
         todo.complete ?
-            <li key={todo.todoId} className='flex w-full p-2 border-b-2 h-1/12'>
+            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
                 <img className='w-1/12' src="images/checkmark.png" alt="" />
                 <span className='line-through text-slate-400 '>{todo.todoName}</span>
             </li>
             :
-            <li key={todo.todoId} className='flex w-full p-2 border-b-2 h-1/12'>
+            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
                 <div className='w-1/12'></div>
                 <span className=''>{todo.todoName}</span>
             </li>
@@ -51,7 +51,7 @@ const TodoModal = props => {
             <header>
                 <div className='flex h-10' >
                     <img className='w-10 h-10 mr-2'
-                        src={props.user.profileImg} alt="" />
+                        src={props.user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{props.user.nickname} 님의</span>
                     <span className='flex items-center ml-2 font-serif text-sm font-bold'>  Today TodoList</span>
 
