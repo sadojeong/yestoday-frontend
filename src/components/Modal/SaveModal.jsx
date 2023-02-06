@@ -148,7 +148,7 @@ const SaveModal = props => {
                     setTodoName(event.target[index].text);
                 }}>
                     <option value="0" >--todo 선택--</option>
-                    <option value="1" >밥 먹기</option>
+                    <option value="1" >밥먹기</option>
                     <option value="2" >운동하기</option>
                     <option value="3" >책 읽기</option>
                 </select>
