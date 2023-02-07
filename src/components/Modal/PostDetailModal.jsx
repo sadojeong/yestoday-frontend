@@ -17,7 +17,7 @@ const PostDetailModal = props => {
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
 
-    const isMine = props.user.userId === userId ? true : false;
+    const isMine = (props.user.id === userId) ? true : false;
 
 
     const closeModal = () => {
@@ -30,7 +30,8 @@ const PostDetailModal = props => {
 
     useEffect(() => {
         const getComments = async () => {
-            const response = await axios.get("http://localhost:8080/comments/feeds/" + props.post.id);
+            const response = await axios.get("http://localhost:8080/comments/posts/" + props.post.id);
+
             setComments(response.data);
 
         }
@@ -44,6 +45,8 @@ const PostDetailModal = props => {
             }
         }
     }
+
+    console.log(comments);
 
     const commentsList = comments.map((comment, index) => (
         <li className='flex justify-between mb-4 h-fit' key={index} >
@@ -80,7 +83,7 @@ const PostDetailModal = props => {
     }
 
     const deleteFeed = async () => {
-        await axios.delete('http://localhost:8080/feeds/' + props.post.id);
+        await axios.delete('http://localhost:8080/posts/' + props.post.id);
     }
 
     const deleteHandler = () => {
@@ -150,7 +153,7 @@ const PostDetailModal = props => {
                     <span className='w-full h-20 text-left'>{props.post.context}</span>
 
                     <img className='h-12 m-2 transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 '
-                        src={like ? "images/yes.png" : "images/yes-black.png"} alt="" onClick={likeHandler} />
+                        src={like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
 
                 </div>
                 <p className='p-1 mb-2 font-semibold text-left'>댓글 {comments.length}개</p>

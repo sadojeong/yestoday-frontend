@@ -4,7 +4,7 @@ import axios from 'axios';
 import AWS from 'aws-sdk';
 import Modal from 'react-modal';
 
-const baseUrl = 'http://localhost:8080/feeds'
+
 const region = "ap-northeast-2";
 const bucket = 'yestoday';
 let imgName = '';
@@ -62,7 +62,7 @@ const SaveModal = props => {
         );
 
 
-        axios.post(baseUrl, {
+        axios.post('/posts', {
             todoId: todoId,
             todoName: todoName,
             userId: userId,
@@ -150,7 +150,7 @@ const SaveModal = props => {
                     setTodoName(event.target[index].text);
                 }}>
                     <option value="0" >--todo 선택--</option>
-                    <option value="1" >밥 먹기</option>
+                    <option value="1" >밥먹기</option>
                     <option value="2" >운동하기</option>
                     <option value="3" >책 읽기</option>
                 </select>
