@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileHeader = props => {
+const MyProfileHeader = props => {
     const imgSrc = "/images/" + props.user.imageUrl
 
     return (
@@ -17,10 +17,7 @@ const ProfileHeader = props => {
                         <div className='flex ml-1'>
                             <div className='flex'>
                                 <button className='flex items-center justify-center w-20 ml-2 rounded-lg bg-slate-200'>
-                                    <div className='text-[10px] font-bold'>팔로우</div>
-                                </button>
-                                <button className='flex items-center justify-center w-20 ml-2 rounded-lg bg-slate-200'>
-                                    <div className='text-[10px] font-bold'>메시지 보내기</div>
+                                    <div className='text-[10px] font-bold'>프로필 편집</div>
                                 </button>
                             </div>
                         </div>
@@ -59,4 +56,4 @@ const ProfileHeader = props => {
     )
 }
 
-export default ProfileHeader
+export default MyProfileHeader
