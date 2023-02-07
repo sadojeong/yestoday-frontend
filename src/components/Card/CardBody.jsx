@@ -6,7 +6,7 @@ const CardBody = props => {
     return (
         <div>
 
-            <Todos todos={props.todos} onDelete={props.onDelete} onUPdate={props.onUPdate} onChecked={props.onChecked} />
+            <Todos todos={props.todos} onDelete={props.onDelete} onUpdate={props.onUpdate} onChecked={props.onChecked} />
         </div>
 
     );

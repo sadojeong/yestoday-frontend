@@ -9,7 +9,7 @@ import CardHeader from './Card/CardHeader';
 import CardBody from './Card/CardBody';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/todos'
+const baseUrl = 'http://localhost:8080/api/todo'
 
 const HomePage = props => {
 
@@ -33,7 +33,7 @@ const HomePage = props => {
     useEffect(() => {
 
 
-        axios.get("http://localhost:8080/todos/users/" + userId + "/todo-date/" + todayDate)
+        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
                 setTodos(data)
