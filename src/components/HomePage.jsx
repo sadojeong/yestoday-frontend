@@ -9,7 +9,7 @@ import CardHeader from './Card/CardHeader';
 import CardBody from './Card/CardBody';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/todos'
+const baseUrl = 'http://localhost:8080/api/todo'
 
 const HomePage = props => {
 

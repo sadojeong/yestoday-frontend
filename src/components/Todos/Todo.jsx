@@ -1,8 +1,15 @@
 import React, {useState} from "react";
+import MyButton from "./MyButton"
+
+
+
 
 const Todo = props => {
     const [title, setTitle] = useState(props.name);
     const [iscompleted, setCompleted] = useState(false);
+   
+    
+  
     
 
         // Todo 업데이트
@@ -40,6 +47,7 @@ const Todo = props => {
     const deleteTodoHandler = () => {
         props.onDelete(props.id);
     }
+    
   
 
         return (
@@ -58,9 +66,16 @@ const Todo = props => {
                         ></input>
                         <label htmlFor={props.id}></label>
                 </div>
-                <button className='invisible ml-2 font-semibold text-red-400 cursor-default group-hover:visible' onClick={deleteTodoHandler}>X</button>
-
+                <MyButton todo={title}  id={props.id} todoDescription={props.todoDescription}  updateSubmitHandler={updateSubmitHandler} />
+                <button  className='ml-2 font-semibold text-red-400 cursor-default group-hover:visible'  onClick={deleteTodoHandler}>X</button>
+                
                 </div>
+                {/* <button onClick={()=> setModalIsOpen(true)}>Modal Open</button> */}
+       
+                
+                 
+                
+                
 
             </div>
         )
