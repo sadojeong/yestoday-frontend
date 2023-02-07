@@ -33,7 +33,7 @@ const ProfileHeader = props => {
                                 </div>
                             </li>
                             <li className='w-1/3 ml-2'>
-                                <a href={`/profile/${props.user.nickname}/follower`} role="link">
+                                <a href='#FolloerModal' role="link">
                                     <div className='flex text-[9px]'>
                                         팔로워 <span className='ml-1 font-bold'>{props.numberOfFollower}</span>
                                     </div>
