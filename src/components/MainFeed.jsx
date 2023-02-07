@@ -26,33 +26,28 @@ const FindAllPage = props => {
 
 
         const getPosts = async () => {
-            const response = await axios.get(baseUrl + "/users/" + userId);
+            const responseMyPost = await axios.get("http://localhost:8080/users/postsinfo/" + userId);
+            const myPosts = responseMyPost.data;
+
+            followPostsList = myPosts
+            // if (myPosts.length > 1) {
+            //     followPostsList = [...followPostsList, ...myPosts];
+            // } else {
+            //     followPostsList = [...followPostsList, myPosts];
+            // }
+
+
+            const response = await axios.get("http://localhost:8080/users/following-members/" + userId);
             const follows = response.data;
 
             follows.map(follow => {
-                const followPosts = follow.friend.posts;
+                const followPosts = follow.followUser.posts;
 
                 followPostsList = [...followPostsList, ...followPosts]
             });
 
-            if (follows.length === 0) {
-                const response = await axios.get("http://localhost:8080/users/byid/" + userId);
-                const myPosts = response.data.posts;
-                console.log(myPosts);
 
-
-
-                if (myPosts.length > 1) {
-                    followPostsList = [...followPostsList, ...myPosts];
-                } else {
-                    followPostsList = [...followPostsList, myPosts];
-                }
-
-
-            } else {
-                followPostsList = [...followPostsList, ...follows[0].user.posts];
-            }
-            const orderedPosts = followPostsList.sort((a, b) => new Date(a.feedDateTime) - new Date(b.feedDateTime)).reverse();
+            const orderedPosts = followPostsList.sort((a, b) => new Date(a.postDateTime) - new Date(b.postDateTime)).reverse();
             setFeed(orderedPosts);
 
         }

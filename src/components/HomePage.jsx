@@ -20,6 +20,12 @@ const HomePage = props => {
         setSaveIsOpen(true);
     }
 
+    const dateFormat = (date) => {
+        const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
+            + '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate()));
+        return dateFormatted;
+    }
+    const todayDate = dateFormat(new Date())
 
 
     const [todos, setTodos] = useState([]);
@@ -27,10 +33,9 @@ const HomePage = props => {
     useEffect(() => {
 
 
-        axios.get(baseUrl)
+        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
-                console.log(data)
                 setTodos(data)
             });
 
@@ -44,6 +49,7 @@ const HomePage = props => {
             name: enteredValue,
             userId: 1,
             completeState: false,
+            todoDate: todayDate
 
         }
         axios.post(baseUrl, JSON.stringify(newTodo), {

@@ -10,7 +10,6 @@ import yesBlack from '../../images/yesblack.png'
 const baseUrl = 'http://localhost:8080/users'
 
 const Post = props => {
-    console.log(props);
     // const feedDate = props.feedDate.substr(0, 10);
 
     const [user, setUser] = useState([]);
@@ -30,8 +29,7 @@ const Post = props => {
             //     console.log(props.feed[0]);
             //     // const response = await axios.get(baseUrl + '/' + props.feed[0].userId)
             // }
-            console.log('props.post', props.post);
-            const response = await axios.get(baseUrl + '/byid/' + props.post.userId)
+            const response = await axios.get("http://localhost:8080/users" + '/byid/' + props.post.userId)
 
             setUser(response.data);
         }

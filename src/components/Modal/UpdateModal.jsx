@@ -7,7 +7,7 @@ import Modal from 'react-modal'
 
 
 
-const baseUrl = 'http://localhost:8080/feeds'
+const baseUrl = 'http://localhost:8080/posts'
 const region = "ap-northeast-2";
 const bucket = 'yestoday';
 let imgName = '';
@@ -31,7 +31,7 @@ const UpdateModal = props => {
     useEffect(() => {
         setImgUrl(props.post.imageUrl);
         setDescription(props.post.content);
-        setImgType(props.port.imageType);
+        setImgType(props.post.imageType);
         imgName = props.post.imageUrl.split('.com/')[1];
 
     }, [])

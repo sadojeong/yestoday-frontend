@@ -3,7 +3,7 @@ import Post from './Post';
 
 
 const Posts = props => {
-
+    console.log("posts post", props.feed);
     let likeResult = false;
     const postList = props.feed.map(post => (
         //    likes.map(like => {
@@ -11,6 +11,7 @@ const Posts = props => {
         //         likeResult = true;
         //     }
         //    });
+
 
 
         <Post
