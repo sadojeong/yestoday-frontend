@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 
-const TodoModal = props => {
+const ProfileTodoModal = props => {
     const [todos, setTodos] = useState([]);
 
     const dateFormat = (date) => {
@@ -10,12 +10,12 @@ const TodoModal = props => {
             + '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate()));
         return dateFormatted;
     }
-    console.log(dateFormat(new Date()));
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://localhost:8080/todos/users/' + props.user.userId + "/todo-date/" + dateFormat(new Date()));
+            const response = await axios.get('http://localhost:8080/api/todo/users/' + props.user.id + "/todo-date/" + dateFormat(new Date()));
             setTodos(response.data)
+            console.log(response.data);
         }
 
         getTodos();
@@ -23,15 +23,15 @@ const TodoModal = props => {
     }, [])
 
     const todoList = todos.map(todo => (
-        todo.complete ?
+        todo.completeState ?
             <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
                 <img className='w-1/12' src="images/checkmark.png" alt="" />
-                <span className='line-through text-slate-400 '>{todo.todoName}</span>
+                <span className='line-through text-slate-400 '>{todo.name}</span>
             </li>
             :
             <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
                 <div className='w-1/12'></div>
-                <span className=''>{todo.todoName}</span>
+                <span className=''>{todo.name}</span>
             </li>
 
     ))
@@ -60,7 +60,7 @@ const TodoModal = props => {
             </header>
 
 
-            <ul className='w-full mt-3 h-4/5'>
+            <ul className='w-full p-0 mt-3 h-4/5'>
                 {todoList}
             </ul>
 
@@ -69,4 +69,4 @@ const TodoModal = props => {
     )
 }
 
-export default TodoModal
+export default ProfileTodoModal

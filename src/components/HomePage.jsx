@@ -21,8 +21,9 @@ const HomePage = props => {
     }
 
     const dateFormat = (date) => {
-        const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
-            + '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate()));
+
+        const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
+            + '-' + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
         return dateFormatted;
     }
     const todayDate = dateFormat(new Date())

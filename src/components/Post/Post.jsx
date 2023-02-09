@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import PostDetailModal from '../Modal/PostDetailModal';
-import TodoModal from '../Modal/TodoModal';
-import yes from '../../images/yes.png';
-import yesBlack from '../../images/yesblack.png'
+import ProfileTodoModal from '../Modal/ProfileTodoModal';
 // import { Link } from 'react-router-dom';
 
 
@@ -11,11 +9,12 @@ const baseUrl = 'http://localhost:8080/users'
 
 const Post = props => {
     // const feedDate = props.feedDate.substr(0, 10);
-
-    const [user, setUser] = useState([]);
+    // const [user, setUser] = useState();
     const [like, setLike] = useState(false);
+    const [likeId, setLikeId] = useState(0);
     const [isClicked, setIsClicked] = useState(false);
-
+    const user = props.post.user;
+    const userId = 1;
 
     const [modalOpen, setModalOpen] = useState(false);
     const showModal = () => {
@@ -23,23 +22,45 @@ const Post = props => {
     }
 
     useEffect(() => {
-        const getUser = async () => {
-            // if (props.feed.length === 0) {
-            //     console.log("feed 1");
-            //     console.log(props.feed[0]);
-            //     // const response = await axios.get(baseUrl + '/' + props.feed[0].userId)
-            // }
-            const response = await axios.get("http://localhost:8080/users" + '/byid/' + props.post.userId)
 
-            setUser(response.data);
+        const getLike = async () => {
+            const response = await axios.get("http://localhost:8080/likes/users/" + user.id + "/posts/" + props.post.id);
+            if (response.data) {
+                setLike(true);
+                setLikeId(response.data.id);
+            } else {
+                setLike(false);
+            }
+
         }
 
-        getUser();
+        getLike();
+
+
 
     }, [])
 
+    const addLike = async () => {
+        const response = await axios.post("http://localhost:8080/likes", {
+            "postId": props.post.id,
+            "userId": userId
+        })
+        setLike(true);
+        setLikeId(response.data[0].id);
+    }
+
+    const deleteLike = async () => {
+        const response = await axios.delete("http://localhost:8080/likes/" + likeId);
+        setLike(false);
+        setLikeId(0);
+    }
+
     const likeHandler = () => {
-        setLike(!like);
+        if (like === false) {
+            addLike();
+        } else {
+            deleteLike();
+        }
     }
 
     return (
@@ -51,7 +72,7 @@ const Post = props => {
                     <span className='flex items-center text-sm'>{user.nickname}</span>
 
                 </div>
-                {isClicked && <TodoModal setIsClicked={setIsClicked} user={user} />}
+                {isClicked && <ProfileTodoModal setIsClicked={setIsClicked} user={user} />}
 
                 {/* <span className='text-xs text-slate-500 '>{feedDate}</span> */}
             </header>
@@ -78,7 +99,7 @@ const Post = props => {
             <p className='h-20 text-sm text-left '>{props.post.content}</p>
             {/* <Link to={`/${props.feedID}`}> */}
             <p className='h-10 text-sm text-left text-slate-500 line' onClick={showModal}>댓글 모두보기</p>
-            {modalOpen && <PostDetailModal setModalOpen={setModalOpen} user={user} like={like} post={props.post} />}
+            {modalOpen && <PostDetailModal setModalOpen={setModalOpen} user={user} like={like} likeId={likeId} post={props.post} />}
             {/* </Link> */}
         </div>
 

@@ -7,6 +7,7 @@ import UsersSearchPage from './components/UsersSearchPage';
 import Main from './components/Main/Main'
 import FollowerModal from './components/Modal/FollowerModal';
 import MyProfile from './components/Profile/MyProfile';
+import CalendarPage from './components/CalendarPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/profile/myprofile' element={<MyProfile />} ></Route>
           <Route path='/profile/:username/follower' element={<FollowerModal />} ></Route>
           <Route path='/users-search' element={<UsersSearchPage />}></Route>
+          <Route path='/calendar' element={<CalendarPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

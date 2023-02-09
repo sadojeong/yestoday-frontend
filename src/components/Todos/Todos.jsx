@@ -8,6 +8,7 @@ const Todos = props => {
             key={todo.id}
             name={todo.name}
             id={todo.id}
+            isCompleted={todo.completeState}
             onDelete={props.onDelete}
             onUpdate={props.onupdate}
             onChecked={props.onChecked}

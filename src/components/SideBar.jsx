@@ -17,7 +17,11 @@ const SideBar = props => {
     }
 
     const toUsersSearch = () => {
-        navigate('/users-search')
+        navigate('/users-search');
+    }
+
+    const toCalendar = () => {
+        navigate('/calendar');
     }
 
     const showModal = () => {
@@ -43,7 +47,7 @@ const SideBar = props => {
                 <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' onClick={toUsersSearch}>
                     <img className='w-6 h-6 mr-4' src={search} alt="" />
                     검색</li>
-                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' >
+                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' onClick={toCalendar}>
                     <img className='w-6 h-6 mr-4' src={calendar} alt="" />
                     캘린더</li>
                 <li className='flex items-center w-40 mt-20 hover:cursor-pointer font-Nanum_Gothic_Bold' onClick={showModal}>

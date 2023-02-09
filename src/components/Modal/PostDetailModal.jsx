@@ -2,13 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import UpdateModal from './UpdateModal';
-import TodoModal from './TodoModal';
+import ProfileTodoModal from './ProfileTodoModal';
 
 const PostDetailModal = props => {
-    console.log(props.post);
-    console.log("date", props.post.postDateTime);
     const userId = 1
     const [like, setLike] = useState(props.like);
+    const [likeId, setLikeId] = useState(props.likeId);
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
     const [isValid, setIsValid] = useState(false);
@@ -24,8 +23,30 @@ const PostDetailModal = props => {
         props.setModalOpen(false);
     };
 
+
+    const addLike = async () => {
+        const response = await axios.post("http://localhost:8080/likes", {
+            "postId": props.post.id,
+            "userId": userId
+        })
+
+        setLike(true);
+        setLikeId(response.data[0].id);
+    }
+
+    const deleteLike = async () => {
+        const response = await axios.delete("http://localhost:8080/likes/" + likeId);
+
+        setLike(false);
+        setLikeId(0);
+    }
+
     const likeHandler = () => {
-        setLike(!like);
+        if (like === false) {
+            addLike();
+        } else {
+            deleteLike();
+        }
     }
 
     useEffect(() => {
@@ -36,6 +57,7 @@ const PostDetailModal = props => {
 
         }
         getComments();
+        console.log(comments);
     }, [refresh])
 
     const commentDeleteHandler = (comment) => {
@@ -46,19 +68,30 @@ const PostDetailModal = props => {
         }
     }
 
-    console.log(comments);
+    const deleteCommentHandler = (comment) => {
+        console.log(comment);
+        if (window.confirm('댓글을 삭제하시겠습니까?')) {
+            axios.delete('http://localhost:8080/comments/' + comment.id);
+            alert('댓글이 삭제되었습니다.')
+            setRefresh(refresh => refresh * -1)
+        }
 
-    const commentsList = comments.map((comment, index) => (
-        <li className='flex justify-between mb-4 h-fit' key={index} >
-            <div className='flex w-16 mr-1'>
-                <img className='w-6 h-6' src={comment.user.imageUrl}></img>
-                <span className='mt-1 text-xs'>{comment.user.nickname}</span>
+    }
+
+    const commentsList = comments.map((comment) => (
+        <li className='flex justify-between mb-4 h-fit ' key={comment.id} >
+            <div className='flex w-16 mr-2'>
+                <img className='w-6 h-6 mr-1' src={comment.user.imageUrl}></img>
+                <span className='mt-1 text-xs font-semibold'>{comment.user.nickname}</span>
             </div>
-            <span className='w-1/2 text-sm text-left break-all h-fit ' >{comment.commentDesc}</span>
-            <span className='text-xs text-slate-500'>{comment.commentDateTime.substr(0, 10)}</span>
+            <span className='flex items-center w-2/5 mt-1 text-xs break-all h-fit ' >{comment.commentDesc}</span>
+            <span className='mt-1 text-xs text-slate-500'>{comment.commentDateTime.substr(0, 10)}</span>
+            <button className={`${comment.userId === userId ? 'visible' : 'invisible'} text-sm text-red-400 cursor-default h-fit `}
+                onClick={() => deleteCommentHandler(comment)}>X</button>
         </li >
-
     ));
+
+
     const saveComment = async () => {
         await axios.post('http://localhost:8080/comments', {
             postId: props.post.id,
@@ -68,6 +101,9 @@ const PostDetailModal = props => {
 
         })
     }
+
+
+
     const clickHandler = (event) => {
         if (isValid) {
             saveComment();
@@ -76,14 +112,15 @@ const PostDetailModal = props => {
         } else {
             alert("댓글 내용을 작성해주세요")
         }
-
-
         setCommentText('');
-
     }
 
     const deleteFeed = async () => {
         await axios.delete('http://localhost:8080/posts/' + props.post.id);
+        await axios.put('http://localhost:8080/api/todo/id/' + props.post.todoId + '/post', null, {
+            params: { isPosted: false }
+        });
+
     }
 
     const deleteHandler = () => {
@@ -113,7 +150,7 @@ const PostDetailModal = props => {
                         <img src={props.user.imageUrl}></img>
                         <span className='mt-3 ml-1'>{props.user.nickname}</span>
                     </div>
-                    {isClicked && <TodoModal setIsClicked={setIsClicked} post={props.post} user={props.user} />}
+                    {isClicked && <ProfileTodoModal setIsClicked={setIsClicked} post={props.post} user={props.user} />}
 
                     {isMine && <img className='w-6 h-6 mt-2 ' src='images/more.png' onClick={() => setSettingIsOpen(true)}></img>}
 
