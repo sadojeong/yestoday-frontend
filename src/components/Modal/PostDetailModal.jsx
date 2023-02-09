@@ -24,6 +24,8 @@ const PostDetailModal = props => {
     };
 
 
+
+
     const addLike = async () => {
         const response = await axios.post("http://localhost:8080/likes", {
             "postId": props.post.id,

@@ -1,13 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
+import { useNavigate } from 'react-router-dom';
 
 const ProfileTodoModal = props => {
     const [todos, setTodos] = useState([]);
+    const navigate = useNavigate();
+    const navigateTo = (e) => {
+        console.log("e.target", e.target);
+        console.log("e.target.id", e.target.id);
+        navigate("/profile/" + e.target.id, {
+            state: { username: e.target.id }
+        })
+
+    }
 
     const dateFormat = (date) => {
         const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
-            + '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate()));
+            + '-' + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
         return dateFormatted;
     }
 
@@ -63,6 +73,8 @@ const ProfileTodoModal = props => {
             <ul className='w-full p-0 mt-3 h-4/5'>
                 {todoList}
             </ul>
+
+            <div className='font-bold text-center text-gray-600 border-t-2 cursor-pointer' onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
 
 
         </Modal>

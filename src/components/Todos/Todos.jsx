@@ -10,7 +10,7 @@ const Todos = props => {
             id={todo.id}
             isCompleted={todo.completeState}
             onDelete={props.onDelete}
-            onUpdate={props.onupdate}
+            onUpdate={props.onUpdate}
             onChecked={props.onChecked}
 
         />
