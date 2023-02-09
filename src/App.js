@@ -6,6 +6,7 @@ import Profile from './components/Profile/Profile'
 import UsersSearchPage from './components/UsersSearchPage';
 import Main from './components/Main/Main'
 import MyProfile from './components/Profile/MyProfile';
+import CalendarPage from './components/CalendarPage';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/profile/:username' element={<Profile />} ></Route>
           <Route path='/profile/myprofile' element={<MyProfile />} ></Route>
           <Route path='/users-search' element={<UsersSearchPage />}></Route>
+          <Route path='/calendar' element={<CalendarPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

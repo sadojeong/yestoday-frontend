@@ -15,7 +15,8 @@ const UsersSearchPage = props => {
 
     const navigate = useNavigate();
     const navigateTo = (e) => {
-        console.log(e.target);
+        console.log("e.target", e.target);
+        console.log("e.target.id", e.target.id);
         navigate("/profile/" + e.target.id, {
             state: { username: e.target.id }
         })
@@ -47,9 +48,9 @@ const UsersSearchPage = props => {
         resultList = <div className='p-3 font-bold text-slate-400'>검색 결과가 없습니다.</div>
     } else {
         resultList = searchResult.map(result => (
-            <li className='flex items-center p-2 h-14 border-y-2' key={result.id} id={result.id} onClick={navigateTo}>
-                <img className='w-10' src={result.imageUrl} alt="" id={result.id} />
-                <span className='ml-3 ' id={result.id}> {result.nickname}</span>
+            <li className='flex items-center p-2 h-14 border-y-2' key={result.id} id={result.nickname} onClick={navigateTo}>
+                <img className='w-10' src={result.imageUrl} alt="" id={result.nickname} />
+                <p className='ml-3' id={result.nickname} > {result.nickname}</p>
             </li>
         ))
 

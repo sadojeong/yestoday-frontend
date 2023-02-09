@@ -21,6 +21,7 @@ const HomePage = props => {
     }
 
     const dateFormat = (date) => {
+
         const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
             + '-' + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
         return dateFormatted;
@@ -40,9 +41,6 @@ const HomePage = props => {
             });
 
 
-
-
-
     }, []);
     const addTodoHandler = enteredValue => {
         const newTodo = {
@@ -57,7 +55,7 @@ const HomePage = props => {
                 'Content-Type': 'application/json'
             },
         }).then(response => response.data)
-            .then(data => setTodos(data));
+            .then(data => setTodos(data => [...todos, newTodo]));
 
 
     }
@@ -99,8 +97,14 @@ const HomePage = props => {
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(response => response.json())
-            .then(data => setTodos(data));
+        }).then(response => response.json());
+
+        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
+            .then(response => response.data)
+            .then(data => {
+                setTodos(data)
+            });
+
 
     }
     return (

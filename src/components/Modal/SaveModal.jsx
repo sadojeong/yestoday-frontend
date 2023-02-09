@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRef } from 'react';
 import axios from 'axios';
 import AWS from 'aws-sdk';
 import Modal from 'react-modal';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const region = "ap-northeast-2";
@@ -19,13 +20,36 @@ AWS.config.update({
 
 
 const SaveModal = props => {
-    const [userId, setUserId] = useState(0);
+    // const [userId, setUserId] = useState(0);
     const [todoId, setTodoId] = useState(0);
     const [todoName, setTodoName] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [imgType, setImgType] = useState('');
     const [description, setDescription] = useState('');
+    const [todos, setTodos] = useState([]);
+    const userId = 1;
 
+    useEffect(() => {
+        const getTodos = async () => {
+            const response = await axios.get('http://localhost:8080/api/todo/users/' + userId + '/not-posted-todos');
+            setTodos(response.data);
+            console.log(response.data);
+        }
+        getTodos();
+    }, [])
+
+    //포스트를 작성 가능한 todo list
+    const todoList = todos.map(todo => (
+        <option value={todo.id} key={todo.id}>{todo.name}</option>
+    ));
+
+    //todo 갱신
+    const setTodoIsPosted = async () => {
+        await axios.put('http://localhost:8080/api/todo/id/' + todoId + '/post', null,
+            { params: { isPosted: true } });
+        await axios.put('http://localhost:8080/api/todo/todocomplete', null,
+            { params: { id: todoId } });
+    }
 
     // 등록 버튼 클릭
     const saveFeedHandler = () => {
@@ -44,10 +68,15 @@ const SaveModal = props => {
         const upload = new AWS.S3.ManagedUpload({
             params: {
                 Bucket: bucket, // 버킷 이름
-                Key: imgName.replace(/ /g, ''),//ownerData._id + ".png", // 유저 아이디
+                Key: imgName,//imgName.replace(/ /g, ''),//ownerData._id + ".png", // 유저 아이디
                 Body: imgFile, // 파일 객체
             },
         });
+
+        if (imgType.substring(0, 5) !== 'image') {
+            alert('image 형식이 아닙니다.');
+            return;
+        }
 
         const promise = upload.promise();
         promise.then(
@@ -62,11 +91,13 @@ const SaveModal = props => {
         );
 
 
+
+
         axios.post('/posts', {
             todoId: todoId,
             todoName: todoName,
             userId: userId,
-            imageUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName.replace(/ /g, ''),
+            imageUrl: 'https://' + bucket + '.s3.' + region + '.amazonaws.com/' + imgName,
             imageType: imgType,
             // imgFile: iWmgFile,
             content: description,
@@ -80,6 +111,8 @@ const SaveModal = props => {
             .catch(function (error) {
                 console.log(error);
             });
+
+        setTodoIsPosted();
 
         alert('피드 등록 완료!');
         props.setSaveIsOpen(false);
@@ -102,7 +135,7 @@ const SaveModal = props => {
     // 이미지 파일 미리보기
     const encodeFileToBase64 = (fileBlob) => {
         setImgType(fileBlob.type);
-        imgName = fileBlob.name;
+        imgName = uuidv4();
 
         imgFile = fileBlob;
         const reader = new FileReader();
@@ -132,27 +165,16 @@ const SaveModal = props => {
             </button>
 
 
-            <label className='mr-2' htmlFor='user-id'>회원 id</label>
-            <input className='border-2' name='user-id' onChange={(event) => setUserId(event.target.value)}></input>
-
             <div className='m-2 text-center'>
                 <span>todo </span>
-                {/*  <select onChange={handleSelect} value={Selected}>
-                    {selectList.map((item) => (
-                        <option value={item} key={item}>
-                        {item}
-                        </option>
-                    ))}
-                    </select> */}
+
                 <select className='border-2' name="todo" onChange={(event) => {
                     setTodoId(event.target.value);
                     const index = event.target.selectedIndex
                     setTodoName(event.target[index].text);
                 }}>
                     <option value="0" >--todo 선택--</option>
-                    <option value="1" >밥먹기</option>
-                    <option value="2" >운동하기</option>
-                    <option value="3" >책 읽기</option>
+                    {todoList}
                 </select>
             </div>
 

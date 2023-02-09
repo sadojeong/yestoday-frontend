@@ -39,9 +39,10 @@ const FindAllPage = props => {
 
             const response = await axios.get("http://localhost:8080/users/following-members/" + userId);
             const follows = response.data;
-            console.log(follows);
+            console.log(response.data);
+
             follows.map(follow => {
-                const followPosts = follow.posts;
+                const followPosts = follow.followUser.posts;
 
                 followPostsList = [...followPostsList, ...followPosts]
             });

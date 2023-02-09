@@ -3,16 +3,8 @@ import Post from './Post';
 
 
 const Posts = props => {
-    console.log("posts post", props.feed);
-    let likeResult = false;
+    console.log(props.feed);
     const postList = props.feed.map(post => (
-        //    likes.map(like => {
-        //     if(like.feedId === feed.feedID){
-        //         likeResult = true;
-        //     }
-        //    });
-
-
 
         <Post
             key={post.id}
