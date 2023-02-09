@@ -1,8 +1,7 @@
 import React from 'react'
 
 const ProfileOnePost = props => {
-    const imgSrc = "/images/" + props.imageUrl
-    console.log(imgSrc);
+    const imgSrc = props.imageUrl
 
     return (
         <div className='ml-2 overflow-hidden w-44 h-44'>
