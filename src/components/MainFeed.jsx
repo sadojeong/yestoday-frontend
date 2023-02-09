@@ -37,7 +37,7 @@ const FindAllPage = props => {
             // }
 
 
-            const response = await axios.get("http://localhost:8080/users/following-members/" + userId);
+            const response = await axios.get("http://localhost:8080/users/following-posts/" + userId);
             const follows = response.data;
             console.log(response.data);
 
