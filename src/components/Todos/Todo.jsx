@@ -58,7 +58,7 @@ const Todo = props => {
 
     return (
         <div>
-            <div className="flex w-full group">
+            <div className="flex items-center w-full group">
                 <input type="checkbox" className='h-6 w-7' onChange={checkHandler} checked={isCompleted} />
                 <div className='w-full' onDoubleClick={editableHandler}>
 

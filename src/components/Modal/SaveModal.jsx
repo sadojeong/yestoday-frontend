@@ -116,6 +116,7 @@ const SaveModal = props => {
 
         alert('피드 등록 완료!');
         props.setSaveIsOpen(false);
+        props.setRefresh(refresh => refresh * -1);
     }
 
     // 모달창 닫기

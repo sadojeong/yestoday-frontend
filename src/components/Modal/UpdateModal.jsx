@@ -92,6 +92,7 @@ const UpdateModal = props => {
         alert('피드 수정 완료!');
         props.setUpdateIsOpen(false);
         props.setModalOpen(false);
+        props.setRefresh(refresh => refresh * -1);
     }
 
     // 모달창 닫기

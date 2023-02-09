@@ -14,7 +14,7 @@ const baseUrl = 'http://localhost:8080/api/todo'
 const HomePage = props => {
 
     const userId = 1;
-
+    const [refresh, setRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const showModal = () => {
         setSaveIsOpen(true);

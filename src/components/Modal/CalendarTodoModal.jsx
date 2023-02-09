@@ -18,13 +18,13 @@ const CalendarTodoModal = props => {
 
     const todoList = todos.map(todo => (
         todo.completeState ?
-            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
-                <img className='w-1/12' src="images/checkmark.png" alt="" />
+            <li key={todo.id} className='flex w-full p-2 break-all border-b-2 h-1/12' >
+                <img className='w-5 h-5' src="images/checkmark.png" alt="" />
                 <span className='line-through text-slate-400 '>{todo.name}</span>
             </li>
             :
-            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
-                <div className='w-1/12'></div>
+            <li key={todo.id} className='flex w-full p-2 break-all border-b-2 h-1/12'>
+                <div className='w-5 h-5'></div>
                 <span className=''>{todo.name}</span>
             </li>
 
@@ -38,7 +38,7 @@ const CalendarTodoModal = props => {
                     backgroundColor: 'rgba(255, 255, 255, 0.5)'
                 }
             }}
-            className=' p-2 absolute -translate-x-1/2 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
+            className=' p-2 absolute -translate-x-11 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
             onRequestClose={() => props.setTodoIsOpen(false)}
             isOpen={true} ariaHideApp={false}>
 
@@ -54,6 +54,7 @@ const CalendarTodoModal = props => {
             <ul className='w-full p-0 mt-3 h-4/5'>
                 {todoList}
             </ul>
+
 
 
         </Modal>

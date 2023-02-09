@@ -17,7 +17,7 @@ const Todos = props => {
     ));
 
     return (
-        <ul>
+        <ul className="pl-4 pr-4">
             {todoList}
         </ul>
     )

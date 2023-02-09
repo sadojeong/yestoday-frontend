@@ -37,20 +37,20 @@ const SideBar = props => {
                 <span></span>
             </div> */}
 
-            <ul className='mt-20'>
-                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' onClick={toHome}>
+            <ul className='mt-32'>
+                <li className='flex w-40 mb-4 ml-4 font-semibold hover:cursor-pointer' onClick={toHome}>
                     <img className='w-6 h-6 mr-4' src={home} alt="" />
                     홈</li>
-                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer'>
+                <li className='flex w-40 mb-4 ml-4 font-semibold hover:cursor-pointer'>
                     <img className='w-6 h-6 mr-4' src={bell} alt="" />
                     알림</li>
-                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' onClick={toUsersSearch}>
+                <li className='flex w-40 mb-4 ml-4 font-semibold hover:cursor-pointer' onClick={toUsersSearch}>
                     <img className='w-6 h-6 mr-4' src={search} alt="" />
                     검색</li>
-                <li className='flex w-40 m-5 font-semibold hover:cursor-pointer' onClick={toCalendar}>
+                <li className='flex w-40 mb-4 ml-4 font-semibold hover:cursor-pointer' onClick={toCalendar}>
                     <img className='w-6 h-6 mr-4' src={calendar} alt="" />
                     캘린더</li>
-                <li className='flex items-center w-40 mt-20 hover:cursor-pointer font-Nanum_Gothic_Bold' onClick={showModal}>
+                <li className='flex items-center p-2 mt-20 -ml-5 hover:bg-blue-100 rounded-xl w-44 hover:shadow-lg hover:cursor-pointer font-Nanum_Gothic_Bold' onClick={showModal}>
                     <img className='w-8 h-8 mr-2 ' src={plus} alt="" />
                     게시물 등록하기</li>
             </ul>
