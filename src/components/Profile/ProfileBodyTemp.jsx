@@ -7,8 +7,10 @@ const ProfileBodyTemp = props => {
     const postList = props.postInfo.map(post => (
         <ProfileOnePost
             key={post.id}
+            user={props.user}
             imageUrl={post.imageUrl}
             content={post.content}
+            post={post}
         />
     ))
     return (

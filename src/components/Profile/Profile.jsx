@@ -13,8 +13,7 @@ const baseUrl = 'http://localhost:8080';
 
 const Profile = props => {
     const params = useParams();
-    const [user, setUser] = useState([]);
-    const [userId, setUserId] = useState([]);
+    const [user, setUser] = useState({});
     const [followingInfo, setFollowingInfo] = useState([]);
     const [followerInfo, setFollowerInfo] = useState([]);
     const [postInfo, setPostInfo] = useState([]);
@@ -24,7 +23,6 @@ const Profile = props => {
         try {
             const response = await axios.get(baseUrl + `/users/bynickname/${userName}`)
             const userId = response.data.id
-            // setUserId(response.data.id)
             setUser(response.data);
 
             const response2 = await axios.get(baseUrl + `/users/following-members/${userId}`)
@@ -48,7 +46,6 @@ const Profile = props => {
 
     useEffect(() => {
         testApiCall();
-        console.log(userId);
     }, [])
 
 
