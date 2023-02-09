@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FollowerModal from '../Modal/FollowerModal'
 import FollowingModal from '../Modal/FollowingModal'
 import axios from 'axios'
@@ -9,7 +9,9 @@ const ProfileHeader = props => {
     const imgSrc = props.user.imageUrl
     const [isFollowingCheck, setIsFollowingCheck] = useState(false);
     const [isFollowerCheck, setIsFollowerCheck] = useState(false);
+    const [isFollowed, setisFollowed] = useState(false);
 
+    console.log(isFollowed);
     const changeFollowerCheck = () => {
         setIsFollowerCheck(true);
     };
@@ -18,12 +20,50 @@ const ProfileHeader = props => {
         setIsFollowingCheck(true);
     };
 
-    const sendFollowGetRequest = async () => {
-        await axios.post('http://localhost:8080/follows')
+    const sendFollowGetRequest = async (userId, followUserId) => {
+        await axios.post(
+            'http://localhost:8080/follows',
+            {
+                "user": {
+                    "id": userId //Todo 로그인 유저 정보로 업데이트
+                },
+                "followUser": {
+                    "id": followUserId
+                }
+            }
+        )
+        setisFollowed(!isFollowed)
+        window.location.reload()
     }
-    const deleteFeed = async () => {
-        await axios.delete('http://localhost:8080/posts/' + props.post.id);
+
+    const sendFollowDeleteRequest = async (userId, followUserId) => {
+        if (window.confirm(`${props.user.nickname}님을 팔로우 취소하시겠습니까?`)) {
+            await axios.delete(
+                `http://localhost:8080/follows/${userId}/${followUserId}`)
+            setisFollowed(!isFollowed)
+            window.location.reload()
+        }
     }
+
+    const checkFollowState = async (userId, followUserId) => {
+        console.log("호출됨");
+        const response = await axios.get(
+            `http://localhost:8080/follows/following-check/${userId}/${followUserId}`)
+        console.log(response.data + "아아아아아아아아아아");
+        setisFollowed(response.data)
+    }
+
+    useEffect(() => {
+        console.log('usee');
+        checkFollowState(1, props.user.id);
+    }, [props])
+
+    const followButtonController = () => {
+        isFollowed ? sendFollowDeleteRequest(1, props.user.id) : sendFollowGetRequest(1, props.user.id);
+    }
+
+    console.log(isFollowed + 'asdgasdgsdgdgas');
+
 
     return (
         <>
@@ -39,7 +79,7 @@ const ProfileHeader = props => {
                             </h2>
                             <div className='flex ml-1'>
                                 <div className='flex'>
-                                    <button className='flex items-center justify-center w-20 ml-2 rounded-lg bg-slate-200'>
+                                    <button className={`flex items-center justify-center w-20 ml-2 rounded-lg ${isFollowed ? 'bg-blue-200' : 'bg-slate-200'}`} onClick={followButtonController}>
                                         <div className='text-[10px] font-bold'>팔로우</div>
                                     </button>
                                     <button className='flex items-center justify-center w-20 ml-2 rounded-lg bg-slate-200'>
