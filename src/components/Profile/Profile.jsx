@@ -8,6 +8,7 @@ import ProfileBodyTemp from './ProfileBodyTemp';
 import { useLocation } from 'react-router-dom';
 import SideBar from '../SideBar';
 import SaveModal from '../Modal/SaveModal';
+import MyProfileHeader from './MyprofileHeader';
 
 const baseUrl = 'http://localhost:8080';
 
