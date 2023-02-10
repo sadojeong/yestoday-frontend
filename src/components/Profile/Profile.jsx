@@ -5,7 +5,7 @@ import axios from 'axios';
 import ProfileBody from './ProfileBody';
 import ProfileHeader from './ProfileHeader';
 import ProfileBodyTemp from './ProfileBodyTemp';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import SideBar from '../SideBar';
 import SaveModal from '../Modal/SaveModal';
 import MyProfileHeader from './MyprofileHeader';
@@ -13,9 +13,14 @@ import MyProfileHeader from './MyprofileHeader';
 const baseUrl = 'http://localhost:8080';
 
 const Profile = props => {
+    const params = useParams();
     const location = useLocation();
-    const [user, setUser] = useState([]);
-    const [feeds, setFeeds] = useState([]);
+    const [user, setUser] = useState({});
+    const [followingInfo, setFollowingInfo] = useState([]);
+    const [followerInfo, setFollowerInfo] = useState([]);
+    const [postInfo, setPostInfo] = useState([]);
+    const userName = params.username;
+    console.log(userName);
 
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const showModal = () => {

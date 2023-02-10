@@ -70,11 +70,11 @@ const ProfileTodoModal = props => {
             </header>
 
 
-            <ul className='w-full p-0 mt-3 h-4/5'>
+            <ul className='w-full p-0 mt-3 overflow-auto h-4/5'>
                 {todoList}
             </ul>
 
-            <div className='font-bold text-center text-gray-600 border-t-2 cursor-pointer' onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
+            <div className='m-2 font-bold text-center text-gray-600 rounded-lg cursor-pointer hover:bg-slate-100' onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
 
 
         </Modal>

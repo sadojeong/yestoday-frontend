@@ -56,11 +56,7 @@ const HomePage = props => {
                 'Content-Type': 'application/json'
             },
         }).then(response => response.data)
-        console.log("before", todoRefresh);
-
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
-        console.log("after", todoRefresh);
-
+            .then(data => setTodos(data));
 
     }
     const updateTodoHandler = (id, name) => {
@@ -93,10 +89,6 @@ const HomePage = props => {
             },
         }).then(response => response.json())
 
-        console.log("before", todoRefresh);
-
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
-        console.log("after", todoRefresh);
 
     }
 
@@ -108,15 +100,8 @@ const HomePage = props => {
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(response => response.json());
-
-        // axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
-        //     .then(response => response.data)
-        //     .then(data => {
-        //         setTodos(data)
-        //     });
-
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
+        }).then(response => response.json())
+            .then(data => setTodos(data));
 
 
     }

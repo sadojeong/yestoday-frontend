@@ -51,7 +51,7 @@ const CalendarTodoModal = props => {
             </header>
 
 
-            <ul className='w-full p-0 mt-3 h-4/5'>
+            <ul className='w-full p-0 mt-3 overflow-auto h-4/5'>
                 {todoList}
             </ul>
 
