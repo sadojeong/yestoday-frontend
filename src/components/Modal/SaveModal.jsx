@@ -29,9 +29,16 @@ const SaveModal = props => {
     const [todos, setTodos] = useState([]);
     const userId = 1;
 
+    const dateFormat = (date) => {
+        console.log(date.getDate());
+        const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
+            + '-' + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
+        return dateFormatted;
+    }
+
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://localhost:8080/api/todo/users/' + userId + '/not-posted-todos');
+            const response = await axios.get('http://localhost:8080/api/todo/users/' + userId + '/not-posted-todos/todo-date/' + dateFormat(new Date()));
             setTodos(response.data);
             console.log(response.data);
         }
@@ -113,6 +120,7 @@ const SaveModal = props => {
 
         alert('피드 등록 완료!');
         props.setSaveIsOpen(false);
+        props.setRefresh(refresh => refresh * -1);
     }
 
     // 모달창 닫기
@@ -162,15 +170,14 @@ const SaveModal = props => {
             </button>
 
 
-            <div className='m-2 text-center'>
-                <span>todo </span>
+            <div className='mt-5 mb-3 text-center'>
 
-                <select className='border-2' name="todo" onChange={(event) => {
+                <select className='w-full text-center border-2' name="todo" onChange={(event) => {
                     setTodoId(event.target.value);
                     const index = event.target.selectedIndex
                     setTodoName(event.target[index].text);
                 }}>
-                    <option value="0" >--todo 선택--</option>
+                    <option value="0" >------Todo 선택------</option>
                     {todoList}
                 </select>
             </div>

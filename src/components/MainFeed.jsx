@@ -9,13 +9,13 @@ const baseUrl = 'http://localhost:8080/follows'
 
 const FindAllPage = props => {
 
+    const [refresh, setRefresh] = useState(1);
     const [feed, setFeed] = useState([]);
-    const [likes, setLikes] = useState([]);
-    const [page, setPage] = useState(1); //현재 페이지
-    const [load, setLoad] = useState(false); //로딩 스피너
-    const obsRef = useRef(null); 	//observer Element
-    const preventRef = useRef(true); //옵저버 중복 실행 방지
-    const endRef = useRef(false); //모든 글 로드 확인
+    // const [page, setPage] = useState(1); //현재 페이지
+    // const [load, setLoad] = useState(false); //로딩 스피너
+    // const obsRef = useRef(null); 	//observer Element
+    // const preventRef = useRef(true); //옵저버 중복 실행 방지
+    // const endRef = useRef(false); //모든 글 로드 확인
 
 
     const userId = 1;
@@ -55,24 +55,8 @@ const FindAllPage = props => {
 
         getPosts();
 
-        const obsHandler = ((entries) => { //옵저버 콜백함수
-            const target = entries[0];
-            if (!endRef.current && target.isIntersecting && preventRef.current) { //옵저버 중복 실행 방지
-                preventRef.current = false; //옵저버 중복 실행 방지
-                setPage(prev => prev + 1); //페이지 값 증가
-            }
-        })
 
-
-        // const getLikes = async () => {
-        //     const responseLikes = await axios.get("http://localhost:8080/likes/" + userID)
-        //     setLikes(responseLikes.data);
-        // }
-
-        // getLikes();
-
-
-    }, [])
+    }, [refresh])
 
 
 
@@ -120,7 +104,7 @@ const FindAllPage = props => {
     return (
 
         <div>
-            <Posts feed={feed} likes={likes} />
+            <Posts feed={feed} setRefresh={setRefresh} />
         </div>
 
 

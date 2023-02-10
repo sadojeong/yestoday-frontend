@@ -48,9 +48,9 @@ const UsersSearchPage = props => {
         resultList = <div className='p-3 font-bold text-slate-400'>검색 결과가 없습니다.</div>
     } else {
         resultList = searchResult.map(result => (
-            <li className='flex items-center p-2 h-14 border-y-2' key={result.id} id={result.nickname} onClick={navigateTo}>
-                <img className='w-10' src={result.imageUrl} alt="" id={result.nickname} />
-                <p className='ml-3' id={result.nickname} > {result.nickname}</p>
+            <li className='flex items-center p-2 border-b-2 h-14' key={result.id} id={result.nickname} onClick={navigateTo}>
+                <img className='w-10 h-10 rounded-full cursor-pointer' src={result.imageUrl} alt="" id={result.nickname} />
+                <p className='mt-2 ml-3 cursor-pointer' id={result.nickname} > {result.nickname}</p>
             </li>
         ))
 
@@ -72,16 +72,16 @@ const UsersSearchPage = props => {
             <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
-            <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6'>
-                <div className='w-[500px] h-screen border-2 '>
+            <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6 '>
+                <div className='w-[500px] h-[650px] mt-5 rounded-xl shadow-md '>
                     <div className='flex w-full h-14'>
-                        <input className='w-full h-full p-2 text-xl outline-none placeholder:text-gray-400 placeholder:text-xl'
+                        <input className='w-full h-full p-3 text-xl outline-none placeholder:text-gray-400 placeholder:text-xl'
                             placeholder='닉네임을 입력하세요' type="text"
                             onKeyDown={pressEnterHandler}
                             onChange={(event) => setKeyword(event.target.value)} />
                         <img className='w-10 h-10 p-1 mt-1 hover:cursor-pointer' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/search.png" alt="" onClick={searchHandler} />
                     </div>
-                    <ul className='w-full h-fit'> {resultList}</ul>
+                    <ul className='w-full p-1 h-fit'> {resultList}</ul>
 
                 </div>
             </div>

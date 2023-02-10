@@ -34,13 +34,13 @@ const ProfileTodoModal = props => {
 
     const todoList = todos.map(todo => (
         todo.completeState ?
-            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
-                <img className='w-1/12' src="images/checkmark.png" alt="" />
+            <li key={todo.id} className='flex w-full p-2 break-all border-b-2 h-1/12 '>
+                <img className='w-5 h-5' src="images/checkmark.png" alt="" />
                 <span className='line-through text-slate-400 '>{todo.name}</span>
             </li>
             :
-            <li key={todo.id} className='flex w-full p-2 border-b-2 h-1/12'>
-                <div className='w-1/12'></div>
+            <li key={todo.id} className='flex w-full p-2 break-all border-b-2 h-1/12'>
+                <div className='w-5 h-5'></div>
                 <span className=''>{todo.name}</span>
             </li>
 

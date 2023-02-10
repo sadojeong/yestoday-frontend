@@ -6,8 +6,8 @@ import ProfileTodoModal from './ProfileTodoModal';
 
 const PostDetailModal = props => {
     const userId = 1
-    const [like, setLike] = useState(props.like);
-    const [likeId, setLikeId] = useState(props.likeId);
+    // const [like, setLike] = useState(props.like);
+    // const [likeId, setLikeId] = useState(props.likeId);
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
     const [isValid, setIsValid] = useState(false);
@@ -32,19 +32,19 @@ const PostDetailModal = props => {
             "userId": userId
         })
 
-        setLike(true);
-        setLikeId(response.data[0].id);
+        props.setLike(true);
+        props.setLikeId(response.data[0].id);
     }
 
     const deleteLike = async () => {
-        const response = await axios.delete("http://localhost:8080/likes/" + likeId);
+        const response = await axios.delete("http://localhost:8080/likes/" + props.likeId);
 
-        setLike(false);
-        setLikeId(0);
+        props.setLike(false);
+        props.setLikeId(0);
     }
 
     const likeHandler = () => {
-        if (like === false) {
+        if (props.like === false) {
             addLike();
         } else {
             deleteLike();
@@ -131,6 +131,7 @@ const PostDetailModal = props => {
             deleteFeed();
             alert('게시물이 삭제되었습니다.')
             closeModal();
+            props.setRefresh(refresh => refresh * -1);
         } else {
         }
     }
@@ -149,12 +150,12 @@ const PostDetailModal = props => {
             <div className='w-3/5 p-1 border-r-2'>
                 <div className='flex justify-between h-12 m-2'>
                     <div className='flex w-fit' onClick={() => setIsClicked(true)}>
-                        <img src={props.user.imageUrl}></img>
-                        <span className='mt-3 ml-1'>{props.user.nickname}</span>
+                        <img className='w-12 h-12 rounded-full' src={props.user.imageUrl}></img>
+                        <span className='mt-2 ml-1'>{props.user.nickname}</span>
                     </div>
                     {isClicked && <ProfileTodoModal setIsClicked={setIsClicked} post={props.post} user={props.user} />}
 
-                    {isMine && <img className='w-6 h-6 mt-2 ' src='images/more.png' onClick={() => setSettingIsOpen(true)}></img>}
+                    {isMine && <img className='w-6 h-6 mt-2 cursor-pointer' src='images/more.png' onClick={() => setSettingIsOpen(true)}></img>}
 
 
                     <Modal
@@ -166,13 +167,25 @@ const PostDetailModal = props => {
                         className='absolute w-32 h-20 bg-white border-2 outline-none rounded-xl top-20 left-1/2'
                         isOpen={settingIsOpen} onRequestClose={() => setSettingIsOpen(false)} ariaHideApp={false}>
                         <button className='w-full text-sm h-1/2' onClick={updateHandler}>게시물 수정</button>
-                        <hr></hr>
+                        <hr className='m-0'></hr>
                         <button className='w-full text-sm h-1/2' onClick={deleteHandler}>게시물 삭제</button>
                     </Modal>
 
                 </div>
-                <div className='flex justify-center'>
-                    <img className='h-[500px] object-scale-down bg-slate-200 w-full' src={props.post.imageUrl} alt="" />
+                <div className='relative flex justify-center overflow-hidden transition-all duration-500 group'>
+
+                    <img className='h-[500px] w-full object-scale-down transition-all duration-500 '
+                        src={props.post.imageUrl} alt=""
+                    />
+                    <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'>
+                        <img className='h-5 '
+                            src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
+                        <p className='break-all'>{props.post.todoName}</p>
+                    </div>
+
+                </div>
+                {/* <div className='flex justify-center'>
+                    <img className='h-[500px] object-scale-down  w-full' src={props.post.imageUrl} alt="" />
                 </div>
 
                 <div className='flex mt-2'>
@@ -181,7 +194,7 @@ const PostDetailModal = props => {
                     <p className='text-lg font-bold'>
                         {props.post.todoName}
                     </p>
-                </div>
+                </div> */}
                 <div className='text-sm text-right text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
 
             </div>
@@ -192,11 +205,11 @@ const PostDetailModal = props => {
                     <span className='w-full h-20 text-left'>{props.post.context}</span>
 
                     <img className='h-12 m-2 transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 '
-                        src={like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
+                        src={props.like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
 
                 </div>
                 <p className='p-1 mb-2 font-semibold text-left'>댓글 {comments.length}개</p>
-                <ul className='p-2 overflow-y-scroll border-2 h-3/5' >
+                <ul className='p-2 overflow-auto border-2 h-3/5' >
                     {commentsList}
                 </ul>
 
@@ -209,7 +222,7 @@ const PostDetailModal = props => {
                 </div>
 
             </div>
-            {updateIsOpen && <UpdateModal setModalOpen={props.setModalOpen} setUpdateIsOpen={setUpdateIsOpen} post={props.post} user={props.user} ></UpdateModal>}
+            {updateIsOpen && <UpdateModal setRefresh={props.setRefresh} setModalOpen={props.setModalOpen} setUpdateIsOpen={setUpdateIsOpen} post={props.post} user={props.user} ></UpdateModal>}
 
 
         </Modal>

@@ -20,13 +20,15 @@ const Todo = props => {
 
 
     // Todo 업데이트
-    const editTodoHandler = event => {
-        setTitle(event.target.value);
+    const editTodoHandler = (event, isCompleted) => {
+        if (!isCompleted) {
+            setTitle(event.target.value);
+        }
     }
 
     // Todo 업데이트 적용 핸들러
-    const updateSubmitHandler = event => {
-        if (event.key === 'Enter') {
+    const updateSubmitHandler = (event, isCompleted) => {
+        if ((event.key === 'Enter') && !isCompleted) {
             props.onUpdate(props.id, title);
             event.target.disabled = true;
         }
@@ -58,16 +60,16 @@ const Todo = props => {
 
     return (
         <div>
-            <div className="flex w-full group">
+            <div className="flex items-center w-full group">
                 <input type="checkbox" className='h-6 w-7' onChange={checkHandler} checked={isCompleted} />
                 <div className='w-full' onDoubleClick={editableHandler}>
 
                     <input className={`p-1 h-full w-full bg-transparent ${isCompleted && 'line-through text-gray-300 ease-in duration-500'}`} // list
                         type="text"
                         value={title}
-                        onChange={editTodoHandler}
+                        onChange={(event) => editTodoHandler(event, isCompleted)}
                         onBlur={UneditableHandler}
-                        onKeyDown={updateSubmitHandler}
+                        onKeyDown={(event) => updateSubmitHandler(event, isCompleted)}
                         disabled
                     ></input>
                     <label htmlFor={props.id}></label>

@@ -41,13 +41,15 @@ const CalendarPage = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
 
             </div>
-            <div className='flex items-center justify-center md:w-2/3 lg:w-3/4 xl:w-5/6'>
+            <div className='flex justify-center h-screen md:w-2/3 lg:w-3/4 xl:w-5/6'>
                 <Calendar
                     formatDay={(locale, date) => moment(date).format("DD")}
                     navigationLabel={null}
                     showNeighboringMonth={false}
-                    className="w-[500px] h-full text-sm border-none rounded-xl"
+                    className="w-[500px] h-[400px] mt-40 text-sm border-0 rounded-xl  shadow-md"
                     onClickDay={(value) => clickHandler(value)}
+                    tileClassName="h-12"
+
 
                 ></Calendar>
 
