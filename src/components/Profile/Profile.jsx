@@ -57,7 +57,7 @@ const Profile = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
             <div className='md:w-2/3 lg:w-3/4 xl:w-5/6'>
-                {user.id === 1 ? <MyProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> : <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} />}
+                {user.id === 1 ? <MyProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> : ''}
                 {/* <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> */}
                 <ProfileBodyTemp user={user} postInfo={postInfo} />
                 {/* <ProfileBody feeds={feeds} /> */}
