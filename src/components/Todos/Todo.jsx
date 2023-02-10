@@ -1,13 +1,10 @@
-
 import React, { useEffect, useState } from "react";
 import MyButton from "./MyButton"
 
 
 
-
-
 const Todo = props => {
-    console.log(props);
+
     const [title, setTitle] = useState(props.name);
     const [isCompleted, setCompleted] = useState(false);
 

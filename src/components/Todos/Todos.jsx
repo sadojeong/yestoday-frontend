@@ -1,8 +1,25 @@
 import React from "react";
 import Todo from "./Todo";
+import styled from "styled-components";
+
+const ScrollTodo = styled.ul`
+overflow:auto;
+height:400px;
+&::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+`;
 
 const Todos = props => {
-    console.log(props.todos);
+
+
     const todoList = props.todos.map(todo => (
 
 
@@ -20,9 +37,9 @@ const Todos = props => {
     ));
 
     return (
-        <ul className="pl-4 pr-4 ">
+        <ScrollTodo className="pl-4 pr-4 overflow-auto">
             {todoList}
-        </ul>
+        </ScrollTodo>
     )
 }
 
