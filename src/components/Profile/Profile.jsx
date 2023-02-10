@@ -19,6 +19,7 @@ const Profile = props => {
     const [followerInfo, setFollowerInfo] = useState([]);
     const [postInfo, setPostInfo] = useState([]);
     const userName = params.username;
+    console.log(userName);
 
     const testApiCall = async () => {
         try {
