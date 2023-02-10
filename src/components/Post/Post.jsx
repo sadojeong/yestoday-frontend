@@ -25,7 +25,8 @@ const Post = props => {
     useEffect(() => {
 
         const getLike = async () => {
-            const response = await axios.get("http://localhost:8080/likes/users/" + user.id + "/posts/" + props.post.id);
+            console.log("http://localhost:8080/likes/users/" + userId + "/posts/" + props.post.id);
+            const response = await axios.get("http://localhost:8080/likes/users/" + userId + "/posts/" + props.post.id);
             if (response.data) {
                 setLike(true);
                 setLikeId(response.data.id);
