@@ -60,7 +60,7 @@ const ProfileTodoModal = props => {
 
             <header>
                 <div className='flex h-10' >
-                    <img className='w-10 h-10 mr-2 rounded-full'
+                    <img className='w-10 h-10 mr-2'
                         src={props.user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{props.user.nickname} 님의</span>
                     <span className='flex items-center ml-2 font-serif text-sm font-bold'>  Today TodoList</span>
@@ -70,7 +70,7 @@ const ProfileTodoModal = props => {
             </header>
 
 
-            <ul className='w-full p-0 mt-3 overflow-auto h-4/5'>
+            <ul className='w-full p-0 mt-3 h-4/5'>
                 {todoList}
             </ul>
 
