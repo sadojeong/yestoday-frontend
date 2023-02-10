@@ -32,18 +32,19 @@ const HomePage = props => {
 
     const [todos, setTodos] = useState([]);
 
+
     useEffect(() => {
-
-
         axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
                 setTodos(data)
             });
+        console.log(todos);
 
+    }, []);
 
-    }, [todoRefresh]);
     const addTodoHandler = enteredValue => {
+        console.log('addTodoHandler');
         const newTodo = {
             name: enteredValue,
             userId: 1,
@@ -56,17 +57,13 @@ const HomePage = props => {
                 'Content-Type': 'application/json'
             },
         }).then(response => response.data)
-        console.log("before", todoRefresh);
+            .then(data => setTodos(data));
 
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
-        console.log("after", todoRefresh);
 
 
     }
     const updateTodoHandler = (id, name) => {
-        // const updatedTodos = todos.map(todo => todo.id === id ? { ...todo, name } : todo);
-        // console.log(updatedTodos);
-        // setTodos(updatedTodos);
+        console.log('updateTodoHandler');
         const updateTodo = {
             id: id,
             name: name
@@ -93,30 +90,20 @@ const HomePage = props => {
             },
         }).then(response => response.json())
 
-        console.log("before", todoRefresh);
-
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
-        console.log("after", todoRefresh);
-
     }
 
 
     // Todo 딜리트
     const deleteTodoHandler = (id) => {
+        console.log('deleteTodoHandler');
         fetch(baseUrl + '?id=' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(response => response.json());
+        }).then(response => response.json())
+            .then(data => setTodos(data));
 
-        // axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
-        //     .then(response => response.data)
-        //     .then(data => {
-        //         setTodos(data)
-        //     });
-
-        setTodoRefresh(todoRefresh => todoRefresh * -1)
 
 
     }
