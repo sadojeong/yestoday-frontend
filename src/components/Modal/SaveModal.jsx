@@ -90,9 +90,6 @@ const SaveModal = props => {
             }
         );
 
-
-
-
         axios.post('/posts', {
             todoId: todoId,
             todoName: todoName,

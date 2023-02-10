@@ -36,7 +36,7 @@ const ProfileOnePost = props => {
     }, [props])
 
     return (
-        <div className='ml-2 overflow-hidden w-44 h-44'>
+        <div className='ml-2 w-44 min-w-[176px] h-44'>
             <img className='w-full h-full' src={imgSrc} alt="adgasgsadg" onClick={showModal} />
             {modalOpen && <PostDetailModal setModalOpen={setModalOpen} user={props.user} like={like} likeId={likeId} post={props.post} />}
         </div>

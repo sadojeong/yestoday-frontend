@@ -8,6 +8,7 @@ import ProfileBodyTemp from './ProfileBodyTemp';
 import { useLocation, useParams } from 'react-router-dom';
 import SideBar from '../SideBar';
 import SaveModal from '../Modal/SaveModal';
+import MyProfileHeader from './MyprofileHeader';
 
 const baseUrl = 'http://localhost:8080';
 
@@ -27,15 +28,12 @@ const Profile = props => {
 
             const response2 = await axios.get(baseUrl + `/users/following-members/${userId}`)
             setFollowingInfo(response2.data)
-            console.log(followingInfo);
 
             const response3 = await axios.get(baseUrl + `/users/postsinfo/${userId}`)
             setPostInfo(response3.data)
-            console.log(postInfo);
 
             const response4 = await axios.get(baseUrl + `/users/follower-members/${userId}`)
             setFollowerInfo(response4.data)
-            console.log(followerInfo);
         }
         catch (err) {
             console.log(err);
@@ -48,6 +46,7 @@ const Profile = props => {
         testApiCall();
     }, [])
 
+    console.log(JSON.stringify(user) + 'userId입니다');
 
 
     return (
@@ -58,7 +57,8 @@ const Profile = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
             <div className='md:w-2/3 lg:w-3/4 xl:w-5/6'>
-                <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} />
+                {user.id === 1 ? <MyProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> : ''}
+                {/* <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> */}
                 <ProfileBodyTemp user={user} postInfo={postInfo} />
                 {/* <ProfileBody feeds={feeds} /> */}
             </div>

@@ -12,6 +12,9 @@ const ProfileHeader = props => {
     const [isFollowed, setisFollowed] = useState(false);
 
     console.log(isFollowed);
+    console.log(props.user.id);
+    console.log(props + "props 입니다");
+
     const changeFollowerCheck = () => {
         setIsFollowerCheck(true);
     };
@@ -55,6 +58,7 @@ const ProfileHeader = props => {
 
     useEffect(() => {
         console.log('usee');
+        console.log(props.user.id);
         checkFollowState(1, props.user.id);
     }, [props])
 
