@@ -1,6 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
+import styled from 'styled-components';
+
+const ScrollTodo = styled.ul`
+overflow:auto;
+height:370px;
+&::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+`;
 
 const CalendarTodoModal = props => {
     const [todos, setTodos] = useState([]);
@@ -51,9 +67,9 @@ const CalendarTodoModal = props => {
             </header>
 
 
-            <ul className='w-full p-0 mt-3 overflow-auto h-4/5'>
+            <ScrollTodo className='w-full p-0 mt-3 overflow-auto h-4/5'>
                 {todoList}
-            </ul>
+            </ScrollTodo>
 
 
 

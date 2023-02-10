@@ -195,10 +195,10 @@ const PostDetailModal = props => {
                     <img className='h-[500px] w-full object-scale-down transition-all duration-500 '
                         src={props.post.imageUrl} alt=""
                     />
-                    <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'>
+                    <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow opacity-80 -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'>
                         <img className='h-5 '
                             src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
-                        <p className='break-all'>{props.post.todoName}</p>
+                        <p className='font-bold break-all'>{props.post.todoName}</p>
                     </div>
 
                 </div>
@@ -213,7 +213,7 @@ const PostDetailModal = props => {
                         {props.post.todoName}
                     </p>
                 </div> */}
-                <div className='text-sm text-right text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
+                <div className='mt-5 text-sm text-right  text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
 
             </div>
 

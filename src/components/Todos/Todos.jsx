@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ScrollTodo = styled.ul`
 overflow:auto;
-height:400px;
+height:320px;
 &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
