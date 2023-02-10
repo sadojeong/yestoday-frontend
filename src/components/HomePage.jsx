@@ -15,6 +15,7 @@ const HomePage = props => {
 
     const userId = 1;
     const [refresh, setRefresh] = useState(1);
+    const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const showModal = () => {
         setSaveIsOpen(true);
@@ -41,7 +42,7 @@ const HomePage = props => {
             });
 
 
-    }, []);
+    }, [todoRefresh]);
     const addTodoHandler = enteredValue => {
         const newTodo = {
             name: enteredValue,
@@ -55,7 +56,10 @@ const HomePage = props => {
                 'Content-Type': 'application/json'
             },
         }).then(response => response.data)
-            .then(data => setTodos(data => [...todos, newTodo]));
+        console.log("before", todoRefresh);
+
+        setTodoRefresh(todoRefresh => todoRefresh * -1)
+        console.log("after", todoRefresh);
 
 
     }
@@ -70,7 +74,10 @@ const HomePage = props => {
         fetch(baseUrl, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true
+
             },
             body: JSON.stringify(updateTodo),
         }).then(response => response.json())
@@ -85,7 +92,11 @@ const HomePage = props => {
                 'Content-Type': 'application/json'
             },
         }).then(response => response.json())
-            .then(data => setTodos(data));
+
+        console.log("before", todoRefresh);
+
+        setTodoRefresh(todoRefresh => todoRefresh * -1)
+        console.log("after", todoRefresh);
 
     }
 
@@ -99,11 +110,13 @@ const HomePage = props => {
             },
         }).then(response => response.json());
 
-        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
-            .then(response => response.data)
-            .then(data => {
-                setTodos(data)
-            });
+        // axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
+        //     .then(response => response.data)
+        //     .then(data => {
+        //         setTodos(data)
+        //     });
+
+        setTodoRefresh(todoRefresh => todoRefresh * -1)
 
 
     }

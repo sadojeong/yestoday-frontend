@@ -209,7 +209,7 @@ const PostDetailModal = props => {
 
                 </div>
                 <p className='p-1 mb-2 font-semibold text-left'>댓글 {comments.length}개</p>
-                <ul className='p-2 overflow-y-scroll border-2 h-3/5' >
+                <ul className='p-2 overflow-auto border-2 h-3/5' >
                     {commentsList}
                 </ul>
 

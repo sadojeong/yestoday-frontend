@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 
-const baseUrl = 'http://localhost:8080/todos'
+const baseUrl = 'http://localhost:8080/api/todo'
 
 
 
@@ -15,21 +15,29 @@ const baseUrl = 'http://localhost:8080/todos'
 const MyButton = props => {
 
     const [show, setShow] = useState(false);
-    const [todoDescription, setTodoDescription] = useState('')
-    const [todoName, setTodoName] = useState(props.todo)
+    const [todoDescription, setTodoDescription] = useState(props.todoDescription);
+    const [showDescription, setShowDescription] = useState(props.todoDescription);
+    const [todoName, setTodoName] = useState(props.todo);
+    const [showName, setShowName] = useState(props.todo);
     useEffect(() => {
         setTodoName(props.todo);
     }, [])
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShowDescription(todoDescription);
+        setShowName(todoName);
+        setShow(false)
+    };
     const handleShow = () => setShow(true);
 
     const updateTodoHandler = () => {
+        console.log(props.id);
+        console.log(showDescription);
 
         axios.put(baseUrl, {
             id: props.id,
-            name: todoName,
-            todoDescription: todoDescription
+            name: showName,
+            todoDescription: showDescription
         })
             .then(function (response) {
                 console.log(response);
@@ -39,6 +47,8 @@ const MyButton = props => {
 
             });
         setShow(false);
+
+
     }
 
     return (
@@ -50,13 +60,15 @@ const MyButton = props => {
                     <label className="block mb-2 text-lg font-bold text-center text-gray-700" >
                         Todo
                     </label>
-                    <textarea className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        onChange={(event) => setTodoName(event.target.value)} value={props.todo}  ></textarea>
+                    <textarea
+                        maxLength={20}
+                        className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        onChange={(event) => setShowName(event.target.value)} value={showName}  ></textarea>
                     <label className="block mb-2 text-lg font-bold text-center text-gray-700" >
                         Tododescription
                     </label>
                     <textarea className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none h-60 focus:outline-none focus:shadow-outline"
-                        onChange={(event) => setTodoDescription(event.target.value)} value={todoDescription} ></textarea>
+                        onChange={(event) => setShowDescription(event.target.value)} value={showDescription} >{showDescription}</textarea>
                 </div>
                 <Modal.Footer>
                     <Button className="btn_close" variant="2" onClick={updateTodoHandler}>
