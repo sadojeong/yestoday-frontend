@@ -174,7 +174,7 @@ const EditProfile = () => {
         </div>
         <div className='flex justify-center pt-12'>
           <div>
-            <button className='w-24 h-10 mr-3 border-2 rounded-lg bg-slate-200'>
+            <button className='w-24 h-10 mr-3 border-2 rounded-lg bg-slate-200' onClick={() => navigate(`/profile/${user.nickname}`)}>
               취소
             </button>
           </div>

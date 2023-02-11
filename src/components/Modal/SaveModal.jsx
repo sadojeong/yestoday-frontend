@@ -177,7 +177,7 @@ const SaveModal = props => {
                     const index = event.target.selectedIndex
                     setTodoName(event.target[index].text);
                 }}>
-                    <option value="0" >------Todo 선택------</option>
+                    <option value="0" >Todo를 선택하세요!</option>
                     {todoList}
                 </select>
             </div>

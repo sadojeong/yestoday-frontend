@@ -53,7 +53,7 @@ const MyButton = props => {
 
     return (
         <div>
-            <Button className="btn" variant="+" onClick={handleShow}>+</Button>
+            <Button className="btn " variant="+" onClick={handleShow}>+</Button>
 
             <Modal show={show} onHide={handleClose} className="right-6">
                 <div className="mb-4">

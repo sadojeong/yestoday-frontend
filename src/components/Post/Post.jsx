@@ -68,7 +68,7 @@ const Post = props => {
 
     return (
         <div className='h-[570px] p-2 m-5 border-2 w-96 rounded-2xl'>
-            <header className='flex justify-between w-full pb-2 pl-1 '>
+            <header className='flex justify-between w-full pb-2 pl-1 m-1 '>
                 <div className='flex cursor-pointer' onClick={() => setIsClicked(true)} >
                     <img className='w-12 h-12 mr-3 rounded-full'
                         src={user.imageUrl} alt="" />
@@ -79,16 +79,16 @@ const Post = props => {
 
                 {/* <span className='text-xs text-slate-500 '>{feedDate}</span> */}
             </header>
-            <div className='relative flex justify-center overflow-hidden transition-all duration-500 h-80 group'>
+            <div className='relative flex justify-center overflow-hidden transition-all duration-500 h-80 group bg-slate-100'>
 
                 <img className='object-scale-down transition-all duration-500 '
                     src={props.post.imageUrl} alt=""
                 />
-                <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'
+                <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow opacity-80 -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'
                 >
                     <img className='h-5 '
                         src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
-                    <p className='break-all'>{props.post.todoName}</p>
+                    <p className='font-bold break-all'>{props.post.todoName}</p>
                 </div>
 
             </div>

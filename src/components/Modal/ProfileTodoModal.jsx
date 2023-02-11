@@ -2,6 +2,22 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const ScrollTodo = styled.ul`
+overflow:auto;
+height:370px;
+&::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+`;
 
 const ProfileTodoModal = props => {
     const [todos, setTodos] = useState([]);
@@ -60,7 +76,7 @@ const ProfileTodoModal = props => {
 
             <header>
                 <div className='flex h-10' >
-                    <img className='w-10 h-10 mr-2'
+                    <img className='w-10 h-10 mr-2 rounded-full'
                         src={props.user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{props.user.nickname} 님의</span>
                     <span className='flex items-center ml-2 font-serif text-sm font-bold'>  Today TodoList</span>
@@ -70,9 +86,9 @@ const ProfileTodoModal = props => {
             </header>
 
 
-            <ul className='w-full p-0 mt-3 overflow-auto h-4/5'>
+            <ScrollTodo className='w-full p-0 mt-3 overflow-auto h-4/5'>
                 {todoList}
-            </ul>
+            </ScrollTodo>
 
             <div className='m-2 font-bold text-center text-gray-600 rounded-lg cursor-pointer hover:bg-slate-100' onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
 

@@ -56,7 +56,7 @@ const Todo = props => {
 
 
     return (
-        <div>
+        <li>
             <div className="flex items-center w-full group">
                 <input type="checkbox" className='h-6 w-7' onChange={checkHandler} checked={isCompleted} />
                 <div className='w-full' onDoubleClick={editableHandler}>
@@ -73,7 +73,7 @@ const Todo = props => {
                 </div>
 
                 <MyButton todo={title} id={props.id} todoDescription={props.todoDescription} updateSubmitHandler={updateSubmitHandler} />
-                <button className='ml-2 font-semibold text-red-400 cursor-default group-hover:visible' onClick={deleteTodoHandler}>X</button>
+                <button className='ml-2 font-semibold cursor-default text-slate-200 hover:text-red-400' onClick={deleteTodoHandler}>X</button>
 
             </div>
             {/* <button onClick={()=> setModalIsOpen(true)}>Modal Open</button> */}
@@ -85,7 +85,7 @@ const Todo = props => {
 
 
 
-        </div>
+        </li>
 
 
     )

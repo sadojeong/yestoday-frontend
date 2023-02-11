@@ -27,12 +27,14 @@ const MyProfileHeader = props => {
 
     return (
         <>
-            <div className='flex justify-center w-full mr-7 h-2/6'>
+            <div className='flex justify-center w-full mr-7 h-[155px]'>
                 <div className='flex mt-8'>
-                    <div className='overflow-hidden w-28 h-28'>
-                        <img className='w-full h-full rounded-full' src={props.user.imageUrl} alt="sasdg" />
+                    <div>
+                        <div className='w-36 h-36'>
+                            <img className='w-full h-full rounded-full' src={props.user.imageUrl} alt="sasdg" />
+                        </div>
                     </div>
-                    <section className='w-2/3 ml-8'>
+                    <section className='w-2/3 ml-14'>
                         <div className='flex'>
                             <h2>
                                 <div>{props.user.nickname}</div>
