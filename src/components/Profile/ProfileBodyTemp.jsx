@@ -18,7 +18,7 @@ const ProfileBodyTemp = props => {
         <div className='mt-14'>
             <div className='flex justify-center overflow-hidden border-t-2'>
                 <div className='w-3/5 mt-4'>
-                    <div className='flex w-full overflow-x-auto'>
+                    <div className='flex flex-wrap w-full ml-16'>
                         {postList}
                     </div>
                 </div>
