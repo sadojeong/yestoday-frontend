@@ -165,7 +165,7 @@ const PostDetailModal = props => {
     return (
         <Modal className='outline-none flex fixed z-auto text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[800px] rounded-2xl h-[650px] top-1/2 left-1/2'
             isOpen={true} onRequestClose={closeModal} ariaHideApp={false}>
-            <div className='w-3/5 p-1 border-r-2'>
+            <div className='w-3/5 p-1 m-1 border-r-2'>
                 <div className='flex justify-between h-12 m-2'>
                     <div className='flex w-fit' onClick={() => setIsClicked(true)}>
                         <img className='w-12 h-12 rounded-full' src={props.user.imageUrl}></img>
@@ -213,7 +213,7 @@ const PostDetailModal = props => {
                         {props.post.todoName}
                     </p>
                 </div> */}
-                <div className='mt-5 text-sm text-right  text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
+                <div className='mt-5 text-sm text-right text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
 
             </div>
 

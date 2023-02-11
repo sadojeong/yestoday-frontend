@@ -68,7 +68,7 @@ const Post = props => {
 
     return (
         <div className='h-[570px] p-2 m-5 border-2 w-96 rounded-2xl'>
-            <header className='flex justify-between w-full pb-2 pl-1 '>
+            <header className='flex justify-between w-full pb-2 pl-1 m-1 '>
                 <div className='flex cursor-pointer' onClick={() => setIsClicked(true)} >
                     <img className='w-12 h-12 mr-3 rounded-full'
                         src={user.imageUrl} alt="" />
