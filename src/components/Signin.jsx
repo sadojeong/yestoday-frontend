@@ -3,6 +3,7 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import SignUp from '../components/SignUp';
 import { KAKAO_AUTH_URL } from './Kakao/OAuth';
+import GoogleLog from './Kakao/GoogleLog'
 import axios from 'axios';
 
 
@@ -197,7 +198,7 @@ function Signin() {
                         </div>
                         <p className='flex justify-center font-bold'>또는</p>
                         <div className='flex flex-row justify-center gap-10 text-3xl'>
-                            <AiFillGoogleCircle className='rounded-full text-red-600' />
+                        <GoogleLog />
                         </div>
                         <div>
                             <p className='text-zinc-500'>아이디가 없으시다면 <span className='text-black font-bold underline underline-offset-4'><Link to="/Signup" element={<SignUp />}>회원가입</Link></span></p>
