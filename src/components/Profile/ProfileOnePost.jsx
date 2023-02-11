@@ -36,9 +36,9 @@ const ProfileOnePost = props => {
     }, [props])
 
     return (
-        <div className='relative mt-10 ml-5 w-60 h-60'>
+        <div className='relative w-56 h-56 mt-10 ml-5'>
             <img className='w-full h-full bg-white hover:opacity-30' src={imgSrc} alt="adgasgsadg" onClick={showModal} />
-            <div className="absolute flex justify-center -translate-y-full bg-opacity-0 opacity-50 place-items-center w-44 h-44 hover:bg-opacity-60 hover:opacity-100 bg-neutral-400">
+            <div className="absolute flex justify-center -translate-y-full bg-opacity-0 opacity-0 place-items-center w-44 h-44 hover:bg-opacity-60 hover:opacity-100 bg-neutral-400">
                 <p className="text-2xl font-semibold shadow-2xl via-black w-fit h-fit">대림창고</p>
             </div>
             {modalOpen && <PostDetailModal setModalOpen={setModalOpen} user={props.user} like={like} likeId={likeId} post={props.post} />}
