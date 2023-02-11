@@ -3,6 +3,22 @@ import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import UpdateModal from './UpdateModal';
 import ProfileTodoModal from './ProfileTodoModal';
+import styled from "styled-components";
+
+const ScrollUl = styled.ul`
+overflow:auto;
+height:400px;
+&::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+`;
 
 const PostDetailModal = props => {
     const userId = 1
@@ -22,6 +38,8 @@ const PostDetailModal = props => {
     const closeModal = () => {
         props.setModalOpen(false);
     };
+
+
 
 
 
@@ -209,9 +227,9 @@ const PostDetailModal = props => {
 
                 </div>
                 <p className='p-1 mb-2 font-semibold text-left'>댓글 {comments.length}개</p>
-                <ul className='p-2 overflow-auto border-2 h-3/5' >
+                <ScrollUl className='p-2 overflow-auto border-2' >
                     {commentsList}
-                </ul>
+                </ScrollUl>
 
                 <div className='w-full p-2 border-2'>
                     <input className='w-5/6 mr-2 outline-none placeholder:font-sm placeholder:text-slate-300'

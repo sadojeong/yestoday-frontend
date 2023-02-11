@@ -14,39 +14,39 @@ const baseUrl = 'http://localhost:8080';
 
 const Profile = props => {
     const params = useParams();
+    const location = useLocation();
     const [user, setUser] = useState({});
     const [followingInfo, setFollowingInfo] = useState([]);
     const [followerInfo, setFollowerInfo] = useState([]);
     const [postInfo, setPostInfo] = useState([]);
     const userName = params.username;
-
-    const testApiCall = async () => {
-        try {
-            const response = await axios.get(baseUrl + `/users/bynickname/${userName}`)
-            const userId = response.data.id
-            setUser(response.data);
-
-            const response2 = await axios.get(baseUrl + `/users/following-members/${userId}`)
-            setFollowingInfo(response2.data)
-
-            const response3 = await axios.get(baseUrl + `/users/postsinfo/${userId}`)
-            setPostInfo(response3.data)
-
-            const response4 = await axios.get(baseUrl + `/users/follower-members/${userId}`)
-            setFollowerInfo(response4.data)
-        }
-        catch (err) {
-            console.log(err);
-        }
-    }
+    console.log(userName);
 
     const [saveIsOpen, setSaveIsOpen] = useState(false);
+    const showModal = () => {
+        setSaveIsOpen(true);
+    }
+
+
+    // useEffect(() => {
+    //     axios.get(baseUrl + '/feeds')
+    //         .then(response => response.data)
+    //         .then(data => {
+    //             console.log(data)
+    //             setFeeds(data)
+    //         })
+    // }, []);
 
     useEffect(() => {
-        testApiCall();
-    }, [])
+        const userName = location.state.username;
 
-    console.log(JSON.stringify(user) + 'userId입니다');
+        axios.get(baseUrl + `/members/byusername/${userName}`)
+            .then(response => response.data)
+            .then(data => {
+                console.log(data);
+                setUser(data)
+            })
+    }, [])
 
 
     return (
@@ -57,7 +57,7 @@ const Profile = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
             <div className='md:w-2/3 lg:w-3/4 xl:w-5/6'>
-                {user.id === 1 ? <MyProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> : <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} />}
+                {user.id === 1 ? <MyProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> : ''}
                 {/* <ProfileHeader user={user} followingInfo={followingInfo} postInfo={postInfo} followerInfo={followerInfo} /> */}
                 <ProfileBodyTemp user={user} postInfo={postInfo} />
                 {/* <ProfileBody feeds={feeds} /> */}

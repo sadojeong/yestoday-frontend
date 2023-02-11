@@ -32,19 +32,18 @@ const HomePage = props => {
 
     const [todos, setTodos] = useState([]);
 
-
     useEffect(() => {
+
+
         axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
                 setTodos(data)
             });
-        console.log(todos);
 
-    }, []);
 
+    }, [todoRefresh]);
     const addTodoHandler = enteredValue => {
-        console.log('addTodoHandler');
         const newTodo = {
             name: enteredValue,
             userId: 1,
@@ -59,11 +58,11 @@ const HomePage = props => {
         }).then(response => response.data)
             .then(data => setTodos(data));
 
-
-
     }
     const updateTodoHandler = (id, name) => {
-        console.log('updateTodoHandler');
+        // const updatedTodos = todos.map(todo => todo.id === id ? { ...todo, name } : todo);
+        // console.log(updatedTodos);
+        // setTodos(updatedTodos);
         const updateTodo = {
             id: id,
             name: name
@@ -90,12 +89,12 @@ const HomePage = props => {
             },
         }).then(response => response.json())
 
+
     }
 
 
     // Todo 딜리트
     const deleteTodoHandler = (id) => {
-        console.log('deleteTodoHandler');
         fetch(baseUrl + '?id=' + id, {
             method: 'DELETE',
             headers: {
@@ -103,7 +102,6 @@ const HomePage = props => {
             },
         }).then(response => response.json())
             .then(data => setTodos(data));
-
 
 
     }
