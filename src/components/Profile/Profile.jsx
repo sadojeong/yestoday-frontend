@@ -10,7 +10,7 @@ import SideBar from '../SideBar';
 import SaveModal from '../Modal/SaveModal';
 import MyProfileHeader from './MyprofileHeader';
 
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://54.92.33.225:8080';
 
 const Profile = props => {
     const params = useParams();

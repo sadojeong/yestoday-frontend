@@ -7,7 +7,7 @@ import Modal from 'react-modal'
 
 
 
-const baseUrl = 'http://localhost:8080/posts'
+const baseUrl = 'http://54.92.33.225:8080/posts'
 const region = "ap-northeast-2";
 const bucket = 'yestoday';
 let imgName = '';

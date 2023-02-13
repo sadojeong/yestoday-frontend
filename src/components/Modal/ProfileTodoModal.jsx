@@ -39,7 +39,7 @@ const ProfileTodoModal = props => {
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://localhost:8080/api/todo/users/' + props.user.id + "/todo-date/" + dateFormat(new Date()));
+            const response = await axios.get('http://54.92.33.225:8080/api/todo/users/' + props.user.id + "/todo-date/" + dateFormat(new Date()));
             setTodos(response.data)
             console.log(response.data);
         }
