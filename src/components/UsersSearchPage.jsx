@@ -3,13 +3,15 @@ import SideBar from './SideBar';
 import SaveModal from './Modal/SaveModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const UsersSearchPage = props => {
     const [searchKeyword, setKeyword] = useState('');
     const [searchResult, setResult] = useState(['없음']);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const [searchSuccess, setSuccess] = useState(true);
+    const location = useLocation();
+    const userId = location.state;
 
     let resultList = '';
 
@@ -70,7 +72,7 @@ const UsersSearchPage = props => {
     return (
         <div className='flex justify-center'>
             <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
+                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId}></SideBar>
             </div>
             <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6 '>
                 <div className='w-[500px] h-[650px] mt-5 rounded-xl shadow-md '>

@@ -18,7 +18,7 @@ const FindAllPage = props => {
     // const endRef = useRef(false); //모든 글 로드 확인
 
 
-    const userId = 1;
+    const userId = props.userId;
 
 
     useEffect(() => {
