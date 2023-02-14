@@ -38,7 +38,7 @@ const SaveModal = props => {
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://54.92.33.225:8080/api/todo/users/' + userId + '/not-posted-todos/todo-date/' + dateFormat(new Date()));
+            const response = await axios.get('http://54.248.66.164:8080/api/todo/users/' + userId + '/not-posted-todos/todo-date/' + dateFormat(new Date()));
             setTodos(response.data);
             console.log(response.data);
         }
@@ -52,9 +52,9 @@ const SaveModal = props => {
 
     //todo 갱신
     const setTodoIsPosted = async () => {
-        await axios.put('http://54.92.33.225:8080/api/todo/id/' + todoId + '/post', null,
+        await axios.put('http://54.248.66.164:8080/api/todo/id/' + todoId + '/post', null,
             { params: { isPosted: true } });
-        await axios.put('http://54.92.33.225:8080/api/todo/todocomplete', null,
+        await axios.put('http://54.248.66.164:8080/api/todo/todocomplete', null,
             { params: { id: todoId } });
     }
 

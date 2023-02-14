@@ -19,7 +19,7 @@ const ProfileOnePost = props => {
     useEffect(() => {
 
         const getLike = async () => {
-            const response = await axios.get("http://54.92.33.225:8080/likes/users/" + user.id + "/posts/" + props.post.id);
+            const response = await axios.get("http://54.248.66.164:8080/likes/users/" + user.id + "/posts/" + props.post.id);
             if (response.data) {
                 setLike(true);
                 setLikeId(response.data.id);

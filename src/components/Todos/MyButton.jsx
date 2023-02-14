@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 
-const baseUrl = 'http://54.92.33.225:8080/api/todo'
+const baseUrl = 'http://54.248.66.164:8080/api/todo'
 
 
 

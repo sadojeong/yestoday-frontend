@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState, useEffect, useRef, useCallback } from "react";
 
 
-const baseUrl = 'http://54.92.33.225:8080/follows'
+const baseUrl = 'http://54.248.66.164:8080/follows'
 
 
 const FindAllPage = props => {
@@ -26,7 +26,7 @@ const FindAllPage = props => {
 
 
         const getPosts = async () => {
-            const responseMyPost = await axios.get("http://54.92.33.225:8080/users/postsinfo/" + userId);
+            const responseMyPost = await axios.get("http://54.248.66.164:8080/users/postsinfo/" + userId);
             const myPosts = responseMyPost.data;
 
             followPostsList = myPosts
@@ -37,7 +37,7 @@ const FindAllPage = props => {
             // }
 
 
-            const response = await axios.get("http://54.92.33.225:8080/users/following-posts/" + userId);
+            const response = await axios.get("http://54.248.66.164:8080/users/following-posts/" + userId);
             const follows = response.data;
             console.log(response.data);
 
