@@ -6,10 +6,13 @@ import { KAKAO_AUTH_URL } from './Kakao/OAuth';
 import GoogleLog from './Kakao/GoogleLog'
 import axios from 'axios';
 import img from '../images/photo.avif'
+import { useNavigate } from 'react-router-dom';
+
 
 function Signin() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [userId, setUserId] = useState(0)
 
     const [passwordError, setPasswordError] = useState(false);
     const [emailError, setEmailError] = useState(false);
@@ -19,28 +22,29 @@ function Signin() {
     const [capsLockFlag, setCapsLockFlag] = useState(false);
     const LS_KEY_ID = "LS_KEY_ID";
     const LS_KEY_SAVE_ID_FLAG = "LS_KEY_SAVE_ID_FLAG";
+    const navigate = useNavigate();
 
 
-      useEffect(() => {
+    useEffect(() => {
         const idFlag = JSON.parse(localStorage.getItem(LS_KEY_SAVE_ID_FLAG));
         if (idFlag !== null) setSaveIDFlag(idFlag);
         if (idFlag === false) localStorage.setItem(LS_KEY_ID, "");
-      
+
         let data = localStorage.getItem(LS_KEY_ID);
         if (data !== null) setEmail(data);
-      }, []);
+    }, []);
 
-      const handleSaveIDFlag = () => {
+    const handleSaveIDFlag = () => {
         localStorage.setItem(LS_KEY_SAVE_ID_FLAG, !saveIDFlag);
         setSaveIDFlag(!saveIDFlag);
-      };
+    };
 
 
     //capslock 감지
     const checkCapsLock = (e) => {
         const capsLock = e.getModifierState("CapsLock");
         setCapsLockFlag(capsLock);
-      };
+    };
 
     // password input에서 type과 autoComplete를 변경
     const [passwordInputType, setPasswordInputType] = useState({
@@ -86,11 +90,55 @@ function Signin() {
 
     };
 
+    const getUserIdBeforeLogin = async (e) => {
+        e.preventDefault();
+
+        if (validation()) {
+            try {
+                console.log("호출됨");
+                const response = await axios.get('http://localhost:8080' + `/users/byemail/${email}`)
+                const userId = response.data.id
+                console.log(userId);
+
+                await axios.post(
+                    'http://localhost:8080/auth/login',
+                    {
+                        email: email,
+                        password: password,
+                    }
+                ).then((res) => {
+                    //200(OK), 201(Created)
+                    console.log('로그인 완료');
+                    alert('로그인에 성공했습니다.')
+                    //로그인 성공시 id저장
+                    localStorage.setItem(LS_KEY_ID, email)
+                    localStorage.setItem('accessToken', res.data.accessToken)
+                    // 로그인 성공시 메인화면이동
+                    navigate('/', { state: userId })
+                })
+                    .catch((err) => {
+                        //500(err)
+                        console.error(err);
+                        alert('로그인에 실패했습니다.')
+                    });
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        else {
+            alert('로그인에 실패했습니다.')
+        }
+    }
+
     //유효성 검증 후 로그인 api 호출
     const onSubmit = (e) => {
         e.preventDefault();
 
         if (validation()) {
+            getUserIdBeforeLogin();
+            console.log(userId + "asdfasgdasdgsagsgd");
+
             axios({
                 method: 'post',
                 url: 'http://localhost:8080/auth/login',
@@ -122,6 +170,7 @@ function Signin() {
 
     return (
         <>
+
         <div className="bg-gray-50 min-h-screen flex items-center justify-center">
             {/* Form */}
             <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p- items-center">
@@ -207,6 +256,7 @@ function Signin() {
                 </form>
                 <div className="md:block hidden w-1/2">
                     <div className="text-muted p-10 contain"><img src={img} alt="logo" /></div>
+
                 </div>
                 </div>
         </div>

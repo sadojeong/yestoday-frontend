@@ -8,15 +8,22 @@ import Card from './Card/Card';
 import CardHeader from './Card/CardHeader';
 import CardBody from './Card/CardBody';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 const baseUrl = 'http://localhost:8080/api/todo'
+const token = localStorage.getItem('accessToken')
+
+axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+console.log(token);
 
 const HomePage = props => {
-
-    const userId = 1;
     const [refresh, setRefresh] = useState(1);
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
+    const location = useLocation();
+    const userId = location.state;
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -33,9 +40,7 @@ const HomePage = props => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-
-
-        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
+        axios.get("/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
                 setTodos(data)
@@ -46,7 +51,7 @@ const HomePage = props => {
     const addTodoHandler = enteredValue => {
         const newTodo = {
             name: enteredValue,
-            userId: 1,
+            userId: userId,
             completeState: false,
             todoDate: todayDate
 
@@ -108,10 +113,10 @@ const HomePage = props => {
     return (
         <div className='flex justify-center'>
             <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
+                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
-                <MainFeed></MainFeed>
+                <MainFeed userId={userId} />
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 

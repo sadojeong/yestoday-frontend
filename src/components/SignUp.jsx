@@ -61,37 +61,38 @@ function SignUp() {
     };
 
 
-const onSubmit = (e) => {
-    if (validation()) {
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/auth/signup',
-            data: {
-                email: email,
-                password: password,
-                nickname: nickname,
-            },
-        })
-            .then((res) => {
-                //200(OK), 201(Created)
-                // this.props.history.push('/users/login');
-                console.log('회원가입 완료');
-                window.location.replace('/Signin')
+    const onSubmit = (e) => {
+        if (validation()) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/auth/signup',
+                data: {
+                    email: email,
+                    password: password,
+                    nickname: nickname,
+                },
             })
-            .catch((err) => {
-                //500(err)
-                console.error(err);
-            });
+                .then((res) => {
+                    //200(OK), 201(Created)
+                    // this.props.history.push('/users/login');
+                    console.log('회원가입 완료');
+                    window.location.replace('/Signin')
+                })
+                .catch((err) => {
+                    //500(err)
+                    console.error(err);
+                });
+        };
     };
-};
 
 
-const onChangeTerm = useCallback((e) => {
-    //체크박스 초기화
-    setTermError(false);
-    setTerm(e.target.checked);
-    //state를 사용하지 않기때문에 빈값
-}, []);
+    const onChangeTerm = useCallback((e) => {
+        //체크박스 초기화
+        setTermError(false);
+        setTerm(e.target.checked);
+        //state를 사용하지 않기때문에 빈값
+    }, []);
+
 
 return (
     <>
