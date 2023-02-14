@@ -2,12 +2,14 @@ import React from 'react'
 import Posts from './Post/Posts';
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Token } from 'aws-sdk';
 
 
 const baseUrl = 'http://localhost:8080/follows'
 
 
 const FindAllPage = props => {
+    const token = localStorage.getItem('accessToken')
 
     const [refresh, setRefresh] = useState(1);
     const [feed, setFeed] = useState([]);
@@ -26,7 +28,13 @@ const FindAllPage = props => {
 
 
         const getPosts = async () => {
-            const responseMyPost = await axios.get("http://localhost:8080/users/postsinfo/" + userId);
+            const responseMyPost = await axios.get("/users/postsinfo/" + userId,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                }
+            );
             const myPosts = responseMyPost.data;
 
             followPostsList = myPosts

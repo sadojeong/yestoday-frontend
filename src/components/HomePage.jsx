@@ -12,6 +12,11 @@ import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 const baseUrl = 'http://localhost:8080/api/todo'
+const token = localStorage.getItem('accessToken')
+
+axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+console.log(token);
 
 const HomePage = props => {
     const [refresh, setRefresh] = useState(1);
@@ -35,12 +40,7 @@ const HomePage = props => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken')
-        console.log(jwt_decode(token).sub + 'asdgasd');
-        console.log(userId + 'state입니다');
-
-
-        axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
+        axios.get("/api/todo/users/" + userId + "/todo-date/" + todayDate)
             .then(response => response.data)
             .then(data => {
                 setTodos(data)
