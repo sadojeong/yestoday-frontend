@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MyButton from "./MyButton"
+import ModalTodo from "./ModalTodo"
 
 
 
@@ -72,8 +72,8 @@ const Todo = props => {
                     <label htmlFor={props.id}></label>
                 </div>
 
-                <MyButton todo={title} id={props.id} todoDescription={props.todoDescription} updateSubmitHandler={updateSubmitHandler} />
-                <button className='ml-2 font-semibold cursor-default text-slate-200 hover:text-red-400' onClick={deleteTodoHandler}>X</button>
+                <ModalTodo todo={title} id={props.id} todoDescription={props.todoDescription} updateSubmitHandler={updateSubmitHandler} />
+                <button className='ml-2 font-extrabold cursor-default text-slate-200 hover:text-[#D70D8B]' onClick={deleteTodoHandler}>X</button>
 
             </div>
             {/* <button onClick={()=> setModalIsOpen(true)}>Modal Open</button> */}
