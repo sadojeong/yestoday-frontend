@@ -18,15 +18,15 @@ const SideBar = props => {
     const navigate = useNavigate();
 
     const toHome = () => {
-        navigate('/');
+        navigate('/', { state: userId });
     }
 
     const toUsersSearch = () => {
-        navigate('/users-search');
+        navigate('/users-search', { state: userId });
     }
 
     const toCalendar = () => {
-        navigate('/calendar');
+        navigate('/calendar', { state: userId });
     }
 
     const showModal = () => {

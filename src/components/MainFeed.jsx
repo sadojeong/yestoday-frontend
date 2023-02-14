@@ -19,7 +19,7 @@ const MainFeed = props => {
 
 
 
-    const userId = 1;
+    const userId = props.userId;
 
 
     // useEffect(() => {

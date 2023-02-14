@@ -3,13 +3,15 @@ import SideBar from './SideBar';
 import SaveModal from './Modal/SaveModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const UsersSearchPage = props => {
     const [searchKeyword, setKeyword] = useState('');
     const [searchResult, setResult] = useState(['없음']);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const [searchSuccess, setSuccess] = useState(true);
+    const location = useLocation();
+    const userId = location.state;
 
     let resultList = '';
 

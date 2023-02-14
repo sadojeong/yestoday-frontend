@@ -5,15 +5,19 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import CalendarTodoModal from './Modal/CalendarTodoModal';
+import { useLocation } from 'react-router-dom';
 
 
 const CalendarPage = props => {
-    const userId = 1;
+    const location = useLocation();
+    const userId = location.state;
+    console.log(userId + "userId");
 
     const [date, setDate] = useState('2000-01-01');
     const [todoIsOpen, setTodoIsOpen] = useState(false);
 
     const [saveIsOpen, setSaveIsOpen] = useState(false);
+
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -33,12 +37,10 @@ const CalendarPage = props => {
     }
 
 
-
-
     return (
         <div className='flex justify-center'>
             <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
+                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId}></SideBar>
 
             </div>
             <div className='flex justify-center h-screen md:w-2/3 lg:w-3/4 xl:w-5/6 bg-slate-100'>
