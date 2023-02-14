@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const SideBar = props => {
     const [user, setUser] = useState();
+    const userId = 1;
 
     useEffect(() => {
         axios.get("http://localhost:8080/users/byid/" + 1)
@@ -18,15 +19,15 @@ const SideBar = props => {
     const navigate = useNavigate();
 
     const toHome = () => {
-        navigate('/');
+        navigate('/', { state: userId });
     }
 
     const toUsersSearch = () => {
-        navigate('/users-search');
+        navigate('/users-search', { state: userId });
     }
 
     const toCalendar = () => {
-        navigate('/calendar');
+        navigate('/calendar', { state: userId });
     }
 
     const showModal = () => {
@@ -40,7 +41,7 @@ const SideBar = props => {
             <img className='w-32 mt-3 hover:cursor-pointer' src='https://yestoday.s3.ap-northeast-2.amazonaws.com/logo.png' alt="" onClick={toHome} />
 
 
-            <div className='flex-col items-center justify-center w-48 pt-3 pb-3 pl-5 pr-5 mt-5 -ml-3 h-28 bg-slate-200 rounded-xl'>
+            {/* <div className='flex-col items-center justify-center w-48 pt-3 pb-3 pl-5 pr-5 mt-5 -ml-3 h-28 bg-slate-200 rounded-xl'>
                 <div className='flex items-center'>
                     <img className='object-scale-down w-10 h-10 mr-2 bg-white rounded-full'
                         src={user.imageUrl} alt="" />
@@ -48,7 +49,7 @@ const SideBar = props => {
                 </div>
                 <button className='text-sm '>프로필 보러가기</button>
 
-            </div>
+            </div> */}
 
             <ul className='mt-20 text-center'>
                 <li className='flex w-40 mb-4 ml-4 font-semibold hover:cursor-pointer' onClick={toHome}>

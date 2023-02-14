@@ -18,26 +18,7 @@ const MainFeed = props => {
     let endRef = useRef(false); //모든 글 로드 확인
 
 
-
     const userId = 1;
-
-
-    // useEffect(() => {
-
-
-    //     const getPosts = async () => {
-
-    //         const response = await axios.get(`http://localhost:8080/posts/feed/user/${userId}?page=0`);
-    //         setFeed(response.data);
-    //         console.log(response.data);
-
-    //     }
-
-    //     getPosts();
-
-
-    // }, [refresh])
-
 
     useEffect(() => { //옵저버 생성
 

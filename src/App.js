@@ -8,6 +8,10 @@ import Main from './components/Main/Main'
 import MyProfile from './components/Profile/MyProfile';
 import CalendarPage from './components/CalendarPage';
 import EditProfile from './components/Profile/EditProfile';
+import Login from './components/Signin';
+import SignUp from './components/SignUp';
+import StartPage from './components/StartPage';
+
 
 function App() {
 
@@ -15,6 +19,9 @@ function App() {
     <div className="App font-nanum">
       <BrowserRouter>
         <Routes>
+          <Route path='/startPage' element={<StartPage />} />
+          <Route path='/signin' element={<Login />} />
+          <Route path='/signUp' element={<SignUp />} />
           <Route path="/" element={<HomePage />}></Route>
           <Route path='/profile/:username' element={<Profile />} ></Route>
           <Route path='/profile-edit/:username' element={<EditProfile />} ></Route>
