@@ -25,7 +25,7 @@ const Post = props => {
     useEffect(() => {
 
         const getLike = async () => {
-            console.log("http://localhost:8080/likes/users/" + userId + "/posts/" + props.post.id);
+
             const response = await axios.get("http://localhost:8080/likes/users/" + userId + "/posts/" + props.post.id);
             if (response.data) {
                 setLike(true);
@@ -67,10 +67,10 @@ const Post = props => {
 
 
     return (
-        <div className='h-[570px] p-2 m-5 border-2 w-96 rounded-2xl'>
+        <div className='h-[580px] p-2 m-5 border-2 w-96 rounded-2xl'>
             <header className='flex justify-between w-full pb-2 pl-1 m-1 '>
                 <div className='flex cursor-pointer' onClick={() => setIsClicked(true)} >
-                    <img className='w-12 h-12 mr-3 rounded-full'
+                    <img className='object-scale-down w-12 h-12 mr-3 rounded-full'
                         src={user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{user.nickname}</span>
 
@@ -100,7 +100,7 @@ const Post = props => {
                         {props.post.todoName}
                     </p>
                 </div> */}
-                <div className='h-8 mt-2 mb-1 '>
+                <div className='mt-3 mb-1 h-9 '>
                     <img className='h-full transition duration-300 ease-in-out delay-150 cursor-pointer hover:-translate-y-1 hover:scale-110 '
                         src={like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
                 </div>
@@ -108,12 +108,11 @@ const Post = props => {
             </div>
 
             <p className='h-20 text-sm text-left break-all'>{props.post.content}</p>
-            {/* <Link to={`/${props.feedID}`}> */}
             <p className='h-10 text-sm text-left cursor-pointer text-slate-500 line' onClick={showModal}>댓글 모두보기</p>
-            {modalOpen && <PostDetailModal setRefresh={props.setRefresh} setModalOpen={setModalOpen}
+            {modalOpen && <PostDetailModal setModalOpen={setModalOpen}
                 user={user} like={like} likeId={likeId} post={props.post}
                 setLike={setLike} setLikeId={setLikeId} />}
-            {/* </Link> */}
+
         </div>
 
     )

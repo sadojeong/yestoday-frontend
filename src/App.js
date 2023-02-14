@@ -12,7 +12,7 @@ import EditProfile from './components/Profile/EditProfile';
 function App() {
 
   return (
-    <div className="App">
+    <div className="App font-nanum">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>

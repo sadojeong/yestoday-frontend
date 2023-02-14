@@ -6,7 +6,6 @@ import AWS from 'aws-sdk';
 import Modal from 'react-modal'
 
 
-
 const baseUrl = 'http://localhost:8080/posts'
 const region = "ap-northeast-2";
 const bucket = 'yestoday';
@@ -26,6 +25,7 @@ const UpdateModal = props => {
     const [imgType, setImgType] = useState('');
     const [description, setDescription] = useState('');
     const [imageIsUpdate, setImageIsUpdate] = useState(false);
+
 
 
     useEffect(() => {
@@ -92,7 +92,8 @@ const UpdateModal = props => {
         alert('피드 수정 완료!');
         props.setUpdateIsOpen(false);
         props.setModalOpen(false);
-        props.setRefresh(refresh => refresh * -1);
+        window.location.reload();
+
     }
 
     // 모달창 닫기
@@ -137,7 +138,7 @@ const UpdateModal = props => {
             }}
             onRequestClose={closeModal}
             isOpen={true} ariaHideApp={false}
-            className='outline-none absolute z-50 p-2 text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[400px] rounded-2xl h-[650px] top-1/2 left-1/2'>
+            className='font-nanum outline-none absolute z-50 p-2 text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[400px] rounded-2xl h-[650px] top-1/2 left-1/2'>
             <button className='absolute pl-2 pr-2 font-semibold rounded-md bg-slate-200 right-2 top-2' onClick={closeModal}>
                 X
             </button>

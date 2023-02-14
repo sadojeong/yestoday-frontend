@@ -41,7 +41,7 @@ const CalendarPage = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
 
             </div>
-            <div className='flex justify-center h-screen md:w-2/3 lg:w-3/4 xl:w-5/6'>
+            <div className='flex justify-center h-screen md:w-2/3 lg:w-3/4 xl:w-5/6 bg-slate-100'>
                 <Calendar
                     formatDay={(locale, date) => moment(date).format("DD")}
                     navigationLabel={null}

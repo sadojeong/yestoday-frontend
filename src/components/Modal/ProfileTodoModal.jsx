@@ -70,13 +70,13 @@ const ProfileTodoModal = props => {
                     backgroundColor: 'rgba(255, 255, 255, 0.5)'
                 }
             }}
-            className=' p-2 absolute -translate-x-1/2 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
+            className='font-nanum p-2 absolute -translate-x-1/2 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
             onRequestClose={() => props.setIsClicked(false)}
             isOpen={true} ariaHideApp={false}>
 
             <header>
                 <div className='flex h-10' >
-                    <img className='w-10 h-10 mr-2 rounded-full'
+                    <img className='object-scale-down w-10 h-10 mr-2 rounded-full'
                         src={props.user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{props.user.nickname} 님의</span>
                     <span className='flex items-center ml-2 font-serif text-sm font-bold'>  Today TodoList</span>

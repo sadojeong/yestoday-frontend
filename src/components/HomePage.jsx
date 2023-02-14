@@ -82,6 +82,7 @@ const HomePage = props => {
     }
     //완료 todo
     const checkedTodoHandler = (id) => {
+        console.log(id);
         fetch(baseUrl + '/todocomplete?id=' + id, {
             method: 'PUT',
             headers: {

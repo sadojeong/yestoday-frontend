@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MyButton from "./MyButton"
 
@@ -14,6 +15,18 @@ const Todo = props => {
 
     }, [])
 
+    const updateTodoPosted = async () => {
+        const response = await axios.put('http://localhost:8080/api/todo/id/' + props.id + '/post?isPosted=false');
+
+        console.log('isPosted false', response.data);
+
+    }
+    const deletePost = async () => {
+        const response = await axios.get('http://localhost:8080/posts/todo/' + props.id);
+        console.log(response.data);
+        await axios.delete('http://localhost:8080/posts/' + response.data.id);
+
+    }
 
 
     // Todo 업데이트
@@ -32,9 +45,19 @@ const Todo = props => {
     }
     // Todo 체크 시 삭선효과, 회색 텍스트 적용
     const checkHandler = () => {
-        setCompleted(!isCompleted);
-        props.onChecked(props.id);
+        if (isCompleted && props.posted) {
+            if (window.confirm('게시물을 삭제 하시겠습니까?')) {
+                deletePost();
+                updateTodoPosted();
+                setCompleted(!isCompleted);
+                props.onChecked(props.id);
+            }
 
+        } else {
+            setCompleted(!isCompleted);
+            props.onChecked(props.id);
+
+        }
 
 
     }
@@ -49,9 +72,20 @@ const Todo = props => {
         event.target.disabled = true;
     }
 
+
+
+
     // Todo 딜리트
     const deleteTodoHandler = () => {
-        props.onDelete(props.id);
+        if (props.posted) {
+            if (window.confirm('게시물을 함께 삭제 하시겠습니까?')) {
+                deletePost();
+                props.onDelete(props.id);
+                window.location.reload();
+            }
+        } else {
+            props.onDelete(props.id);
+        }
     }
 
 

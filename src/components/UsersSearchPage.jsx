@@ -49,7 +49,7 @@ const UsersSearchPage = props => {
     } else {
         resultList = searchResult.map(result => (
             <li className='flex items-center p-2 border-b-2 h-14' key={result.id} id={result.nickname} onClick={navigateTo}>
-                <img className='w-10 h-10 rounded-full cursor-pointer' src={result.imageUrl} alt="" id={result.nickname} />
+                <img className='object-scale-down w-10 h-10 rounded-full cursor-pointer' src={result.imageUrl} alt="" id={result.nickname} />
                 <p className='mt-2 ml-3 cursor-pointer' id={result.nickname} > {result.nickname}</p>
             </li>
         ))
@@ -69,13 +69,13 @@ const UsersSearchPage = props => {
 
     return (
         <div className='flex justify-center'>
-            <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
+            <div className='hidden h-screen border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
                 <SideBar setSaveIsOpen={setSaveIsOpen}></SideBar>
             </div>
-            <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6 '>
-                <div className='w-[500px] h-[650px] mt-5 rounded-xl shadow-md '>
-                    <div className='flex w-full h-14'>
-                        <input className='w-full h-full p-3 text-xl outline-none placeholder:text-gray-400 placeholder:text-xl'
+            <div className='flex justify-center md:w-2/3 lg:w-3/4 xl:w-5/6 bg-slate-100'>
+                <div className='w-[500px] h-[650px] mt-5 rounded-xl shadow-md bg-white'>
+                    <div className='flex w-full p-2 h-14 '>
+                        <input className='w-full h-full p-3 text-xl outline-none rounded-xl placeholder:text-gray-400 placeholder:text-xl'
                             placeholder='닉네임을 입력하세요' type="text"
                             onKeyDown={pressEnterHandler}
                             onChange={(event) => setKeyword(event.target.value)} />

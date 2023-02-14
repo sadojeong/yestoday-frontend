@@ -27,6 +27,7 @@ const Todos = props => {
             key={todo.id}
             name={todo.name}
             id={todo.id}
+            posted={todo.posted}
             todoDescription={todo.todoDescription}
             isCompleted={todo.completeState}
             onDelete={props.onDelete}

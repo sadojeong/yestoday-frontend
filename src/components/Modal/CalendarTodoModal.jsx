@@ -54,7 +54,7 @@ const CalendarTodoModal = props => {
                     backgroundColor: 'rgba(255, 255, 255, 0.5)'
                 }
             }}
-            className=' p-2 absolute -translate-x-11 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
+            className='font-nanum p-2 absolute -translate-x-11 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
             onRequestClose={() => props.setTodoIsOpen(false)}
             isOpen={true} ariaHideApp={false}>
 
