@@ -73,7 +73,8 @@ const Todo = props => {
                 </div>
 
                 <ModalTodo todo={title} id={props.id} todoDescription={props.todoDescription} updateSubmitHandler={updateSubmitHandler} />
-                <button className='ml-2 font-extrabold cursor-default text-slate-200 hover:text-[#D70D8B]' onClick={deleteTodoHandler}>X</button>
+                <img className='w-5 h-5 transition duration-300 ease-in-out delay-100 cursor-pointer hover:-translate-y-1 hover:scale-110' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/trash.png" alt="" onClick={deleteTodoHandler}/>
+                {/* <img className='w-5 h-5 mr-4 transition duration-300 ease-in-out delay-100 cursor-pointer hover:-translate-y-1 hover:scale-110' src="images/pencil.png" alt="" onClick={handleShow}/> */}
 
             </div>
             {/* <button onClick={()=> setModalIsOpen(true)}>Modal Open</button> */}
