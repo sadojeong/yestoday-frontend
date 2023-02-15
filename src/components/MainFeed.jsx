@@ -47,7 +47,7 @@ const MainFeed = props => {
     const getPosts = useCallback(async () => { //글 불러오기  
         setLoad(true); //로딩 시작
         try {
-            const res = await axios({ method: 'GET', url: `http://localhost:8080/posts/feed/user/${userId}?page=${page}` });
+            const res = await axios({ method: 'GET', url: `http://54.248.66.164:8080/posts/feed/user/${userId}?page=${page}` });
             console.log(res.data);
             setFeed(prev => [...prev, ...res.data.content]); //리스트 추가
             if (res.data.last) { //마지막 페이지일 경우

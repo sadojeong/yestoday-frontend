@@ -26,7 +26,7 @@ const CalendarTodoModal = props => {
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://localhost:8080/api/todo/users/' + myUserId + "/todo-date/" + props.date);
+            const response = await axios.get('http://54.248.66.164:8080/api/todo/users/' + myUserId + "/todo-date/" + props.date);
             setTodos(response.data)
             console.log(response.data);
         }

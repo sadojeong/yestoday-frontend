@@ -47,7 +47,7 @@ const PostDetailModal = props => {
 
 
     const addLike = async () => {
-        const response = await axios.post("http://localhost:8080/likes", {
+        const response = await axios.post("http://54.248.66.164:8080/likes", {
             "postId": props.post.id,
             "userId": userId
         })
@@ -57,7 +57,7 @@ const PostDetailModal = props => {
     }
 
     const deleteLike = async () => {
-        const response = await axios.delete("http://localhost:8080/likes/" + props.likeId);
+        const response = await axios.delete("http://54.248.66.164:8080/likes/" + props.likeId);
 
         props.setLike(false);
         props.setLikeId(0);
@@ -73,7 +73,7 @@ const PostDetailModal = props => {
 
     useEffect(() => {
         const getComments = async () => {
-            const response = await axios.get("http://localhost:8080/comments/posts/" + props.post.id);
+            const response = await axios.get("http://54.248.66.164:8080/comments/posts/" + props.post.id);
 
             setComments(response.data);
 
@@ -93,7 +93,7 @@ const PostDetailModal = props => {
     const deleteCommentHandler = (comment) => {
         console.log(comment);
         if (window.confirm('댓글을 삭제하시겠습니까?')) {
-            axios.delete('http://localhost:8080/comments/' + comment.id);
+            axios.delete('http://54.248.66.164:8080/comments/' + comment.id);
             alert('댓글이 삭제되었습니다.')
             setRefresh(refresh => refresh * -1)
         }
@@ -115,7 +115,7 @@ const PostDetailModal = props => {
 
 
     const saveComment = async () => {
-        await axios.post('http://localhost:8080/comments', {
+        await axios.post('http://54.248.66.164:8080/comments', {
             postId: props.post.id,
             userId: 1,
             commentDesc: commentText,
@@ -138,8 +138,8 @@ const PostDetailModal = props => {
     }
 
     const deleteFeed = async () => {
-        await axios.delete('http://localhost:8080/posts/' + props.post.id);
-        await axios.put('http://localhost:8080/api/todo/id/' + props.post.todoId + '/post', null, {
+        await axios.delete('http://54.248.66.164:8080/posts/' + props.post.id);
+        await axios.put('http://54.248.66.164:8080/api/todo/id/' + props.post.todoId + '/post', null, {
             params: { isPosted: false }
         });
 

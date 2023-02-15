@@ -69,5 +69,5 @@
     "crypto": false,
     "stream": false
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://54.248.66.164:8080"
 }

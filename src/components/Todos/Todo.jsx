@@ -16,15 +16,15 @@ const Todo = props => {
     }, [])
 
     const updateTodoPosted = async () => {
-        const response = await axios.put('http://localhost:8080/api/todo/id/' + props.id + '/post?isPosted=false');
+        const response = await axios.put('http://54.248.66.164:8080/api/todo/id/' + props.id + '/post?isPosted=false');
 
         console.log('isPosted false', response.data);
 
     }
     const deletePost = async () => {
-        const response = await axios.get('http://localhost:8080/posts/todo/' + props.id);
+        const response = await axios.get('http://54.248.66.164:8080/posts/todo/' + props.id);
         console.log(response.data);
-        await axios.delete('http://localhost:8080/posts/' + response.data.id);
+        await axios.delete('http://54.248.66.164:8080/posts/' + response.data.id);
 
     }
 
