@@ -51,6 +51,7 @@ const Todo = props => {
                 updateTodoPosted();
                 setCompleted(!isCompleted);
                 props.onChecked(props.id);
+                setTimeout(() => { window.location.reload(); }, 1000);
             }
 
         } else {
@@ -81,7 +82,7 @@ const Todo = props => {
             if (window.confirm('게시물을 함께 삭제 하시겠습니까?')) {
                 deletePost();
                 props.onDelete(props.id);
-                window.location.reload();
+                setTimeout(() => { window.location.reload(); }, 1000);
             }
         } else {
             props.onDelete(props.id);

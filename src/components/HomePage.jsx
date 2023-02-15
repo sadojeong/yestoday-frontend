@@ -18,7 +18,9 @@ const HomePage = props => {
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const location = useLocation();
-    const userId = location.state;
+    // const userId = location.state;
+
+    const userId = 1;
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -35,9 +37,9 @@ const HomePage = props => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken')
-        console.log(jwt_decode(token).sub + 'asdgasd');
-        console.log(userId + 'state입니다');
+        // const token = localStorage.getItem('accessToken')
+        // console.log(jwt_decode(token).sub + 'asdgasd');
+        // console.log(userId + 'state입니다');
 
 
         axios.get("http://localhost:8080/api/todo/users/" + userId + "/todo-date/" + todayDate)
@@ -113,11 +115,12 @@ const HomePage = props => {
     }
     return (
         <div className='flex justify-center'>
-            <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
+            <div className='hidden sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
+                <SideBar userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
-                <MainFeed userId={userId} />
+                <MainFeed userId={userId} setSaveIsOpen={setSaveIsOpen} />
+
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 

@@ -92,7 +92,7 @@ const UpdateModal = props => {
         alert('피드 수정 완료!');
         props.setUpdateIsOpen(false);
         props.setModalOpen(false);
-        window.location.reload();
+        setTimeout(() => { window.location.reload(); }, 1000);
 
     }
 

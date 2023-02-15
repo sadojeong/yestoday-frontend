@@ -103,7 +103,7 @@ const PostDetailModal = props => {
     const commentsList = comments.map((comment) => (
         <li className='flex justify-between mb-4 h-fit ' key={comment.id} >
             <div className='flex w-16 mr-2'>
-                <img className='w-6 h-6 mr-1' src={comment.user.imageUrl}></img>
+                <img className='object-cover w-6 h-6 mr-1' src={comment.user.imageUrl}></img>
                 <span className='mt-1 text-xs font-semibold'>{comment.user.nickname}</span>
             </div>
             <span className='flex items-center w-2/5 mt-1 text-xs break-all h-fit ' >{comment.commentDesc}</span>
@@ -151,7 +151,7 @@ const PostDetailModal = props => {
             deleteFeed();
             alert('게시물이 삭제되었습니다.')
             closeModal();
-            window.location.reload();
+            setTimeout(() => { window.location.reload(); }, 1000);
 
         }
     }
@@ -165,17 +165,23 @@ const PostDetailModal = props => {
 
 
     return (
-        <Modal className='font-nanum outline-none flex fixed z-auto text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[800px] rounded-2xl h-[650px] top-1/2 left-1/2'
+        <Modal
+            style={{
+                overlay: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }}
+            className='shadow-lg font-nanum outline-none flex fixed z-auto text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[800px] rounded-2xl h-[650px] top-1/2 left-1/2'
             isOpen={true} onRequestClose={closeModal} ariaHideApp={false}>
             <div className='w-3/5 p-1 m-1 border-r-2'>
                 <div className='flex justify-between h-12 m-2'>
                     <div className='flex w-fit' onClick={() => setIsClicked(true)}>
-                        <img className='object-scale-down h-12 rounded-full -12' src={props.user.imageUrl}></img>
+                        <img className='object-cover h-12 rounded-full -12' src={props.user.imageUrl}></img>
                         <span className='mt-2 ml-1'>{props.user.nickname}</span>
                     </div>
                     {isClicked && <ProfileTodoModal setIsClicked={setIsClicked} post={props.post} user={props.user} />}
 
-                    {isMine && <img className='w-6 h-6 mt-2 cursor-pointer' src='images/more.png' onClick={() => setSettingIsOpen(true)}></img>}
+                    {isMine && <img className='w-6 h-6 mt-2 cursor-pointer' src='https://yestoday.s3.ap-northeast-2.amazonaws.com/more.png' onClick={() => setSettingIsOpen(true)}></img>}
 
 
                     <Modal
@@ -197,29 +203,19 @@ const PostDetailModal = props => {
                     <img className='h-[500px] w-full object-scale-down transition-all duration-500 '
                         src={props.post.imageUrl} alt=""
                     />
-                    <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow opacity-80 -bottom-52 group-hover:bottom-2 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'>
+                    <div className='absolute flex p-4 transition-all duration-500 bg-white rounded shadow-md opacity-70 -bottom-52 group-hover:bottom-7 right-2 left-2 dark:bg-slate-900 dark:shadow-gray-700'>
                         <img className='h-5 '
                             src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
                         <p className='font-bold break-all'>{props.post.todoName}</p>
                     </div>
 
                 </div>
-                {/* <div className='flex justify-center'>
-                    <img className='h-[500px] object-scale-down  w-full' src={props.post.imageUrl} alt="" />
-                </div>
 
-                <div className='flex mt-2'>
-                    <img className='h-4'
-                        src="https://yestoday.s3.ap-northeast-2.amazonaws.com/check-mark-black.png" alt="" />
-                    <p className='text-lg font-bold'>
-                        {props.post.todoName}
-                    </p>
-                </div> */}
-                <div className='mt-5 text-sm text-right text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
+                <div className='mt-5 text-xs text-left text-slate-400'>{props.post.postDateTime.substr(0, 10)}</div>
 
             </div>
 
-            <div className='w-2/5 h-full '>
+            <div className='w-2/5 h-full font-nanum'>
                 <div className='flex justify-between w-full h-20 mt-5 text-left'>
 
                     <span className='w-full h-20 text-left'>{props.post.context}</span>
@@ -229,11 +225,11 @@ const PostDetailModal = props => {
 
                 </div>
                 <p className='p-1 mb-2 font-semibold text-left'>댓글 {comments.length}개</p>
-                <ScrollUl className='p-2 overflow-auto border-2' >
+                <ScrollUl className='p-2 overflow-auto ' >
                     {commentsList}
                 </ScrollUl>
 
-                <div className='w-full p-2 border-2'>
+                <div className='w-full p-2 shadow-md '>
                     <input className='w-5/6 mr-2 outline-none placeholder:font-sm placeholder:text-slate-300'
                         placeholder='댓글 작성하기' type="text" onChange={e => { setCommentText(e.target.value) }}
                         onKeyUp={e => { e.target.value.length > 0 ? setIsValid(true) : setIsValid(false) }}

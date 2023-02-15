@@ -5,16 +5,19 @@ import ModalOneUser from './ModalOneUser';
 
 const FollwerModal = props => {
 
+    const userId = 1;
     const changeFollowerCheck = () => {
         props.setIsFollowerCheck(false);
     };
 
     const userList = props.followerInfo.map(follower => {
+
         console.log(follower);
 
         return <ModalOneUser
             key={follower.id}
             id={follower.id}
+            user={props.user}
             nickname={follower.nickname}
             imageUrl={follower.imageUrl}
         />

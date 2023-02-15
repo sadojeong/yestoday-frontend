@@ -64,17 +64,26 @@ const MainFeed = props => {
 
 
 
+    const showModal = () => {
+        props.setSaveIsOpen(true);
+    }
+
     return (
 
         <div>
+
+            <button className='fixed items-center float-right font-semibold bottom-7 right-[480px] hover:cursor-pointer ' >
+                <img className='w-16 h-16 ' src='https://yestoday.s3.ap-northeast-2.amazonaws.com/plus3.png' alt=""
+                    onClick={showModal} /></button>
             <Posts feed={feed} />
             {
                 load &&
-                <div className="spinner">
-                    <img className='w-20 h-10'
-                        src="./images/loading_spinner.gif" alt="" />
+                <div className="flex justify-center spinner">
+                    <img className='w-10 h-10 duration-150 animate-spin-slow'
+                        src="https://yestoday.s3.ap-northeast-2.amazonaws.com/loading.png" alt="" />
                 </div>
             }
+
             <div className='' ref={obsRef} />
 
         </div>

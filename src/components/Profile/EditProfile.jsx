@@ -135,7 +135,7 @@ const EditProfile = () => {
         <div className='flex justify-center'>
           <div>
             <div className='w-44 h-44'>
-              <img className='w-full h-full rounded-full' src={imgUrl} alt="sasdg" />
+              <img className='object-cover w-full h-full rounded-full' src={imgUrl} alt="sasdg" />
             </div>
             <div className='flex justify-center h-20 pt-3 w-44'>
               <input className="hidden" type="file" ref={imageInput} onChange={(event) => {

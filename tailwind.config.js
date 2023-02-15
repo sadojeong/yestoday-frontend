@@ -7,8 +7,15 @@ module.exports = {
     extend: {
       fontFamily: {
         nanum: ["NanumGothic"]
-      }
+      },
+      colors: {
+        'bg-yellow': '#fffcf0'
+      },
+
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
     },
-  },
-  plugins: [require("tailwind-scrollbar-hide")],
+    plugins: [require("tailwind-scrollbar-hide")],
+  }
 }

@@ -5,7 +5,8 @@ import HorizontalScroll from 'react-scroll-horizontal'
 
 
 const ProfileBodyTemp = props => {
-    const postList = props.postInfo.map(post => (
+    const postInfoReverse = [...props.postInfo].reverse()
+    const postList = postInfoReverse.map(post => (
         <ProfileOnePost
             key={post.id}
             user={props.user}

@@ -4,10 +4,13 @@ import Modal from 'react-modal'
 import ModalOneUser from './ModalOneUser';
 
 const FollowingModal = props => {
+    const userId = 1;
 
     const changeFollowingCheck = () => {
         props.setIsFollowingCheck(false);
     };
+
+
 
     const userList = props.followingInfo.map(following => {
         console.log(following);
@@ -15,6 +18,7 @@ const FollowingModal = props => {
         return <ModalOneUser
             key={following.id}
             id={following.id}
+            user={props.user}
             nickname={following.nickname}
             imageUrl={following.imageUrl}
         />
