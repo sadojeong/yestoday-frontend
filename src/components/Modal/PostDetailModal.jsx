@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 import UpdateModal from './UpdateModal';
 import ProfileTodoModal from './ProfileTodoModal';
 import styled from "styled-components";
+import jwt_decode from 'jwt-decode';
 
 
 
@@ -23,7 +24,8 @@ height:400px;
 `;
 
 const PostDetailModal = props => {
-    const userId = 1
+    const token = localStorage.getItem('accessToken')
+    const userId = jwt_decode(token).sub
     // const [like, setLike] = useState(props.like);
     // const [likeId, setLikeId] = useState(props.likeId);
     const [comments, setComments] = useState([]);
@@ -117,7 +119,7 @@ const PostDetailModal = props => {
     const saveComment = async () => {
         await axios.post('http://54.248.66.164:8080/comments', {
             postId: props.post.id,
-            userId: 1,
+            userId: userId,
             commentDesc: commentText,
             commentDateTime: new Date(Date.now())
 

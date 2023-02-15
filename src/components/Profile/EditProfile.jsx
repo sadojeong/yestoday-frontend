@@ -7,16 +7,16 @@ import { v4 as uuidv4 } from 'uuid';
 import AWS from 'aws-sdk';
 import axios from 'axios';
 
-const region = "ap-northeast-2";
-const bucket = 'yestoday';
+const region = "ap-northeast-1";
+const bucket = 'yestoday-real';
 let imgName = '';
 let imgFile = null;
 
 
 AWS.config.update({
   region: region,
-  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  accessKeyId: 'AKIAVFI4JLTDGCX23W4J',
+  secretAccessKey: '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',
 });
 
 const EditProfile = () => {
