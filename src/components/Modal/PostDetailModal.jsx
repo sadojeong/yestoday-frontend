@@ -103,7 +103,7 @@ const PostDetailModal = props => {
     const commentsList = comments.map((comment) => (
         <li className='flex justify-between mb-4 h-fit ' key={comment.id} >
             <div className='flex w-16 mr-2'>
-                <img className='object-cover w-6 h-6 mr-1' src={comment.user.imageUrl}></img>
+                <img className='object-cover w-6 h-6 mr-1 rounded-full' src={comment.user.imageUrl}></img>
                 <span className='mt-1 text-xs font-semibold'>{comment.user.nickname}</span>
             </div>
             <span className='flex items-center w-2/5 mt-1 text-xs break-all h-fit ' >{comment.commentDesc}</span>
