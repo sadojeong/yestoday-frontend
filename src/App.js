@@ -11,7 +11,7 @@ import EditProfile from './components/Profile/EditProfile';
 import Login from './components/Signin';
 import SignUp from './components/SignUp';
 import StartPage from './components/StartPage';
-
+import Tutorial from './components/Tutorial';
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/Tutorial' element={<Tutorial/>}/>
           <Route path='/StartPage' element={<StartPage/>}/>
           <Route path='/Signin' element={<Login/>}/>
           <Route path='/SignUp' element={<SignUp/>}/>

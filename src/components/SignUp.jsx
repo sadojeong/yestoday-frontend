@@ -2,7 +2,7 @@ import { React, useState, useCallback, useEffect } from 'react'
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import img from '../images/photo.avif'
+import img from '../images/login.png'
 
 
 function SignUp() {
