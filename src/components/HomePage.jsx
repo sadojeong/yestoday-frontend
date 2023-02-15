@@ -78,7 +78,8 @@ const HomePage = props => {
             headers: {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true
+                "Access-Control-Allow-Credentials": true,
+                'Authorization': `Bearer ${token}`
 
             },
             body: JSON.stringify(updateTodo),
@@ -88,10 +89,12 @@ const HomePage = props => {
     }
     //완료 todo
     const checkedTodoHandler = (id) => {
+        console.log(id);
         fetch(baseUrl + '/todocomplete?id=' + id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         }).then(response => response.json())
 
@@ -104,7 +107,8 @@ const HomePage = props => {
         fetch(baseUrl + '?id=' + id, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         }).then(response => response.json())
             .then(data => setTodos(data));
@@ -113,11 +117,12 @@ const HomePage = props => {
     }
     return (
         <div className='flex justify-center'>
-            <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
+            <div className='hidden sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
+                <SideBar userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
-                <MainFeed userId={userId} />
+                <MainFeed userId={userId} setSaveIsOpen={setSaveIsOpen} />
+
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 

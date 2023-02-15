@@ -106,19 +106,15 @@ function Signin() {
                     data: {
                         email: email,
                         password: password,
-                    },
-                    headers: {}
+                    }
+
                 }).then((res) => {
                     //200(OK), 201(Created)
                     console.log('로그인 완료');
-                    alert('로그인에 성공했습니다.')
+                    // alert('로그인에 성공했습니다.')
                     //로그인 성공시 id저장
-                    localStorage.setItem(LS_KEY_ID, email)
-                    localStorage.setItem("hi", "hi")
-                    console.log(res.data);
-                    localStorage.setItem('accessToken', res.data.accessToken)
-                    // 로그인 성공시 메인화면이동
-                    navigate('/home', { state: userId })
+                    // localStorage.setItem(LS_KEY_ID, email)
+                    console.log(res + "asdgasgasdgasdgasdg");
                 })
                     .catch((err) => {
                         //500(err)
@@ -157,6 +153,7 @@ function Signin() {
                     alert('로그인에 성공했습니다.')
                     //로그인 성공시 id저장
                     localStorage.setItem(LS_KEY_ID, email)
+                    localStorage.setItem('accessToken', res.data.accessToken)
                     // 로그인 성공시 메인화면이동
                     window.location.replace('/home')
                 })

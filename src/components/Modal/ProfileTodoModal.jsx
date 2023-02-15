@@ -67,19 +67,19 @@ const ProfileTodoModal = props => {
         <Modal
             style={{
                 overlay: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
                 }
             }}
-            className=' p-2 absolute -translate-x-1/2 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
+            className='font-nanum p-2 absolute -translate-x-1/2 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
             onRequestClose={() => props.setIsClicked(false)}
             isOpen={true} ariaHideApp={false}>
 
             <header>
                 <div className='flex h-10' >
-                    <img className='w-10 h-10 mr-2 rounded-full'
+                    <img className='object-cover w-10 h-10 mr-2 rounded-full'
                         src={props.user.imageUrl} alt="" />
                     <span className='flex items-center text-sm'>{props.user.nickname} 님의</span>
-                    <span className='flex items-center ml-2 font-serif text-sm font-bold'>  Today TodoList</span>
+                    <span className='flex items-center ml-2 font-bold '>  Today Todo-List</span>
 
                 </div>
 
@@ -90,7 +90,8 @@ const ProfileTodoModal = props => {
                 {todoList}
             </ScrollTodo>
 
-            <div className='m-2 font-bold text-center text-gray-600 rounded-lg cursor-pointer hover:bg-slate-100' onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
+            <div className='p-1 m-2 font-bold text-center transition duration-200 rounded-lg cursor-pointer hover:shadow-md text-slate-800 hover:bg-sky-200 hover:text-white'
+                onClick={navigateTo} id={props.user.nickname}> 프로필 보러가기</div>
 
 
         </Modal>

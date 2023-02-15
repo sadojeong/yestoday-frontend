@@ -16,7 +16,7 @@ import StartPage from './components/StartPage';
 function App() {
 
   return (
-    <div className="App">
+    <div className="App font-nanum">
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<StartPage />} />
