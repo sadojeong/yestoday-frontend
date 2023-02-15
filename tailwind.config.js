@@ -4,9 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+
     extend: {
       fontFamily: {
-        nanum: ["NanumGothic"]
+        nanum: ["NanumGothic"],
+        'sans' : ['"Luckiest Guy"']
       },
       colors: {
         'bg-yellow': '#fffcf0'
@@ -19,3 +21,4 @@ module.exports = {
     plugins: [require("tailwind-scrollbar-hide")],
   }
 }
+
