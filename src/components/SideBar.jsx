@@ -53,7 +53,7 @@ const SideBar = props => {
 
             <div className='p-4 mt-16 bg-opacity-50 w-44 h-28 bg-slate-200 rounded-xl'>
                 <div className='flex items-center cursor-pointer' onClick={toProfile}>
-                    <img className='object-scale-down w-10 h-10 mr-2 bg-white rounded-full'
+                    <img className='object-cover w-10 h-10 mr-2 bg-white rounded-full'
                         src={user.imageUrl} alt="" id={user.nickname} />
                     <span className='text-sm font-semibold' id={user.nickname} >{user.nickname}</span>
                 </div>
