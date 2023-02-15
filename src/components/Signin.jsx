@@ -175,97 +175,97 @@ function Signin() {
     return (
         <>
 
-        <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-            {/* Form */}
-            <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p- items-center">
-                <form className="md:w-1/2 p-4 md:p-8" action="">
-                    <div>
-                        <p className="font-bold text-2xl text-[#002D74]">로그인</p>
-                    </div>
-                    <div className='mr-5'>
+            <div className="flex items-center justify-center min-h-screen bg-gray-50">
+                {/* Form */}
+                <div className="flex items-center max-w-3xl bg-gray-100 shadow-lg rounded-2xl p-">
+                    <form className="p-4 md:w-1/2 md:p-8" action="">
+                        <div>
+                            <p className="font-bold text-2xl text-[#002D74]">로그인</p>
+                        </div>
+                        <div className='mr-5'>
 
-                        <p className='text-zinc-600 pt-3 font-semibold mb-1'>아이디</p>
-                        <input className="p-2 rounded-xl border w-full"
-                            type="text"
-                            value={email}
-                            onChange={onChangeEmail}
-                            onKeyDown={(e) => checkCapsLock(e)}
-                            placeholder='Email@.com' required />
-                    </div>
-                    <div className="errorMessageWrap">
-                        {emailError &&
-                            <div>올바른 이메일 주소를 입력해주세요.</div>
-                        }
-                    </div>
-
-                    <div className='mr-5'>
-                        <p className='text-zinc-600 mt-2 font-semibold mb-1'>비밀번호</p>
-                        <input className="p-2 rounded-xl border w-full"
-                            type={passwordInputType.type}
-                            value={password}
-                            onChange={onChangePassword}
-                            autoComplete={passwordInputType.autoComplete}
-                            onKeyDown={(e) => checkCapsLock(e)}
-                            placeholder='Password'
-                            required />
-                    </div>
-                    <div className="errorMessageWrap">
-                        {passwordError && (
-                            <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-                        )}
-
-                    </div>
-
-
-                    <div className=' align-middle mb-1 space-y-2 mt-1 text-sm '>
-                        <input
-                            type="checkbox"
-                            name="saveEmail"
-                            id="saveEmail"
-                            checked={saveIDFlag}
-                            onChange={handleSaveIDFlag}
-                        />
-                        <label>
-                            <span className='text-ml ml-1 mr-3'>아이디 저장</span>
-                        </label>
-
-                        <span
-                            className={
-                                capsLockFlag ? "caps-lock caps-lock-on" : "caps-lock"
+                            <p className='pt-3 mb-1 font-semibold text-zinc-600'>아이디</p>
+                            <input className="w-full p-2 border rounded-xl"
+                                type="text"
+                                value={email}
+                                onChange={onChangeEmail}
+                                onKeyDown={(e) => checkCapsLock(e)}
+                                placeholder='Email@.com' required />
+                        </div>
+                        <div className="errorMessageWrap">
+                            {emailError &&
+                                <div>올바른 이메일 주소를 입력해주세요.</div>
                             }
-                        >
-                            {capsLockFlag ? "Caps Lock On" : "Caps Lock Off"}
-                        </span>
-                    </div>
-                    <div className=' flex justify-center ' >
-                        <button className="bg-[#002D74] w-full rounded-xl mt-2 text-white p-2 hover:scale-105 duration-300" onClick={onSubmit} >로그인</button>
+                        </div>
+
+                        <div className='mr-5'>
+                            <p className='mt-2 mb-1 font-semibold text-zinc-600'>비밀번호</p>
+                            <input className="w-full p-2 border rounded-xl"
+                                type={passwordInputType.type}
+                                value={password}
+                                onChange={onChangePassword}
+                                autoComplete={passwordInputType.autoComplete}
+                                onKeyDown={(e) => checkCapsLock(e)}
+                                placeholder='Password'
+                                required />
+                        </div>
+                        <div className="errorMessageWrap">
+                            {passwordError && (
+                                <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+                            )}
+
+                        </div>
+
+
+                        <div className='mt-1 mb-1 space-y-2 text-sm align-middle '>
+                            <input
+                                type="checkbox"
+                                name="saveEmail"
+                                id="saveEmail"
+                                checked={saveIDFlag}
+                                onChange={handleSaveIDFlag}
+                            />
+                            <label>
+                                <span className='ml-1 mr-3 text-ml'>아이디 저장</span>
+                            </label>
+
+                            <span
+                                className={
+                                    capsLockFlag ? "caps-lock caps-lock-on" : "caps-lock"
+                                }
+                            >
+                                {capsLockFlag ? "Caps Lock On" : "Caps Lock Off"}
+                            </span>
+                        </div>
+                        <div className='flex justify-center ' >
+                            <button className="bg-[#002D74] w-full rounded-xl mt-2 text-white p-2 hover:scale-105 duration-300" onClick={onSubmit} >로그인</button>
+
+                        </div>
+                        <div className="grid items-center grid-cols-3 mt-3 mb-2 text-gray-400">
+                            <hr className="border-gray-400" />
+                            <p className="text-sm text-center">OR</p>
+                            <hr className="border-gray-400 mb" />
+                        </div>
+                        <div className='flex flex-row justify-center gap-10 text-3xl rounded-xl'>
+
+                            < GoogleLog />
+
+                        </div>
+                        <div className='border-b border-[#002D74]'>
+                            <button className="mt-2 text-xs  py-4 text-[#002D74]">비밀번호 찾기 </button>
+                        </div>
+                        <div>
+                            <p className="mt-2 text-xs flex justify-between items-center text-[#002D74]">아이디가 없으시다면? <span className="px-5 py-2 duration-300 bg-white border rounded-xl hover:scale-110"><Link to="/Signup" element={<SignUp />}>회원가입</Link></span></p>
+                        </div>
+                    </form>
+                    <div className="hidden w-1/2 md:block">
+                        <div className="p-10 text-muted contain"><img src={img} alt="logo" /></div>
 
                     </div>
-                    <div className="mb-2 mt-3 grid grid-cols-3 items-center text-gray-400">
-                        <hr className="border-gray-400" />
-                        <p className="text-center text-sm">OR</p>
-                        <hr className="border-gray-400 mb" />
-                    </div>
-                    <div className='flex flex-row justify-center gap-10 text-3xl rounded-xl'>
-
-                        < GoogleLog />
-
-                    </div>
-                    <div className='border-b border-[#002D74]'>
-                        <button className="mt-2 text-xs  py-4 text-[#002D74]">비밀번호 찾기 </button>
-                    </div>
-                    <div>
-                        <p className="mt-2 text-xs flex justify-between items-center text-[#002D74]">아이디가 없으시다면? <span className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"><Link to="/Signup" element={<SignUp />}>회원가입</Link></span></p>
-                    </div>
-                </form>
-                <div className="md:block hidden w-1/2">
-                    <div className="text-muted p-10 contain"><img src={img} alt="logo" /></div>
-
                 </div>
-                </div>
-        </div>
-    </>
-)
+            </div>
+        </>
+    )
 }
 
 export default Signin
