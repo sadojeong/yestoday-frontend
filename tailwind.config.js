@@ -4,10 +4,21 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    fontFamily:{
-      'sans' : ['"Luckiest Guy"']
+
+    extend: {
+      fontFamily: {
+        nanum: ["NanumGothic"],
+        'sans' : ['"Luckiest Guy"']
+      },
+      colors: {
+        'bg-yellow': '#fffcf0'
+      },
+
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
     },
-    extend: {},
-  },
-  plugins: [require("tailwind-scrollbar-hide")],
+    plugins: [require("tailwind-scrollbar-hide")],
+  }
 }
+

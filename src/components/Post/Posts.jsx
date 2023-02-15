@@ -9,7 +9,7 @@ const Posts = props => {
         <Post
             key={post.id}
             post={post}
-            setRefresh={props.setRefresh}
+
 
         />
     ));

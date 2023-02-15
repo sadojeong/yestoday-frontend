@@ -31,7 +31,7 @@ const MyProfileHeader = props => {
                 <div className='flex mt-8'>
                     <div>
                         <div className='w-36 h-36'>
-                            <img className='w-full h-full rounded-full' src={props.user.imageUrl} alt="sasdg" />
+                            <img className='object-cover w-full h-full rounded-full' src={props.user.imageUrl} alt="sasdg" />
                         </div>
                     </div>
                     <section className='w-2/3 ml-14'>
@@ -79,8 +79,8 @@ const MyProfileHeader = props => {
                 </div>
             </div>
 
-            {isFollowerCheck && <FollowerModal setIsFollowerCheck={setIsFollowerCheck} followerInfo={props.followerInfo} />}
-            {isFollowingCheck && <FollowingModal setIsFollowingCheck={setIsFollowingCheck} followingInfo={props.followingInfo} />}
+            {isFollowerCheck && <FollowerModal setIsFollowerCheck={setIsFollowerCheck} followerInfo={props.followerInfo} user={props.user} />}
+            {isFollowingCheck && <FollowingModal setIsFollowingCheck={setIsFollowingCheck} followingInfo={props.followingInfo} user={props.user} />}
         </>
     )
 }

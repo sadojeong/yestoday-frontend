@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
 
 
+
 const region = "ap-northeast-2";
 const bucket = 'yestoday';
 let imgName = '';
@@ -29,8 +30,9 @@ const SaveModal = props => {
     const [todos, setTodos] = useState([]);
     const userId = 1;
 
+
     const dateFormat = (date) => {
-        console.log(date.getDate());
+
         const dateFormatted = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1))
             + '-' + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
         return dateFormatted;
@@ -40,7 +42,6 @@ const SaveModal = props => {
         const getTodos = async () => {
             const response = await axios.get('http://localhost:8080/api/todo/users/' + userId + '/not-posted-todos/todo-date/' + dateFormat(new Date()));
             setTodos(response.data);
-            console.log(response.data);
         }
         getTodos();
     }, [])
@@ -52,10 +53,15 @@ const SaveModal = props => {
 
     //todo 갱신
     const setTodoIsPosted = async () => {
-        await axios.put('http://localhost:8080/api/todo/id/' + todoId + '/post', null,
-            { params: { isPosted: true } });
-        await axios.put('http://localhost:8080/api/todo/todocomplete', null,
+        const response = await axios.get('http://localhost:8080/api/todo/id/' + todoId);
+        if (!response.data.completeState) {
+            await axios.put('http://localhost:8080/api/todo/id/' + todoId + '/post?isPosted=true');
+        }
+
+
+        const aa = await axios.put('http://localhost:8080/api/todo/todocomplete', null,
             { params: { id: todoId } });
+        console.log(aa);
     }
 
     // 등록 버튼 클릭
@@ -66,11 +72,8 @@ const SaveModal = props => {
         if (imgUrl === '') {
             alert('사진을 올려주세요'); return;
         }
-        const currentTime = new Date(Date.now());
 
-        // await Api.put(`user/${ownerData._id}`, {
-        //     image: ownerData._id,
-        // });
+
 
         const upload = new AWS.S3.ManagedUpload({
             params: {
@@ -84,6 +87,7 @@ const SaveModal = props => {
             alert('image 형식이 아닙니다.');
             return;
         }
+        console.log(new Date());
 
         const promise = upload.promise();
         promise.then(
@@ -105,7 +109,7 @@ const SaveModal = props => {
             imageType: imgType,
             // imgFile: iWmgFile,
             content: description,
-            postDateTime: currentTime,
+            postDateTime: new Date(),
             likeNumbers: 0,
             commentNumbers: 0
         })
@@ -120,7 +124,9 @@ const SaveModal = props => {
 
         alert('피드 등록 완료!');
         props.setSaveIsOpen(false);
-        props.setRefresh(refresh => refresh * -1);
+
+        setTimeout(() => { window.location.reload(); }, 1000);
+
     }
 
     // 모달창 닫기
@@ -159,20 +165,20 @@ const SaveModal = props => {
         <Modal
             style={{
                 overlay: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
                 }
             }}
             onRequestClose={closeModal}
             isOpen={true} ariaHideApp={false}
-            className='outline-none absolute z-50 p-2 text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[400px] rounded-2xl h-[650px] top-1/2 left-1/2'>
+            className='font-nanum outline-none absolute z-50 p-2 text-center -translate-x-1/2 -translate-y-1/2 bg-white border-2 w-[400px] rounded-2xl h-[600px] top-1/2 left-1/2'>
             <button className='absolute pl-2 pr-2 font-semibold rounded-md bg-slate-200 right-2 top-2' onClick={closeModal}>
                 X
             </button>
 
 
-            <div className='mt-5 mb-3 text-center'>
+            <div className='mt-5 mb-2 text-center'>
 
-                <select className='w-full text-center border-2' name="todo" onChange={(event) => {
+                <select className='w-full text-center border-2 outline-none' name="todo" onChange={(event) => {
                     setTodoId(event.target.value);
                     const index = event.target.selectedIndex
                     setTodoName(event.target[index].text);
@@ -182,25 +188,25 @@ const SaveModal = props => {
                 </select>
             </div>
 
-            <div className='flex justify-center w-full border-2 h-[400px]'>
+            <div className='flex justify-center w-full border-2 h-[350px] border-dashed'>
                 <input className="hidden" type="file" ref={imageInput} onChange={(event) => {
                     encodeFileToBase64(event.target.files[0]);
 
                 }} />
-                {!imgUrl && <button onClick={onClickImageUpload}><img className='w-20 h-20' src="/images/plus.png" alt="" /></button>}
+                {!imgUrl && <button onClick={onClickImageUpload}><img className='w-20 h-20' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/plus.png" alt="" /></button>}
                 {imgUrl && <img className='object-scale-down h-full' src={imgUrl} alt="preview-img" />}
 
             </div>
 
             {imgUrl && <div className='flex justify-center mt-2'>
-                <button className='flex pl-2 pr-2 border-2 rounded-lg bg-slate-200' onClick={onClickImageUpload}>
-                    <img className='w-4' src="./images/plus.png" alt="" />
+                <button className='flex items-center pl-2 pr-2 border-2 rounded-lg bg-slate-200' onClick={onClickImageUpload}>
+                    <img className='w-4' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/plus.png" alt="" />
                     <span className='ml-1 text-sm'>이미지 다시 선택하기</span>
                 </button>
             </div>
             }
 
-            <textarea className='w-full mt-2 mb-2 border-2 h-[70px] text-sm' onChange={(event) => setDescription(event.target.value)}></textarea>
+            <textarea className='outline-none w-full mt-2 mb-2 border-2 h-[70px] text-sm resize-none' onChange={(event) => setDescription(event.target.value)}></textarea>
 
             <button className='absolute p-1 text-white bg-blue-400 rounded-md text-md right-3 bottom-3' onClick={saveFeedHandler}>
                 등록

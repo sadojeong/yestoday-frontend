@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ScrollTodo = styled.ul`
 overflow:auto;
-height:320px;
+height:400px;
 &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -27,6 +27,7 @@ const Todos = props => {
             key={todo.id}
             name={todo.name}
             id={todo.id}
+            posted={todo.posted}
             todoDescription={todo.todoDescription}
             isCompleted={todo.completeState}
             onDelete={props.onDelete}
