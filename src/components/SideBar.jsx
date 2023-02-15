@@ -14,7 +14,7 @@ const SideBar = props => {
     const navigate = useNavigate();
 
     const toHome = () => {
-        navigate('/', { state: userId });
+        navigate('/home', { state: userId });
     }
 
     const toUsersSearch = () => {
@@ -31,7 +31,7 @@ const SideBar = props => {
 
     return (
         <div className='fixed flex flex-col items-center h-screen md:w-1/3 lg:w-1/4 xl:w-1/6 '>
-            <img className='w-40 mt-3 ml-8 hover:cursor-pointer' src={logo} alt="" onClick={toHome} />
+            <img className='w-40 mt-3 ml-8 hover:cursor-pointer' src='https://yestoday.s3.ap-northeast-2.amazonaws.com/logo.png' alt="" onClick={toHome} />
             {/* <div className='flex pt-10 pb-10 pl-5 pr-5 bg-slate-200 rounded-xl w-50 y-30'>
                 <img className='w-7 h-7 '
                     src="https://yestoday.s3.ap-northeast-2.amazonaws.com/user.png" alt="" />

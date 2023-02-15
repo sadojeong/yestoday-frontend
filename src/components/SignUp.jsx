@@ -70,6 +70,7 @@ function SignUp() {
                     password: password,
                     nickname: nickname,
                 },
+                headers: {}
             })
                 .then((res) => {
                     //200(OK), 201(Created)

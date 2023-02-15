@@ -16,14 +16,15 @@ const token = localStorage.getItem('accessToken')
 
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-console.log(token);
 
 const HomePage = props => {
     const [refresh, setRefresh] = useState(1);
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const location = useLocation();
-    const userId = location.state;
+    const token = localStorage.getItem('accessToken')
+    const userId = jwt_decode(token).sub
+    console.log(userId + 'userId입니다');
     const showModal = () => {
         setSaveIsOpen(true);
     }

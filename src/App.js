@@ -19,10 +19,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/startPage' element={<StartPage />} />
+          <Route path='/' element={<StartPage />} />
           <Route path='/signin' element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />
-          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/home" element={<HomePage />}></Route>
           <Route path='/profile/:username' element={<Profile />} ></Route>
           <Route path='/profile-edit/:username' element={<EditProfile />} ></Route>
           <Route path='/users-search' element={<UsersSearchPage />}></Route>

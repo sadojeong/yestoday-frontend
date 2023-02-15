@@ -4,6 +4,8 @@ import axios from 'axios';
 import AWS from 'aws-sdk';
 import Modal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
+import jwt_decode from 'jwt-decode';
+
 
 
 const region = "ap-northeast-2";
@@ -27,7 +29,8 @@ const SaveModal = props => {
     const [imgType, setImgType] = useState('');
     const [description, setDescription] = useState('');
     const [todos, setTodos] = useState([]);
-    const userId = 1;
+    const token = localStorage.getItem('accessToken')
+    const userId = jwt_decode(token).sub
 
     const dateFormat = (date) => {
         console.log(date.getDate());

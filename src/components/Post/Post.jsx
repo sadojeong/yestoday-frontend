@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import PostDetailModal from '../Modal/PostDetailModal';
 import ProfileTodoModal from '../Modal/ProfileTodoModal';
+import jwt_decode from 'jwt-decode';
 // import { Link } from 'react-router-dom';
 
 
@@ -15,7 +16,8 @@ const Post = props => {
     const [isClicked, setIsClicked] = useState(false);
 
     const user = props.post.user;
-    const userId = 1;
+    const token = localStorage.getItem('accessToken')
+    const userId = jwt_decode(token).sub
 
     const [modalOpen, setModalOpen] = useState(false);
     const showModal = () => {

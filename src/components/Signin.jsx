@@ -99,21 +99,25 @@ function Signin() {
                 const userId = response.data.id
                 console.log(userId);
 
-                await axios.post(
-                    'http://localhost:8080/auth/login',
-                    {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/auth/login',
+                    data: {
                         email: email,
                         password: password,
-                    }
-                ).then((res) => {
+                    },
+                    headers: {}
+                }).then((res) => {
                     //200(OK), 201(Created)
                     console.log('로그인 완료');
                     alert('로그인에 성공했습니다.')
                     //로그인 성공시 id저장
                     localStorage.setItem(LS_KEY_ID, email)
+                    localStorage.setItem("hi", "hi")
+                    console.log(res.data);
                     localStorage.setItem('accessToken', res.data.accessToken)
                     // 로그인 성공시 메인화면이동
-                    navigate('/', { state: userId })
+                    navigate('/home', { state: userId })
                 })
                     .catch((err) => {
                         //500(err)
@@ -153,7 +157,7 @@ function Signin() {
                     //로그인 성공시 id저장
                     localStorage.setItem(LS_KEY_ID, email)
                     // 로그인 성공시 메인화면이동
-                    window.location.replace('/')
+                    window.location.replace('/home')
                 })
                 .catch((err) => {
                     //500(err)
