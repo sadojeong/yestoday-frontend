@@ -22,9 +22,9 @@ const HomePage = props => {
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const location = useLocation();
-    const token = localStorage.getItem('accessToken')
-    const userId = jwt_decode(token).sub
-    console.log(userId + 'userId입니다');
+    const userId = location.state;
+
+    console.log(userId + "dkdkdkdkd");
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -118,11 +118,10 @@ const HomePage = props => {
     return (
         <div className='flex justify-center'>
             <div className='hidden sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
-                <SideBar userId={userId} />
+                <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
-                <MainFeed userId={userId} setSaveIsOpen={setSaveIsOpen} />
-
+                <MainFeed userId={userId} />
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 

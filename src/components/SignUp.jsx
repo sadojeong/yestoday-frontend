@@ -2,7 +2,7 @@ import { React, useState, useCallback, useEffect } from 'react'
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import img from '../images/photo.avif'
+import img from '../images/login.png'
 
 
 function SignUp() {
@@ -77,11 +77,13 @@ function SignUp() {
                     //200(OK), 201(Created)
                     // this.props.history.push('/users/login');
                     console.log('회원가입 완료');
+                    alert('회원가입에 성공했습니다!')
                     window.location.replace('/Signin')
                 })
                 .catch((err) => {
                     //500(err)
                     console.error(err);
+                    alert('회원가입에 실패했습니다. 다시 시도해주세요')
                 });
         };
     };
@@ -151,7 +153,7 @@ function SignUp() {
                         </div>
 
                         <div>
-                            <p className='mb-2 text-sm text-zinc-500'>아이디가 있으신가요? <span className='font-bold text-black underline underline-offset-4'><Link to="/Signin">로그인하기</Link></span></p>
+                            <p className='mb-2 text-sm text-zinc-500'>아이디가 있으신가요? <span className='font-bold text-black no-underline '><Link className='no-underline ' to="/Signin">로그인하기</Link></span></p>
                         </div>
                     </form>
                     <div className="hidden w-1/2 md:block">

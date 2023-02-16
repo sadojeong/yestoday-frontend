@@ -11,7 +11,7 @@ import EditProfile from './components/Profile/EditProfile';
 import Login from './components/Signin';
 import SignUp from './components/SignUp';
 import StartPage from './components/StartPage';
-
+import Tutorial from './components/Tutorial';
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
     <div className="App font-nanum">
       <BrowserRouter>
         <Routes>
+          <Route path='/tutorial' element={<Tutorial />} />
           <Route path='/' element={<StartPage />} />
           <Route path='/signin' element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />

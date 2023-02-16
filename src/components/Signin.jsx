@@ -3,17 +3,14 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import SignUp from '../components/SignUp';
 import { KAKAO_AUTH_URL } from './Kakao/OAuth';
-import GoogleLog from './Kakao/GoogleLog'
+// import GoogleLog from './Kakao/GoogleLog'
 import axios from 'axios';
-import img from '../images/photo.avif'
 import { useNavigate } from 'react-router-dom';
-
 
 function Signin() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [userId, setUserId] = useState(0)
-
     const [passwordError, setPasswordError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordOption, setPasswordOption] = useState(false);
@@ -24,28 +21,22 @@ function Signin() {
     const LS_KEY_SAVE_ID_FLAG = "LS_KEY_SAVE_ID_FLAG";
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const idFlag = JSON.parse(localStorage.getItem(LS_KEY_SAVE_ID_FLAG));
         if (idFlag !== null) setSaveIDFlag(idFlag);
         if (idFlag === false) localStorage.setItem(LS_KEY_ID, "");
-
         let data = localStorage.getItem(LS_KEY_ID);
         if (data !== null) setEmail(data);
     }, []);
-
     const handleSaveIDFlag = () => {
         localStorage.setItem(LS_KEY_SAVE_ID_FLAG, !saveIDFlag);
         setSaveIDFlag(!saveIDFlag);
     };
-
-
     //capslock 감지
     const checkCapsLock = (e) => {
         const capsLock = e.getModifierState("CapsLock");
         setCapsLockFlag(capsLock);
     };
-
     // password input에서 type과 autoComplete를 변경
     const [passwordInputType, setPasswordInputType] = useState({
         type: "password",
@@ -64,7 +55,6 @@ function Signin() {
                 autoComplete: "off"
             });
     }, [passwordOption]);
-
     //비밀번호 유효성 검사
     const onChangePassword = (e) => {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -72,7 +62,6 @@ function Signin() {
         else setPasswordError(true);
         setPassword(e.target.value);
     };
-
     //이메일 유효성검사
     const onChangeEmail = (e) => {
         const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -80,19 +69,15 @@ function Signin() {
         else setEmailError(true);
         setEmail(e.target.value);
     };
-
     //이메일 비밀번호 유효성 검증
     const validation = () => {
         if (!password) setPasswordError(true);
         if (!email) setEmailError(true);
         if (password && email) return true;
         else return false;
-
     };
-
     const getUserIdBeforeLogin = async (e) => {
         e.preventDefault();
-
         if (validation()) {
             try {
                 console.log("호출됨");
@@ -105,16 +90,17 @@ function Signin() {
                     url: 'http://54.248.66.164:8080/auth/login',
                     data: {
                         email: email,
-                        password: password,
+                        password: password
                     }
-
                 }).then((res) => {
                     //200(OK), 201(Created)
                     console.log('로그인 완료');
-                    // alert('로그인에 성공했습니다.')
+                    alert('로그인에 성공했습니다.')
                     //로그인 성공시 id저장
-                    // localStorage.setItem(LS_KEY_ID, email)
-                    console.log(res + "asdgasgasdgasdgasdg");
+                    localStorage.setItem(LS_KEY_ID, email)
+                    localStorage.setItem('accessToken', res.data.accessToken)
+                    // 로그인 성공시 메인화면이동
+                    navigate('/', { state: userId })
                 })
                     .catch((err) => {
                         //500(err)
@@ -130,15 +116,12 @@ function Signin() {
             alert('로그인에 실패했습니다.')
         }
     }
-
     //유효성 검증 후 로그인 api 호출
     const onSubmit = (e) => {
         e.preventDefault();
-
         if (validation()) {
             getUserIdBeforeLogin();
             console.log(userId + "asdfasgdasdgsagsgd");
-
             axios({
                 method: 'post',
                 url: 'http://54.248.66.164:8080/auth/login',
@@ -155,7 +138,7 @@ function Signin() {
                     localStorage.setItem(LS_KEY_ID, email)
                     localStorage.setItem('accessToken', res.data.accessToken)
                     // 로그인 성공시 메인화면이동
-                    window.location.replace('/home')
+                    window.location.replace('/tutorial')
                 })
                 .catch((err) => {
                     //500(err)
@@ -167,11 +150,8 @@ function Signin() {
             }
         };
     };
-
-
     return (
         <>
-
             <div className="flex items-center justify-center min-h-screen bg-gray-50">
                 {/* Form */}
                 <div className="flex items-center max-w-3xl bg-gray-100 shadow-lg rounded-2xl p-">
@@ -181,7 +161,7 @@ function Signin() {
                         </div>
                         <div className='mr-5'>
 
-                            <p className='pt-3 mb-1 font-semibold text-zinc-600'>아이디</p>
+                            <p className='pt-3 font-semibold text-zinc-600'>아이디</p>
                             <input className="w-full p-2 border rounded-xl"
                                 type="text"
                                 value={email}
@@ -196,7 +176,7 @@ function Signin() {
                         </div>
 
                         <div className='mr-5'>
-                            <p className='mt-2 mb-1 font-semibold text-zinc-600'>비밀번호</p>
+                            <p className='mt-3 font-semibold text-zinc-600'>비밀번호</p>
                             <input className="w-full p-2 border rounded-xl"
                                 type={passwordInputType.type}
                                 value={password}
@@ -222,7 +202,7 @@ function Signin() {
                                 checked={saveIDFlag}
                                 onChange={handleSaveIDFlag}
                             />
-                            <label>
+                            <label className='mt-4 '>
                                 <span className='ml-1 mr-3 text-ml'>아이디 저장</span>
                             </label>
 
@@ -235,34 +215,32 @@ function Signin() {
                             </span>
                         </div>
                         <div className='flex justify-center ' >
-                            <button className="bg-[#002D74] w-full rounded-xl mt-2 text-white p-2 hover:scale-105 duration-300" onClick={onSubmit} >로그인</button>
+                            <button className="bg-[#002D74] w-full rounded-xl mt-4 text-white p-2 hover:scale-105 duration-300" onClick={onSubmit} >로그인</button>
 
                         </div>
-                        <div className="grid items-center grid-cols-3 mt-3 mb-2 text-gray-400">
-                            <hr className="border-gray-400" />
-                            <p className="text-sm text-center">OR</p>
-                            <hr className="border-gray-400 mb" />
+                        <div class="mb-2 mt-4 grid grid-cols-3 items-center text-gray-400">
+                            <hr class="border-gray-400" />
+                            <p class="text-center text-sm">OR</p>
+                            <hr class="border-gray-400 mb" />
                         </div>
-                        <div className='flex flex-row justify-center gap-10 text-3xl rounded-xl'>
+                        {/* <div className='flex flex-row justify-center gap-10 text-3xl rounded-xl'>
 
                             < GoogleLog />
 
-                        </div>
-                        <div className='border-b border-[#002D74]'>
+                        </div> */}
+                        {/* <div className='border-b border-[#002D74]'>
                             <button className="mt-2 text-xs  py-4 text-[#002D74]">비밀번호 찾기 </button>
-                        </div>
+                        </div> */}
                         <div>
-                            <p className="mt-2 text-xs flex justify-between items-center text-[#002D74]">아이디가 없으시다면? <span className="px-5 py-2 duration-300 bg-white border rounded-xl hover:scale-110"><Link to="/Signup" element={<SignUp />}>회원가입</Link></span></p>
+                            <p className="mt-2 text-xs flex justify-between items-center text-[#002D74]">아이디가 없으시다면? <span className="px-5 py-2 duration-300 bg-white border rounded-xl hover:scale-110"><Link className='text-black no-underline' to="/Signup" element={<SignUp />}>회원가입</Link></span></p>
                         </div>
                     </form>
                     <div className="hidden w-1/2 md:block">
-                        <div className="p-10 text-muted contain"><img src={img} alt="logo" /></div>
-
+                        <div class="text-muted p-10 contain"><img src='https://yestoday.s3.ap-northeast-2.amazonaws.com/login.png' alt="logo" /></div>
                     </div>
                 </div>
             </div>
         </>
     )
 }
-
 export default Signin
