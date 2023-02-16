@@ -121,7 +121,7 @@ const HomePage = props => {
                 <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
-                <MainFeed userId={userId} />
+                <MainFeed userId={userId} setSaveIsOpen={setSaveIsOpen} />
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 
