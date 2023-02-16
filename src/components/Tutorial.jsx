@@ -36,7 +36,7 @@ function Tutorial() {
 
   return (
     <div className=' bg-gray-100 max-w-[1000px] h-[700px] w-full m-auto py-16 px-4 relative group'>
-      <div className='flex justify-center italic  text-5xl mb-12 '>YesToday Manual</div>
+      <div className='flex justify-center italic  bold text-5xl mb-12 '>YesToday Manual</div>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className=' flex justify-center  w-[800] h-[400px] rounded-2xl object-cover bg-center bg-cover  duration-500'
@@ -62,7 +62,7 @@ function Tutorial() {
           
         ))}
       </div ><div className='flex justify-center text-lg bold bg-[#002D74] w-full rounded-xl mt-2 text-white p-2 hover:scale-105 duration-300'>
-      <button ><Link to="/">YesToday 시작하기</Link></button>
+      <button ><Link className='no-underline text-white' to="/home">YesToday 시작하기</Link></button>
     </div></div>
   );
 }

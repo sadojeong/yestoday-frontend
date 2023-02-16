@@ -13,10 +13,6 @@
     "express": "^4.18.2",
     "gapi-script": "^1.2.0",
     "http-proxy-middleware": "^2.0.6",
-<<<<<<< HEAD
-=======
-    "jsonwebtoken": "^9.0.0",
->>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",

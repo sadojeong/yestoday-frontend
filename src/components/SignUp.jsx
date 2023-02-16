@@ -151,7 +151,7 @@ function SignUp() {
                         </div>
 
                         <div>
-                            <p className='mb-2 text-sm text-zinc-500'>아이디가 있으신가요? <span className='font-bold text-black underline underline-offset-4'><Link to="/Signin">로그인하기</Link></span></p>
+                            <p className=' mb-2 text-sm text-zinc-500'>아이디가 있으신가요? <span className='font-bold text-black no-underline '><Link className='no-underline ' to="/Signin">로그인하기</Link></span></p>
                         </div>
                     </form>
                     <div className="hidden w-1/2 md:block">
