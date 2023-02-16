@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-const baseUrl = 'http://54.248.66.164:8080/api/todo'
+// const baseUrl = 'http://54.248.66.164:8080/api/todo'
 const token = localStorage.getItem('accessToken')
 
 axios.defaults.baseURL = 'http://54.248.66.164:8080';
@@ -22,9 +22,9 @@ const HomePage = props => {
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const location = useLocation();
-    const userId = location.state;
+    const userId = jwt_decode(token).sub
 
-    console.log(userId + "dkdkdkdkd");
+
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -57,7 +57,7 @@ const HomePage = props => {
             todoDate: todayDate
 
         }
-        axios.post(baseUrl, JSON.stringify(newTodo), {
+        axios.post('/api/todo', JSON.stringify(newTodo), {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -73,7 +73,7 @@ const HomePage = props => {
             id: id,
             name: name
         }
-        fetch(baseUrl, {
+        fetch('/api/todo', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const HomePage = props => {
     //완료 todo
     const checkedTodoHandler = (id) => {
         console.log(id);
-        fetch(baseUrl + '/todocomplete?id=' + id, {
+        fetch('/api/todo/todocomplete?id=' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const HomePage = props => {
 
     // Todo 딜리트
     const deleteTodoHandler = (id) => {
-        fetch(baseUrl + '?id=' + id, {
+        fetch('/api/todo' + '?id=' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
