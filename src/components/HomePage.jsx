@@ -10,23 +10,35 @@ import CardBody from './Card/CardBody';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+<<<<<<< HEAD
 import { log } from 'console';
+=======
+>>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
 
 const baseUrl = 'http://localhost:8080/api/todo'
 const token = localStorage.getItem('accessToken')
 
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+<<<<<<< HEAD
 console.log(token);
+=======
+>>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
 
 const HomePage = props => {
     const [refresh, setRefresh] = useState(1);
     const [todoRefresh, setTodoRefresh] = useState(1);
     const [saveIsOpen, setSaveIsOpen] = useState(false);
     const location = useLocation();
+<<<<<<< HEAD
     const userId = location.state;
     
     console.log(userId + "dkdkdkdkd");
+=======
+    const token = localStorage.getItem('accessToken')
+    const userId = jwt_decode(token).sub
+    console.log(userId + 'userId입니다');
+>>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
     const showModal = () => {
         setSaveIsOpen(true);
     }
@@ -80,7 +92,8 @@ const HomePage = props => {
             headers: {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true
+                "Access-Control-Allow-Credentials": true,
+                'Authorization': `Bearer ${token}`
 
             },
             body: JSON.stringify(updateTodo),
@@ -90,10 +103,12 @@ const HomePage = props => {
     }
     //완료 todo
     const checkedTodoHandler = (id) => {
+        console.log(id);
         fetch(baseUrl + '/todocomplete?id=' + id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         }).then(response => response.json())
 
@@ -106,7 +121,8 @@ const HomePage = props => {
         fetch(baseUrl + '?id=' + id, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         }).then(response => response.json())
             .then(data => setTodos(data));
@@ -115,11 +131,20 @@ const HomePage = props => {
     }
     return (
         <div className='flex justify-center'>
+<<<<<<< HEAD
             <div className='hidden border-r-2 sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
                 <SideBar setSaveIsOpen={setSaveIsOpen} userId={userId} />
             </div>
             <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
                 <MainFeed userId={userId} />
+=======
+            <div className='hidden sm:hidden md:inline md:w-1/3 lg:w-1/4 xl:w-1/6'>
+                <SideBar userId={userId} />
+            </div>
+            <div className='flex justify-center sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-3/5'>
+                <MainFeed userId={userId} setSaveIsOpen={setSaveIsOpen} />
+
+>>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
             </div>
             <div className='hidden h-fit sm:hidden md:hidden lg:inline lg:w-1/3'>
 

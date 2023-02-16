@@ -16,14 +16,21 @@ import Tutorial from './components/Tutorial';
 function App() {
 
   return (
-    <div className="App">
+    <div className="App font-nanum">
       <BrowserRouter>
         <Routes>
+<<<<<<< HEAD
           <Route path='/Tutorial' element={<Tutorial/>}/>
           <Route path='/StartPage' element={<StartPage/>}/>
           <Route path='/Signin' element={<Login/>}/>
           <Route path='/SignUp' element={<SignUp/>}/>
           <Route path="/" element={<HomePage />}></Route>
+=======
+          <Route path='/' element={<StartPage />} />
+          <Route path='/signin' element={<Login />} />
+          <Route path='/signUp' element={<SignUp />} />
+          <Route path="/home" element={<HomePage />}></Route>
+>>>>>>> 269f07644e42e436508406fbf3449cd0411f3de5
           <Route path='/profile/:username' element={<Profile />} ></Route>
           <Route path='/profile-edit/:username' element={<EditProfile />} ></Route>
           <Route path='/users-search' element={<UsersSearchPage />}></Route>

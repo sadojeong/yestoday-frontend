@@ -4,12 +4,16 @@ import { useState, useEffect } from 'react'
 import FollowerModal from '../Modal/FollowerModal'
 import FollowingModal from '../Modal/FollowingModal'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode';
 
 const ProfileHeader = props => {
     const imgSrc = props.user.imageUrl
     const [isFollowingCheck, setIsFollowingCheck] = useState(false);
     const [isFollowerCheck, setIsFollowerCheck] = useState(false);
     const [isFollowed, setisFollowed] = useState(false);
+
+    const token = localStorage.getItem('accessToken')
+    const myUserId = jwt_decode(token).sub
 
     console.log(isFollowed);
     console.log(props.user.id);
@@ -59,11 +63,11 @@ const ProfileHeader = props => {
     useEffect(() => {
         console.log('usee');
         console.log(props.user.id);
-        checkFollowState(1, props.user.id);
+        checkFollowState(myUserId, props.user.id);
     }, [props])
 
     const followButtonController = () => {
-        isFollowed ? sendFollowDeleteRequest(1, props.user.id) : sendFollowGetRequest(1, props.user.id);
+        isFollowed ? sendFollowDeleteRequest(myUserId, props.user.id) : sendFollowGetRequest(myUserId, props.user.id);
     }
 
     console.log(isFollowed + 'asdgasdgsdgdgas');
@@ -75,7 +79,7 @@ const ProfileHeader = props => {
                 <div className='flex mt-8'>
                     <div>
                         <div className='w-36 h-36'>
-                            <img className='w-full h-full rounded-full' src={imgSrc} alt="sasdg" />
+                            <img className='object-cover w-full h-full rounded-full' src={imgSrc} alt="sasdg" />
                         </div>
                     </div>
                     <section className='w-2/3 ml-14'>
@@ -86,7 +90,7 @@ const ProfileHeader = props => {
                             <div className='flex ml-1'>
                                 <div className='flex'>
                                     <button className={`flex items-center justify-center w-20 ml-2 rounded-lg ${isFollowed ? 'bg-blue-200' : 'bg-slate-200'}`} onClick={followButtonController}>
-                                        <div className='text-[10px] font-bold'>팔로우</div>
+                                        <div className='text-[10px] font-bold'>{isFollowed ? '팔로우 취소' : '팔로우'}</div>
                                     </button>
                                     <button className='flex items-center justify-center w-20 ml-2 rounded-lg bg-slate-200'>
                                         <div className='text-[10px] font-bold'>메시지 보내기</div>
@@ -126,8 +130,8 @@ const ProfileHeader = props => {
                 </div>
             </div>
 
-            {isFollowerCheck && <FollowerModal setIsFollowerCheck={setIsFollowerCheck} followerInfo={props.followerInfo} />}
-            {isFollowingCheck && <FollowingModal setIsFollowingCheck={setIsFollowingCheck} followingInfo={props.followingInfo} />}
+            {isFollowerCheck && <FollowerModal setIsFollowerCheck={setIsFollowerCheck} followerInfo={props.followerInfo} user={props.user} />}
+            {isFollowingCheck && <FollowingModal setIsFollowingCheck={setIsFollowingCheck} followingInfo={props.followingInfo} user={props.user} />}
         </>
     )
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import styled from 'styled-components';
+import jwt_decode from 'jwt-decode';
 
 const ScrollTodo = styled.ul`
 overflow:auto;
@@ -20,10 +21,12 @@ height:370px;
 
 const CalendarTodoModal = props => {
     const [todos, setTodos] = useState([]);
+    const token = localStorage.getItem('accessToken')
+    const myUserId = jwt_decode(token).sub
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await axios.get('http://localhost:8080/api/todo/users/' + props.userId + "/todo-date/" + props.date);
+            const response = await axios.get('http://localhost:8080/api/todo/users/' + myUserId + "/todo-date/" + props.date);
             setTodos(response.data)
             console.log(response.data);
         }
@@ -51,16 +54,16 @@ const CalendarTodoModal = props => {
         <Modal
             style={{
                 overlay: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
                 }
             }}
-            className=' p-2 absolute -translate-x-11 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
+            className='font-nanum p-2 absolute -translate-x-11 -translate-y-1/2 bg-white border-2 outline-none w-[300px] h-[500px] rounded-xl top-1/2 left-1/2'
             onRequestClose={() => props.setTodoIsOpen(false)}
             isOpen={true} ariaHideApp={false}>
 
             <header>
                 <div className='flex justify-center h-10 font-bold' >
-                    {props.date.substr(0, 4)}년 {props.date.substr(5, 2)}월 {props.date.substr(8, 2)}일의 Todo List
+                    {props.date.substr(0, 4)}년 {props.date.substr(5, 2)}월 {props.date.substr(8, 2)}일의 Todo-List
 
                 </div>
 
