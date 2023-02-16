@@ -38,6 +38,11 @@ const PostDetailModal = props => {
 
     const isMine = (props.user.id === userId) ? true : false;
 
+    console.log(comments);
+    console.log(typeof (userId * 1));
+
+
+
 
     const closeModal = () => {
         props.setModalOpen(false);
@@ -68,8 +73,10 @@ const PostDetailModal = props => {
     const likeHandler = () => {
         if (props.like === false) {
             addLike();
+            props.setLikeNumber(likeNumber => likeNumber + 1);
         } else {
             deleteLike();
+            props.setLikeNumber(likeNumber => likeNumber - 1);
         }
     }
 
@@ -110,7 +117,7 @@ const PostDetailModal = props => {
             </div>
             <span className='flex items-center w-2/5 mt-1 text-xs break-all h-fit ' >{comment.commentDesc}</span>
             <span className='mt-1 text-xs text-slate-500'>{comment.commentDateTime.substr(0, 10)}</span>
-            <button className={`${comment.userId === userId ? 'visible' : 'invisible'} text-sm text-red-400 cursor-default h-fit `}
+            <button className={`${comment.userId === userId * 1 ? 'visible' : 'invisible'} text-sm text-red-400 cursor-default h-fit `}
                 onClick={() => deleteCommentHandler(comment)}>X</button>
         </li >
     ));
@@ -223,7 +230,7 @@ const PostDetailModal = props => {
             <div className='w-2/5 h-full font-nanum'>
                 <div className='flex justify-between w-full h-20 mt-5 text-left'>
 
-                    <span className='w-full h-20 text-left'>{props.post.context}</span>
+                    <span className='w-full h-20 text-left'>{props.post.content}</span>
 
                     <img className='h-12 m-2 transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 '
                         src={props.like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />

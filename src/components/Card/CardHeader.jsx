@@ -17,7 +17,7 @@ const CardHeader = props => {
             <input type='text'
                 maxLength={20}
                 className='w-full p-4 mb-3 rounded-lg outline-none h-14 text-md placeholder:font-semibold placeholder:text-gray-300 placeholder:text-md'
-                placeholder='오늘의 Todo를 작성해주세요'
+                placeholder='오늘의 Todo를 작성해주세요         Enter'
                 onKeyDown={addTodoHandler}
             ></input>
         </div >

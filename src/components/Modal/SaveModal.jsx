@@ -17,8 +17,8 @@ let imgFile = null;
 
 AWS.config.update({
     region: region,
-    accessKeyId: 'AKIAVFI4JLTDGCX23W4J',
-    secretAccessKey: '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',
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
 });
 
 
@@ -209,8 +209,7 @@ const SaveModal = props => {
             </div>
             }
 
-            <textarea className='outline-none w-full mt-2 mb-2 border-2 h-[70px] text-sm resize-none' onChange={(event) => setDescription(event.target.value)}></textarea>
-
+            <textarea className='p-1 outline-none w-full mt-2 mb-2 border-2 h-[70px] text-sm resize-none placeholder:text-slate-400' placeholder='게시물 내용을 입력하세요.' onChange={(event) => setDescription(event.target.value)}></textarea>
             <button className='absolute p-1 text-white bg-blue-400 rounded-md text-md right-3 bottom-3' onClick={saveFeedHandler}>
                 등록
             </button>

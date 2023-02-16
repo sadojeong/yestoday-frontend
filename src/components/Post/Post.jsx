@@ -13,6 +13,7 @@ const Post = props => {
     // const [user, setUser] = useState();
     const [like, setLike] = useState(false);
     const [likeId, setLikeId] = useState(0);
+    const [likeNumber, setLikeNumber] = useState(props.post.likeNumbers);
     const [isClicked, setIsClicked] = useState(false);
 
     const user = props.post.user;
@@ -45,18 +46,20 @@ const Post = props => {
     }, [])
 
     const addLike = async () => {
-        const response = await axios.post("http://54.248.66.164:8080/likes", {
+        const response = await axios.post("/likes", {
             "postId": props.post.id,
             "userId": userId
         })
         setLike(true);
         setLikeId(response.data[0].id);
+        setLikeNumber(likeNumber => likeNumber + 1);
     }
 
     const deleteLike = async () => {
-        const response = await axios.delete("http://54.248.66.164:8080/likes/" + likeId);
+        const response = await axios.delete("/likes/" + likeId);
         setLike(false);
         setLikeId(0);
+        setLikeNumber(likeNumber => likeNumber - 1);
     }
 
     const likeHandler = () => {
@@ -98,19 +101,16 @@ const Post = props => {
                 </div>
 
             </div>
-            <div className='flex justify-end '>
-                <div className='h-10 mt-3 mb-1 mr-3'>
-                    <img className='h-full transition duration-300 ease-in-out delay-150 cursor-pointer hover:-translate-y-1 hover:scale-110 '
-                        src={like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
-                </div>
-
+            <div className='flex justify-between h-12 pl-3 mt-3 mb-1 '>
+                <span className='font-semibold'>Yes! {likeNumber} 개</span>
+                <img className='h-full transition duration-300 ease-in-out delay-150 cursor-pointer hover:-translate-y-1 hover:scale-110 '
+                    src={like ? "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes.png" : "https://yestoday.s3.ap-northeast-2.amazonaws.com/yes-black.png"} alt="" onClick={likeHandler} />
             </div>
-
             <p className='h-20 pl-2 text-sm text-left break-all'>{props.post.content}</p>
             <p className='h-10 pl-2 text-sm font-semibold text-left cursor-pointer text-slate-400' onClick={showModal}>댓글 보기...</p>
             {modalOpen && <PostDetailModal setModalOpen={setModalOpen}
                 user={user} like={like} likeId={likeId} post={props.post}
-                setLike={setLike} setLikeId={setLikeId} />}
+                setLike={setLike} setLikeId={setLikeId} setLikeNumber={setLikeNumber} />}
 
         </div>
 

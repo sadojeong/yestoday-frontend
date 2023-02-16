@@ -52,12 +52,12 @@ const SideBar = props => {
 
 
             <div className='p-2 mt-16 bg-opacity-50 w-44 h-28 bg-slate-200 rounded-xl'>
-                <div className='flex items-center mt-4 cursor-pointer' onClick={toProfile}>
-                    <img className='object-cover w-10 h-10 mr-2 bg-white rounded-full'
+                <div className='flex items-center mt-4 ' >
+                    <img className='object-cover w-10 h-10 mr-2 bg-white rounded-full cursor-pointer ' onClick={toProfile}
                         src={user.imageUrl} alt="" id={user.nickname} />
                     <div>
-                        <span className='mt-2 ml-1 font-semibold text-left' id={user.nickname}>{user.nickname}</span>
-                        <div className='ml-1 text-xs text-left text-slate-400' id={user.nickname}>{user.email}</div>
+                        <span className='mt-2 ml-1 font-semibold text-left cursor-pointer' id={user.nickname} onClick={toProfile}>{user.nickname}</span>
+                        <div className='ml-1 text-xs text-left cursor-pointer text-slate-400' id={user.nickname} onClick={toProfile}>{user.email}</div>
                     </div>
                     {/* <span className='text-sm font-semibold' id={user.nickname} >{user.nickname}</span> */}
                 </div>

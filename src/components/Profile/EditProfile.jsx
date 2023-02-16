@@ -15,8 +15,8 @@ let imgFile = null;
 
 AWS.config.update({
   region: region,
-  accessKeyId: 'AKIAVFI4JLTDGCX23W4J',
-  secretAccessKey: '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',
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
 });
 
 const EditProfile = () => {

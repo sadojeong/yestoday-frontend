@@ -12,6 +12,7 @@ const MainFeed = props => {
     const [refresh, setRefresh] = useState(1);
     const [feed, setFeed] = useState([]);
 
+
     let obsRef = useRef(null); 	//observer Element
     const [page, setPage] = useState(0); //현재 페이지
     const [load, setLoad] = useState(false); //로딩 스피너
@@ -74,10 +75,30 @@ const MainFeed = props => {
 
         <div>
 
-            <button className='fixed items-center float-right font-semibold bottom-7 right-[500px] hover:cursor-pointer ' >
+            <button className='fixed items-center float-right font-semibold bottom-7 lg:right-1/3 xl:right-1/3 md:right-5 right-5 hover:cursor-pointer' >
                 <img className='w-[80px] h-[80px] ' src='https://yestoday.s3.ap-northeast-2.amazonaws.com/plus2.png' alt=""
                     onClick={showModal} /></button>
-            <Posts feed={feed} />
+            {feed.length === 0 ?
+                <div className='mt-20 text-xl font-bold text-slate-700' >
+                    <div className='flex items-center mb-3'>
+                        <img className='w-8 h-8 mr-1' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/one.png" alt="" />
+                        <span > 오늘의 Todo를 입력하세요</span>
+                        <img className='w-5 h-5 ml-1' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/pencil.png" alt="" />
+                    </div>
+                    <div className='flex items-center mb-3'>
+                        <img className='w-8 h-8 mr-1' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/two.png" alt="" />
+                        <span >Todo를 완료하면 게시물을 올려 주세요</span>
+                        <img className='w-6 h-6 ml-1' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/checked.png" alt="" />
+                    </div>
+                    <div className='flex items-center'>
+                        <img className='w-8 h-8 mr-1' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/three.png" alt="" />
+                        <span >다른 사용자를 팔로우 해 피드를 꾸며보세요</span>
+                        <img className='ml-1 w-7 h-7' src="https://yestoday.s3.ap-northeast-2.amazonaws.com/pretty-star.png" alt="" />
+                    </div>
+
+
+                </div>
+                : <Posts feed={feed} />}
             {
                 load &&
                 <div className="flex justify-center spinner">

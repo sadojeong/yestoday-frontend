@@ -48,7 +48,7 @@ const CalendarPage = props => {
                     formatDay={(locale, date) => moment(date).format("DD")}
                     navigationLabel={null}
                     showNeighboringMonth={false}
-                    className="w-[500px] h-[400px] mt-40 text-sm border-0 rounded-xl  shadow-md"
+                    className="w-[600px] h-[400px] mt-40 text-sm border-0 rounded-xl  shadow-md"
                     onClickDay={(value) => clickHandler(value)}
                     tileClassName="h-12"
 
