@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode';
 // import { Link } from 'react-router-dom';
 
 
-const baseUrl = 'http://localhost:8080/users'
+const baseUrl = 'http://54.248.66.164:8080/users'
 
 const Post = props => {
     // const feedDate = props.feedDate.substr(0, 10);
@@ -28,7 +28,7 @@ const Post = props => {
 
         const getLike = async () => {
 
-            const response = await axios.get("http://localhost:8080/likes/users/" + userId + "/posts/" + props.post.id);
+            const response = await axios.get("http://54.248.66.164:8080/likes/users/" + userId + "/posts/" + props.post.id);
             if (response.data) {
                 setLike(true);
                 setLikeId(response.data.id);
@@ -45,7 +45,7 @@ const Post = props => {
     }, [])
 
     const addLike = async () => {
-        const response = await axios.post("http://localhost:8080/likes", {
+        const response = await axios.post("http://54.248.66.164:8080/likes", {
             "postId": props.post.id,
             "userId": userId
         })
@@ -54,7 +54,7 @@ const Post = props => {
     }
 
     const deleteLike = async () => {
-        const response = await axios.delete("http://localhost:8080/likes/" + likeId);
+        const response = await axios.delete("http://54.248.66.164:8080/likes/" + likeId);
         setLike(false);
         setLikeId(0);
     }

@@ -11,7 +11,7 @@ import SaveModal from '../Modal/SaveModal';
 import MyProfileHeader from './MyprofileHeader';
 import jwt_decode from 'jwt-decode';
 
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://54.248.66.164:8080';
 
 const Profile = props => {
     const params = useParams();

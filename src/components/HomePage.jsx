@@ -12,10 +12,10 @@ import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 
-const baseUrl = 'http://localhost:8080/api/todo'
+const baseUrl = 'http://54.248.66.164:8080/api/todo'
 const token = localStorage.getItem('accessToken')
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'http://54.248.66.164:8080';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 console.log(token);
 

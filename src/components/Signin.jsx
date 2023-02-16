@@ -82,11 +82,11 @@ function Signin() {
         if (validation()) {
             try {
                 console.log("호출됨");
-                const response = await axios.get('http://localhost:8080' + `/users/byemail/${email}`)
+                const response = await axios.get('http://54.248.66.164:8080' + `/users/byemail/${email}`)
                 const userId = response.data.id
              
                 await axios.post(
-                    'http://localhost:8080/auth/login',
+                    'http://54.248.66.164:8080/auth/login',
                     {
                         email: email,
                         password: password,
@@ -123,7 +123,7 @@ function Signin() {
             console.log(userId + "asdfasgdasdgsagsgd");
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/auth/login',
+                url: 'http://54.248.66.164:8080/auth/login',
                 data: {
                     email: email,
                     password: password,

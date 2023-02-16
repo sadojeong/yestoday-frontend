@@ -29,7 +29,7 @@ const ProfileHeader = props => {
 
     const sendFollowGetRequest = async (userId, followUserId) => {
         await axios.post(
-            'http://localhost:8080/follows',
+            'http://54.248.66.164:8080/follows',
             {
                 "user": {
                     "id": userId //Todo 로그인 유저 정보로 업데이트
@@ -46,7 +46,7 @@ const ProfileHeader = props => {
     const sendFollowDeleteRequest = async (userId, followUserId) => {
         if (window.confirm(`${props.user.nickname}님을 팔로우 취소하시겠습니까?`)) {
             await axios.delete(
-                `http://localhost:8080/follows/${userId}/${followUserId}`)
+                `http://54.248.66.164:8080/follows/${userId}/${followUserId}`)
             setisFollowed(!isFollowed)
             window.location.reload()
         }
@@ -55,7 +55,7 @@ const ProfileHeader = props => {
     const checkFollowState = async (userId, followUserId) => {
         console.log("호출됨");
         const response = await axios.get(
-            `http://localhost:8080/follows/following-check/${userId}/${followUserId}`)
+            `http://54.248.66.164:8080/follows/following-check/${userId}/${followUserId}`)
         console.log(response.data + "아아아아아아아아아아");
         setisFollowed(response.data)
     }

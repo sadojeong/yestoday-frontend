@@ -36,7 +36,7 @@ const SideBar = props => {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/users/byid/" + userId)
+        axios.get("http://54.248.66.164:8080/users/byid/" + userId)
             .then(response => response.data)
             .then(data => {
                 console.log(data);

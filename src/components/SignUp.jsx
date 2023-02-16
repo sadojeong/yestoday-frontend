@@ -65,7 +65,7 @@ function SignUp() {
         if (validation()) {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/auth/signup',
+                url: 'http://54.248.66.164:8080/auth/signup',
                 data: {
                     email: email,
                     password: password,
