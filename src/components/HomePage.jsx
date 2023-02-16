@@ -73,30 +73,32 @@ const HomePage = props => {
             id: id,
             name: name
         }
-        fetch('/api/todo', {
+
+        fetch('http://54.248.66.164:8080/api/todo', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true,
-                'Authorization': `Bearer ${token}`
+                "Access-Control-Allow-Credentials": true
 
             },
             body: JSON.stringify(updateTodo),
         }).then(response => response.json())
             .then(data => setTodos(data));
-
     }
+
     //완료 todo
     const checkedTodoHandler = (id) => {
         console.log(id);
-        fetch('/api/todo/todocomplete?id=' + id, {
+        fetch('http://54.248.66.164:8080/api/todo/todocomplete?id=' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
         }).then(response => response.json())
+
+
 
 
     }
@@ -104,7 +106,7 @@ const HomePage = props => {
 
     // Todo 딜리트
     const deleteTodoHandler = (id) => {
-        fetch('/api/todo' + '?id=' + id, {
+        fetch('http://54.248.66.164:8080/api/todo' + '?id=' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +114,6 @@ const HomePage = props => {
             },
         }).then(response => response.json())
             .then(data => setTodos(data));
-
 
     }
     return (

@@ -36,7 +36,7 @@ const PostDetailModal = props => {
     const [updateIsOpen, setUpdateIsOpen] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
 
-    const isMine = (props.user.id === userId) ? true : false;
+    const isMine = (props.user.id === userId * 1) ? true : false;
 
     console.log(comments);
     console.log(typeof (userId * 1));
