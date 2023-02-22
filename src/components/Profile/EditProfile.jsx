@@ -14,9 +14,7 @@ let imgFile = null;
 
 
 AWS.config.update({
-  region: region,
-  accessKeyId: 'AKIAVFI4JLTDGCX23W4J',
-  secretAccessKey: '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',
+  region: region
 });
 
 const EditProfile = () => {
