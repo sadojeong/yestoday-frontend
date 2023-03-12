@@ -8,89 +8,53 @@ YesToday는 `Spring Boot`와 `React`를 기반으로 하는 웹 서비스 입니
 - TODO 기록과 달성을 공유함으로써 **동기를 지속적으로 부여**받음
 - 일상을 공유하고자 하는 욕구와 누군가에게 인정 받고 싶어하는 욕구를 동시에 자극할 수 있는 SNS를 만들고자 함
 
-
+## 구현 결과
+회원가입/로그인 페이지
+![회원](https://user-images.githubusercontent.com/85427126/224540728-84acb728-6735-4b78-947a-03d49df7a5dd.PNG)
+<br/>
+<br/>
+메인 페이지
+![메인](https://user-images.githubusercontent.com/85427126/224540796-9e656b25-c578-4463-8d97-552db6dc2c7d.PNG)
+<br/>
+<br/>
+게시물 등록
+![게시물 등록](https://user-images.githubusercontent.com/85427126/224540813-4c8e79a6-eb7f-4c8c-96e5-3bdc572e0644.PNG)
+<br/>
+<br/>
+게시물 상세 조회
+![게시물상세조회](https://user-images.githubusercontent.com/85427126/224540827-8dc1e42f-b125-47f5-9554-a639c73de457.PNG)
+<br/>
+<br/>
+프로필 페이지
+![프로필](https://user-images.githubusercontent.com/85427126/224540840-0269e6c9-89f9-40c9-bfad-1d53cb7ae77a.PNG)
+<br/>
+<br/>
+검색 페이지
+![검색](https://user-images.githubusercontent.com/85427126/224540852-7130c622-3c25-48b1-a527-4a957735c063.PNG)
+<br/>
 
 ## ERD
 ![erd](https://user-images.githubusercontent.com/85427126/224539888-a51229d5-178d-4395-8817-af74705e40b1.PNG)
 
 ## Tech Stacks
 ### Back-end
-Java 11|
-Spring Boot 2.7.8
-Spring Data JPA, QueryDSL
-Spring Security, JWT
-Swagger
-MySQL, H2
+Java 11<br/>
+Spring Boot 2.7.8<br/>
+Spring Data JPA, QueryDSL<br/>
+Spring Security, JWT<br/>
+Swagger<br/>
+MySQL, H2<br/>
 
 ### Front-end
-JavaScript
-React
-TailwindCSS
-Axios
+JavaScript<br/>
+React<br/>
+TailwindCSS<br/>
+Axios<br/>
 
 ### Collaboration
-Postman
-Notion, Slack
+Postman<br/>
+Notion, Slack<br/>
 
 ### AWS Public Cloud Service
-EC2, RDS, S3
+EC2, RDS, S3<br/>
 
-
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
