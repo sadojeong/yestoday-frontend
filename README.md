@@ -44,12 +44,14 @@ Spring Data JPA, QueryDSL<br/>
 Spring Security, JWT<br/>
 Swagger<br/>
 MySQL, H2<br/>
+IntelliJ<br/>
 
 ### Front-end
 JavaScript<br/>
 React<br/>
 TailwindCSS<br/>
 Axios<br/>
+Visual Studio Code<br/>
 
 ### Collaboration
 Postman<br/>
