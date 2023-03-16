@@ -63,4 +63,3 @@ Jira Software, Notion, Slack<br/>
 
 ### AWS Public Cloud Service
 EC2, RDS, S3<br/>
-
