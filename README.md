@@ -53,7 +53,7 @@ Axios<br/>
 
 ### Collaboration
 Postman<br/>
-Notion, Slack<br/>
+Notion, Slack, Jira software<br/>
 
 ### AWS Public Cloud Service
 EC2, RDS, S3<br/>
